@@ -1,0 +1,23 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container } from '@mui/material';
+
+const SpaceBetweenBox = ({ children }) => (
+  <Container
+    component="div"
+    sx={{
+      minHeight: 128,
+      flexGrow: 1,
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'space-between',
+    }}
+  >
+    {children}
+  </Container>
+);
+
+SpaceBetweenBox.propTypes = {
+  children: PropTypes.any.isRequired,
+};
+export default SpaceBetweenBox;

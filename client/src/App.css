@@ -1,0 +1,27 @@
+:root {
+  --height-toolbar: 48px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  outline: 0px;
+}
+
+.App {
+  /* margin-top: var(--height-toolbar); */
+  height: calc(100vh - var(--height-toolbar)) !important;
+}
+
+.logo_brand {
+  width: inherit;
+  height: inherit;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.logo_brand_small {
+  width: 32;
+  height: 32;
+}
