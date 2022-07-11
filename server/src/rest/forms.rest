@@ -1,0 +1,56 @@
+### GET ALL FORMS
+GET http://localhost:5000/form/forms
+
+### GET FORM BY USER
+GET http://localhost:5000/form/getuserforms/62c534a9310cc874bbbbc143
+
+### GET FORM BY ID
+GET http://localhost:5000/form/62c54f17b6c9b0c2f9f14789
+
+### DELETE FORM USING FORMID AND USERID
+DELETE http://localhost:5000/form/deleteform/Pallav Gupta/62c534a9310cc874bbbbc143
+
+### EDIT FORM (SEND QUESTIONS)
+PUT http://localhost:5000/form/editForm
+Content-Type: application/json
+
+{
+		"formId" : "62c5bbf5458607548ab9481e",
+		"name": "NEW NAME1",
+		"description": "HELLO NEW DESCRIP",
+		"questions": [
+			{
+				"open": false,
+				"options": [
+					{
+						"optionText": "Option 1"
+					},
+					{
+						"optionText": "Option 2"
+					}
+				],
+				"questionText": "HEY YOU CRAZY"
+			},
+			{
+				"open": true,
+				"options": [
+					{
+						"optionText": "Option 3"
+					},
+					{
+						"optionText": "Option 4"
+					}
+				],
+				"questionImage": "",
+				"questionText": "HEY YOU CRAZY 2"
+			}
+		]	
+}
+
+###
+POST http://localhost:5000/form/create
+Content-Type: application/json
+
+{
+	"name":"HEY","description":"HELLO","createdBy":"62c534a9310cc874bbbbc143"
+}

@@ -1,0 +1,17 @@
+GET http://localhost:5000/
+
+###
+POST http://localhost:5000/user/signup
+Content-Type: application/json
+
+{
+	"name": "Pallav Gupta", "password": "Pallu!234", "email": "pgupta1795@gmail.com"
+}
+
+###
+POST http://localhost:5000/user/login
+Content-Type: application/json
+
+{
+	"name": "Pallav Gupta1", "password": "Pallu!2343", "email": "pgupta1796@gmail.com"
+}

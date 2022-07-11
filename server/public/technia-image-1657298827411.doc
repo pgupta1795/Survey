@@ -1,0 +1,383 @@
+Date: Tue, 31 May 2022 08:59:52 +0000 (UTC)
+Message-ID: <2064769479.15.1653987592904@8e8e5dc5d41d>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_14_1403369519.1653987592904"
+
+------=_Part_14_1403369519.1653987592904
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>WP1-4 Demo</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>WP1-4 Demo</h1>
+    <div class=3D"Section1">
+        <span class=3D"confluence-embedded-file-wrapper image-center-wrappe=
+r"><a href=3D"/wiki/download/attachments/3569811495/HAAS_DEMO.mp4?version=
+=3D1&amp;modificationDate=3D1650267288722&amp;cacheVersion=3D1&amp;api=3Dv2=
+">HAAS_DEMO.mp4</a></span>
+<p></p>=20
+<div class=3D"plugin_attachments_container">=20
+<div class=3D"plugin_attachments_table_container">=20
+<fieldset class=3D"hidden">=20
+<input type=3D"hidden" class=3D"plugin_attachments_macro_render_param" name=
+=3D"pageId" value=3D"3569811495">=20
+<input type=3D"hidden" name=3D"deleteConfirmMessage" value=3D"Are you sure =
+you want to send the attached file " {0}" to the trash? only a space admini=
+strator can undo this action.">=20
+<input type=3D"hidden" name=3D"outputType" value=3D"word">=20
+</fieldset>=20
+<table class=3D"attachments aui" data-sort-by=3D"date" data-sort-order=3D""=
+ data-tablesorter-headers=3D"{&quot;0&quot;: {&quot;sorter&quot;: false}}">=
+=20
+<tbody>
+<tr class=3D"header-row">=20
+<th class=3D"expand-column attachment-summary-toggle">&nbsp;</th>=20
+<th class=3D"filename-column"> File </th>=20
+<th class=3D"modified-column"> Modified </th>=20
+</tr>=20
+</tbody>
+<tbody>=20
+<tr id=3D"attachment-3569189136" class=3D"attachment-row" data-attachment-i=
+d=3D"3569189136">=20
+<td class=3D"attachment-summary-toggle"> <span class=3D"icon icon-section-c=
+losed" title=3D"Show more info"></span>=20
+<div class=3D"attachment-summary attachment-summary-3569189136 hidden attac=
+hment-details-wrapper" data-attachment-id=3D"3569189136" data-attachment-fi=
+lename=3D"HAAS_DEMO.mp4">=20
+<p class=3D"attachment-labels">Labels</p>=20
+<div class=3D"labels-section-content content-column" entityid=3D"3569189136=
+" entitytype=3D"attachment">=20
+<div class=3D"labels-content">=20
+<ul class=3D"label-list  has-pen">=20
+<li class=3D"no-labels-message"> No labels </li>=20
+<li class=3D"labels-edit-container"> <a aria-describedby=3D"attach-35691891=
+36" href=3D"#" class=3D"show-labels-editor" title=3D"Edit Labels"> <span cl=
+ass=3D"aui-icon aui-icon-small aui-iconfont-edit-small">Edit Labels</span> =
+</a> </li>=20
+</ul>=20
+</div>=20
+</div>=20
+<div class=3D"attachment-history-wrapper"></div>=20
+<div class=3D"attachment-buttons"> <a class=3D"aui-button previewAttachment=
+Link" data-filename=3D"HAAS_DEMO.mp4" data-file-src=3D"/wiki/download/attac=
+hments/3569811495/HAAS_DEMO.mp4?api=3Dv2" data-linked-resource-default-alia=
+s=3D"HAAS_DEMO.mp4" data-mime-type=3D"video/mp4" data-linked-resource-conta=
+iner-id=3D"3569811495" data-linked-resource-id=3D"3569189136">Preview</a> <=
+a class=3D"aui-button " href=3D"/wiki/download/attachments/3569811495/HAAS_=
+DEMO.mp4?version=3D1" aria-describedby=3D"attach-3569189136" data-file-src=
+=3D"/download/attachments/3569811495/HAAS_DEMO.mp4?version=3D1" data-linked=
+-resource-container-id=3D"3569811495" data-linked-resource-default-alias=3D=
+"HAAS_DEMO.mp4" data-linked-resource-id=3D"3569189136" data-linked-resource=
+-type=3D"attachment">View</a> <a class=3D"aui-button editAttachmentLink" hr=
+ef=3D"/wiki/pages/editattachment.action?pageId=3D3569811495&amp;fileName=3D=
+HAAS_DEMO.mp4&amp;isFromPageView=3Dtrue" aria-describedby=3D"attach-3569189=
+136">Properties</a> <a class=3D"aui-button removeAttachmentLink" href=3D"/w=
+iki/pages/confirmattachmentremoval.action?pageId=3D3569811495&amp;fileName=
+=3DHAAS_DEMO.mp4" aria-describedby=3D"attach-3569189136">Delete</a>=20
+</div>=20
+</div> </td>=20
+<td class=3D"filename-column"> <p> <span class=3D"icon icon-file-multimedia=
+" title=3D"Multimedia File">Multimedia File</span> <a class=3D"filename" hr=
+ef=3D"/wiki/download/attachments/3569811495/HAAS_DEMO.mp4?api=3Dv2" title=
+=3D"Download" data-filename=3D"HAAS_DEMO.mp4" data-type=3D"video/mp4" data-=
+linked-resource-container-id=3D"3569811495"> HAAS_DEMO.mp4 </a> </p> </td>=
+=20
+<td class=3D"attachment-created modified-column" data-sort-value=3D"1650267=
+288722"> <span>Apr 18, 2022</span> <span>by</span> <a href=3D"/wiki/people/=
+557058:953a4bb1-a65b-4e07-9e50-2d35e221971b" class=3D"url fn confluence-use=
+rlink" data-account-id=3D"557058:953a4bb1-a65b-4e07-9e50-2d35e221971b">Pall=
+av Gupta</a> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</div>=20
+<div class=3D"plugin_attachments_upload_container">=20
+<div class=3D"attachments-table-drop-zone">=20
+<li class=3D"drop-zone-text">=20
+<div class=3D"drop-zone-image"></div> <span>Drag and drop to upload or <a c=
+lass=3D"aui-button aui-button-link browse-files">browse for files</a></span=
+> <img src=3D"e140dbe1465a50eb99987446f6c02257" class=3D"plugin_attachments=
+_dropzone_uploadwaiticon" width=3D"16" height=3D"16"> </li>=20
+<form method=3D"POST" class=3D"plugin_attachments_uploadform aui hidden" ac=
+tion=3D"/wiki/pages/plugins/attachments/doattachfile.action?pageId=3D356981=
+1495" enctype=3D"multipart/form-data">=20
+<input type=3D"hidden" name=3D"atl_token" value=3D"d09228804ca2d0d8a91ac543=
+264d4e875105b8d9">=20
+<div class=3D"field-group"> <label>Upload file</label>=20
+<input type=3D"file" name=3D"file_0" size=3D"30">=20
+</div>=20
+<div class=3D"field-group"> <label>File description</label>=20
+<input type=3D"text" class=3D"blank-search text" name=3D"comment_0" size=3D=
+"20" placeholder=3D"Comment">=20
+<input type=3D"hidden" name=3D"labels" value=3D"$macroParams.labels">=20
+</div>=20
+<div class=3D"field-group">=20
+<input type=3D"submit" class=3D"submit aui-button" name=3D"confirm" value=
+=3D"Upload">=20
+</div> <iframe class=3D"plugin_attachments_uploadiframe hidden" name=3D"hpI=
+opM8EUTHM4mKN8TWexbrFLGBKWKgUHnwzC1UYiDNjwC2KGZEk4l1wUBaFvTPM" src=3D""></i=
+frame>=20
+</form>=20
+</div>=20
+</div>=20
+<div>=20
+</div>=20
+</div>
+    </div>
+</body>
+</html>
+------=_Part_14_1403369519.1653987592904
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: file:///C:/e140dbe1465a50eb99987446f6c02257
+
+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
+fySDhGYQdDWGQyUhADs=
+------=_Part_14_1403369519.1653987592904--
