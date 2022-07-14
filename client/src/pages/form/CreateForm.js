@@ -8,11 +8,11 @@ import SpaceBetweenBox from '../../common/components/card/SpaceBetweenBox';
 import BasicUserForm from '../../common/components/form/BasicUserForm';
 import './styles/Form.css';
 
-const Form = () => {
+const CreateForm = () => {
   const [tab, setTab] = useState(0);
 
   return (
-    <BasicUserForm>
+    <BasicUserForm key="create-form">
       <SpaceBetweenBox>
         <Tabs
           value={tab}
@@ -41,4 +41,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default CreateForm;

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import FormService from '../pages/form/services/FormService';
 
 const useFormById = (formId) => {
   const [form, setForm] = useState();
+  const location = useLocation();
 
   const fetchForm = async () => {
     const formData = await FormService.getFormById(formId);
@@ -14,7 +16,7 @@ const useFormById = (formId) => {
     return () => {
       setForm();
     };
-  }, [formId]);
+  }, [formId, location.pathname]);
 
   return form;
 };

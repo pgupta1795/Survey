@@ -46,4 +46,22 @@ export default {
     const response = await axios.post('/image', data, {});
     return response.data;
   },
+
+  deleteForm: async (formId) => {
+    const user = getCurrentUser();
+    const id = user?.id;
+    if (!id) {
+      console.error('User id cannot be found');
+      return null;
+    }
+    const response = await axios.delete(`/form/deleteform/${formId}/${id}`);
+    console.log(response.data);
+    return response?.data;
+  },
+
+  getForms: async (formType) => {
+    const response = await axios.get(`/form/allforms/${formType}`);
+    console.log(response.data);
+    return response?.data;
+  },
 };

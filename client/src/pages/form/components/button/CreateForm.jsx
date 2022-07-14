@@ -2,6 +2,7 @@ import { Add } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { refresh } from '../../../../auth/services/AuthService';
 import FormService from '../../services/FormService';
 
 const CreateForm = () => {
@@ -10,6 +11,7 @@ const CreateForm = () => {
     const formData = await FormService.createForm();
     const id = formData._id;
     console.log(`Created Following Form with ID ${id}: ${formData}`);
+    await refresh();
     navigate(FormService.getFormUrl(id));
   };
 
@@ -21,7 +23,7 @@ const CreateForm = () => {
         transform: 'scale(2.5)',
       }}
     >
-      <Add />
+      <Add color="primary" />
     </IconButton>
   );
 };

@@ -6,15 +6,15 @@ import { QuestionsContext, UserFormContext } from '../../../../hooks/contexts';
 
 const SaveQuestions = () => {
   const formData = useContext(UserFormContext);
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { header, questions, setQuestions } = useContext(QuestionsContext);
 
   const saveQuestions = async () => {
     try {
       console.log('Saving Questions');
       const data = {
         formId: formData._id,
-        name: formData.name,
-        description: formData.description,
+        name: header.title,
+        description: header.description,
         questions,
       };
       const result = await FormService.autoSave(data);

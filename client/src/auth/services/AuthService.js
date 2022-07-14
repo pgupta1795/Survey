@@ -1,13 +1,19 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import Constants from '../../helper/Constants';
+import FormService from '../../pages/form/services/FormService';
 import ResponseService from '../../pages/form/services/ResponseService';
 import { RoutePaths } from '../../router';
 
-export const getCurrentUser = () => {
-  const ticket = localStorage.getItem('userTicket');
+export const getUserByTicket = (ticket) => {
   if (!ticket) return null;
   const user = jwtDecode(ticket);
   return user;
+};
+
+export const getCurrentUser = () => {
+  const ticket = localStorage.getItem('userTicket');
+  return getUserByTicket(ticket);
 };
 
 export const setUserTicket = (token) => {
@@ -17,6 +23,10 @@ export const setUserTicket = (token) => {
 export const refresh = async () => {
   try {
     const userId = getCurrentUser()?.id;
+    if (!userId) {
+      console.error('REFRESH NOT REQUIRED');
+      return;
+    }
     const response = await axios.get(`/user/refresh/${userId}`);
     console.log(response.data);
     if (!response.data || !response.data?.accessToken) {
@@ -36,19 +46,16 @@ export const isAuthenticated = () => {
 export const isAdminUser = () => {
   const user = getCurrentUser();
   const isAdmin = user?.admin;
-  if (!isAdmin) alert('RESTRICTED URL');
+  if (!isAdmin) alert('Unable to access url');
   return isAdmin;
 };
 
-export const getReDirectPath = () => {
+export const getReDirectPath = async () => {
   const user = getCurrentUser();
   const isAdmin = user?.admin;
-  const userForms = user?.createdForms;
   if (isAdmin) {
     return RoutePaths.DASHBAORD;
   }
-  if (userForms) {
-    return ResponseService.getViewFormUrl(userForms[0]);
-  }
-  return null;
+  const formsToSubmit = await FormService.getForms(Constants.ANONYMOUS);
+  return ResponseService.getViewFormUrl(formsToSubmit[0]?._id || '');
 };

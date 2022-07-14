@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Grid } from '@mui/material';
 import {
   SaveQuestions,
@@ -6,10 +6,11 @@ import {
   ImageUploadModal,
   QuestionsContext,
   DroppableSection,
-  HeaderSection,
   useCreateQuestions,
   CenteredGridBox,
 } from './index';
+import { UserFormContext } from '../../../../hooks/contexts';
+import CreateHeaders from '../header/CreateHeaders';
 
 const QuestionsTab = () => {
   const [
@@ -22,12 +23,25 @@ const QuestionsTab = () => {
     setOpenUploadImagePop,
   ] = useCreateQuestions();
 
+  const formData = useContext(UserFormContext);
+  const [header, setHeader] = useState({
+    title: formData?.name,
+    description: formData?.description,
+  });
+
   return (
     <QuestionsContext.Provider
-      value={{ questions, setQuestions, expandCloseAll, uploadImage }}
+      value={{
+        header,
+        setHeader,
+        questions,
+        setQuestions,
+        expandCloseAll,
+        uploadImage,
+      }}
     >
       <CenteredGridBox>
-        <HeaderSection />
+        <CreateHeaders />
         <Grid sx={{ paddingTop: '10px' }}>
           <div>
             <ImageUploadModal

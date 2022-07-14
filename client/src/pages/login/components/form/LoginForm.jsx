@@ -1,28 +1,26 @@
-import { Box, Button, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import { Box, CircularProgress, Typography } from '@mui/material';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getReDirectPath } from '../../../../auth/services/AuthService';
 import {
   Email,
   Password,
-  Username,
-  Organization,
   LoginFooter,
   LoginHeader,
   FormContext,
-  Constants,
   LoginService,
+  SubmitButton,
 } from './index';
-import { getReDirectPath } from '../../../../auth/services/AuthService';
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const form = useContext(FormContext);
-  const isSignupForm = form.name === Constants.SIGN_UP;
 
-  const redirectTo = (user) => {
+  const redirectTo = async (user) => {
     if (!user) return;
     console.log(user);
-    const redirectPath = getReDirectPath(user);
+    const redirectPath = await getReDirectPath();
     if (redirectPath) {
       console.log('USER LOGGED IN ');
       navigate(redirectPath);
@@ -34,14 +32,14 @@ const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     try {
+      setLoading(true);
       event.preventDefault();
       let data = new FormData(event.target);
       if (!data) return;
       data = Object.fromEntries(data);
-      const response = isSignupForm
-        ? await LoginService.signup(data)
-        : await LoginService.login(data);
+      const response = await LoginService.login(data);
       if (response) redirectTo(response);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -58,28 +56,25 @@ const LoginForm = () => {
       }}
     >
       <LoginHeader />
-      <Box
-        component="form"
-        noValidate
-        onSubmit={handleSubmit}
-        sx={{ mt: 1, mb: 1 }}
-      >
-        {form.name === Constants.SIGN_UP ? <Organization /> : null}
-        {form.name === Constants.SIGN_UP ? <Username /> : null}
-        <Email />
-        <Password />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2, p: 1 }}
+      {loading ? (
+        <CircularProgress color="primary" sx={{ mt: 10 }} />
+      ) : (
+        <Box
+          component="form"
+          noValidate
+          onSubmit={handleSubmit}
+          sx={{ mt: 1, mb: 1 }}
         >
-          <Typography noWrap variant="button">
-            {form.name}
-          </Typography>
-        </Button>
-        <LoginFooter />
-      </Box>
+          <Email />
+          <Password />
+          <SubmitButton>
+            <Typography noWrap variant="button">
+              {form.name}
+            </Typography>
+          </SubmitButton>
+          <LoginFooter />
+        </Box>
+      )}
     </Box>
   );
 };

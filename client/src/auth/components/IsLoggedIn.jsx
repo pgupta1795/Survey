@@ -1,10 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { getReDirectPath, isAuthenticated } from '../services/AuthService';
+import useRedirectPath from '../../hooks/useRedirectPath';
+import { isAuthenticated } from '../services/AuthService';
 
 const IsLoggedIn = () => {
   const isLoggedIn = isAuthenticated();
-  const redirectPath = getReDirectPath();
+  const redirectPath = useRedirectPath();
 
   return isLoggedIn && redirectPath ? (
     <Navigate to={redirectPath} />

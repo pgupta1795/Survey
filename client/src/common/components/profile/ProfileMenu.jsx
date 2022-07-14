@@ -6,7 +6,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import Settings from '@mui/icons-material/Settings';
+import { Dashboard } from '@mui/icons-material';
 import Logout from '@mui/icons-material/Logout';
 import LoginService from '../../../pages/login/services/LoginService';
 import RoutePaths from '../../../helper/RoutePaths';
@@ -61,9 +61,9 @@ const AccountMenu = ({ anchorEl, setAnchorEl }) => {
       <Divider />
       <MenuItem>
         <ListItemIcon>
-          <Settings fontSize="small" color="primary" />
+          <Dashboard fontSize="small" color="primary" />
         </ListItemIcon>
-        Settings
+        Report Dashboard
       </MenuItem>
       <MenuItem
         onClick={() => {

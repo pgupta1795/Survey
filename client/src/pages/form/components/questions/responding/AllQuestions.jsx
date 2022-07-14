@@ -11,7 +11,7 @@ const AllQuestions = () => {
 
   return (
     <Grid sx={{ width: '100%' }}>
-      {formData?.questions.map((ques, i) => (
+      {formData?.questions?.map((ques, i) => (
         <Paper key={`user-res-${ques._id}`} sx={{ mt: 2, width: '100%' }}>
           <FlexStartBox>
             <Typography variant="subtitle1" sx={{ ml: '10px' }}>

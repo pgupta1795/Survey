@@ -8,3 +8,4 @@ export { default as Constants } from '../../../../helper/Constants';
 export { default as LoginService } from '../../services/LoginService';
 export { default as RoutePaths } from '../../../../helper/RoutePaths';
 export { FormContext } from '../../../../hooks/contexts';
+export { default as SubmitButton } from '../../../../common/components/button/SubmitButton';

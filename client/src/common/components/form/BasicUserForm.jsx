@@ -10,7 +10,7 @@ const BasicUserForm = ({ children, ...restProps }) => {
   const form = useFormById(formId);
 
   return (
-    <main className="App">
+    <main className="App" key={`create-form-${formId}`}>
       <Suspense>
         <Container maxWidth="md" {...restProps}>
           {form ? (

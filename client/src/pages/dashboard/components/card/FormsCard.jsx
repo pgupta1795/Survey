@@ -1,57 +1,45 @@
-import { Button, Card, CardActions } from '@mui/material';
+import { Card, CardContent, Grid, Typography, useTheme } from '@mui/material';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useFormById from '../../../../hooks/useFormById';
 import { stringToRandomColor } from '../../../../common/utils/CommonUtils';
-import FormCardContent from './FormCardContent';
-import FormService from '../../../form/services/FormService';
 import CreateForm from '../../../form/components/button/CreateForm';
+import FormsCardActions from './actions/FormsCardActions';
 
 const FormsCard = ({ formId }) => {
   const form = formId ? useFormById(formId) : null;
-  const navigate = useNavigate();
+  const theme = useTheme();
+  const gradientTheme = `linear-gradient(${theme.palette.primary.dark},${theme.palette.primary.main})`;
+  const gradientRandom = `linear-gradient(${stringToRandomColor()},${stringToRandomColor()})`;
 
   return (
     <Card
       className="card"
       sx={{
-        minHeight: '25vh',
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        bgcolor: stringToRandomColor(form?.name),
-        borderRadius: '0.5em',
-        boxShadow: `0 0 5em -1em black`,
-        alignItems: `${form ? 'start' : 'center'}`,
-        justifyContent: 'center',
+        background: `${form ? gradientTheme : gradientRandom}`,
       }}
     >
       {form ? (
         <>
-          <FormCardContent form={form} />
-          <CardActions>
-            <Button
-              size="small"
-              variant="outlined"
-              color="inherit"
-              onClick={() => {
-                navigate(FormService.getFormUrl(formId));
-              }}
-            >
-              <strong>View</strong>
-            </Button>
-            <Button
-              size="small"
-              variant="outlined"
-              color="inherit"
-              onClick={() => {
-                navigate(FormService.getFormUrl(formId));
-              }}
-            >
-              <strong>Edit</strong>
-            </Button>
-          </CardActions>
+          <Grid className="card-head card-ellipse">
+            <Typography gutterBottom variant="h5" component="h2" color="black">
+              {form?.name}
+            </Typography>
+          </Grid>
+          <div className="card-content">
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography
+                gutterBottom
+                variant="caption"
+                component="p"
+                className="card-ellipse"
+                title={form?.description}
+              >
+                {form?.description}
+              </Typography>
+            </CardContent>
+            <FormsCardActions formId={formId} />
+          </div>
         </>
       ) : (
         <CreateForm />

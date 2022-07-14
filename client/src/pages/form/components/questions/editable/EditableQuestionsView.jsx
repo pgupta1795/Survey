@@ -1,10 +1,11 @@
-import { TextField, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 import UploadImage from '../commands/UploadImage';
 import EditableImageView from './EditableImageView';
 import EditableAllOptionsView from '../../options/editable/EditableAllOptionsView';
+import EditableTextField from '../../options/editable/types/EditableTextField';
 
 const EditableQuestionsView = ({ questionIndex, question }) => {
   const { questions, setQuestions } = useContext(QuestionsContext);
@@ -18,13 +19,10 @@ const EditableQuestionsView = ({ questionIndex, question }) => {
     <>
       <div className="edit-form-question">
         <Typography variant="subtitle1">{questionIndex + 1}.</Typography>
-        <TextField
-          fullWidth
+        <EditableTextField
           placeholder="Question Text"
           sx={{ mb: 2 }}
-          multiline
           value={question.text}
-          variant="filled"
           onChange={(e) => {
             handleQuestionValue(e.target.value, questionIndex);
           }}

@@ -13,9 +13,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <main className="dashboard-root">
+    <main className="dashboard-root" key="dashboard-page">
       <CardHeader />
-      <Container sx={{ py: 5 }} maxWidth="md">
+      <Container sx={{ py: 4 }} maxWidth="md" className="card-container">
         {userForms}
       </Container>
     </main>

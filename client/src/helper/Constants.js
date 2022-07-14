@@ -4,6 +4,8 @@ const Constants = Object.freeze({
   FORGOT_PASSWORD: 'Forgot password?',
   SIGN_IN: 'Sign In',
   SIGN_UP: 'Sign Up',
+  RESET_PASSWORD: 'Reset Password',
+  GENERATE_TOKEN: 'Generate Token',
   DEFAULT_QUESTION: {
     text: 'Question',
     image: '',
@@ -15,6 +17,7 @@ const Constants = Object.freeze({
     name: 'Untitled Form',
     description: 'Form Description',
   },
+  ANONYMOUS: 'anonymous',
 });
 
 export default Constants;
