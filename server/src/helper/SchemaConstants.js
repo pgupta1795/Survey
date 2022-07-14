@@ -3,6 +3,7 @@ const SchemaConstants = Object.freeze({
   IMAGE: 'Image',
   FORM: 'Form',
   RESPONSE: 'Response',
+  TOKEN: 'Token',
 });
 
 module.exports = SchemaConstants;

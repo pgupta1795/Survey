@@ -8,5 +8,5 @@ const imageSchema = new Schema(
   { timestamps: true }
 );
 
-const Image = model(SchemaConstants.IMAGE, imageSchema);
+const Image = model(SchemaConstants.IMAGE, imageSchema, SchemaConstants.IMAGE);
 module.exports = Image;

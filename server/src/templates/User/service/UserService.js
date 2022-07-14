@@ -1,5 +1,7 @@
 const UserUtils = require('../utils/UserUtils');
 const Constants = require('../../../helper/Constants');
+const { compareHashes } = require('../../../helper/Common');
+const { findTokenByUserId } = require('../../Token/utils/TokenUtils');
 
 const generateTokenForUser = (user) => {
   const { _id: id, name, email, admin, organization, createdForms } = user;
@@ -80,4 +82,36 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signup, login, refresh };
+const resetPassword = async (req, res) => {
+  try {
+    const { email, password, token } = req.body;
+    const user = await UserUtils.findUserByEmail(email);
+    if (!user) {
+      console.log(Constants.ERROR_USER_EXISTS);
+      return res.status(400).send(Constants.ERROR_USER_EXISTS);
+    }
+    const userId = user._id;
+    const resetToken = await findTokenByUserId(userId);
+    if (!resetToken) return res.status(400).send(Constants.ERROR_TOKEN_EXPIRED);
+    const isValid = await compareHashes(token, resetToken.token);
+    if (!isValid) return res.status(400).send(Constants.ERROR_TOKEN_EXPIRED);
+    const modified = await UserUtils.addNewPassword(userId, password);
+    console.log(modified);
+    const accessToken = generateTokenForUser(user);
+    res.status(200).json({
+      accessToken,
+      message: modified,
+    });
+  } catch (error) {
+    console.log(error);
+    res.send('Unable to reset Password, Please try later');
+  }
+};
+
+module.exports = {
+  generateTokenForUser,
+  signup,
+  login,
+  refresh,
+  resetPassword,
+};

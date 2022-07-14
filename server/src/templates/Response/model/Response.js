@@ -18,5 +18,9 @@ const ResponseSchema = new Schema(
 );
 
 ResponseSchema.plugin(mongoosePaginate);
-const Response = model(SchemaConstants.RESPONSE, ResponseSchema);
+const Response = model(
+  SchemaConstants.RESPONSE,
+  ResponseSchema,
+  SchemaConstants.RESPONSE
+);
 module.exports = Response;

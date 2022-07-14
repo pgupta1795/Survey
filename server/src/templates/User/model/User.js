@@ -4,9 +4,19 @@ const SchemaConstants = require('../../../helper/SchemaConstants');
 
 const UserSchema = new Schema(
   {
-    name: String,
+    name: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+    },
     password: String,
-    email: String,
+    email: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+    },
     admin: { type: Boolean, default: false },
     organization: { type: String },
     createdForms: [],
@@ -15,5 +25,5 @@ const UserSchema = new Schema(
 );
 
 UserSchema.plugin(mongoosePaginate);
-const User = model(SchemaConstants.USER, UserSchema);
+const User = model(SchemaConstants.USER, UserSchema, SchemaConstants.USER);
 module.exports = User;

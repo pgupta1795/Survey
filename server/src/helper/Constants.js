@@ -18,6 +18,10 @@ const Constants = Object.freeze({
   ERROR_FORM_NOT_FOUND: 'Form not found or already deleted',
   ERROR_FORM_AUTH_ERROR: 'You are not the owner of this Form',
   ERROR_SUBMIT_RESPONSE: 'Please Fill atleast one field',
+  ERROR_NO_EMAIL: 'Your Email not found',
+  ERROR_TOKEN_EXPIRED: 'Invalid or expired password reset token',
+  ERROR_TOKEN_NOT_CREATED:
+    'Unable to Create token for resetting the user password',
 });
 
 module.exports = Constants;

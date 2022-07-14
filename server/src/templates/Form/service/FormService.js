@@ -1,6 +1,8 @@
+const { ObjectId } = require('mongodb');
 const FormModel = require('../model/Form');
 const UserUtils = require('../../User/utils/UserUtils');
 const Constants = require('../../../helper/Constants');
+const User = require('../../User/model/User');
 
 const errorCallback = (err, docs) => {
   if (err) {
@@ -12,9 +14,13 @@ const errorCallback = (err, docs) => {
 
 const getForms = async (req, res) => {
   try {
-    const result = await FormModel.find().lean();
+    const formType = req.params.type;
+    const result = await FormModel.find({
+      type: formType,
+    }).lean();
     res.send(result);
   } catch (e) {
+    console.error(e);
     res.send(e);
   }
 };
@@ -29,7 +35,7 @@ const createForm = async (req, res) => {
     const { _id, createdBy, name, description } = req.body;
     const formData = {
       _id,
-      createdBy,
+      createdBy: userId,
       name,
       description,
     };
@@ -48,21 +54,28 @@ const createForm = async (req, res) => {
 const deleteForm = async (req, res) => {
   try {
     const { formId, userId } = req.params;
-    const form = await FormModel.findOne({ _id: formId });
-    if (form == null) {
+    const form = await FormModel.findOne({
+      _id: formId,
+    }).populate('createdBy');
+
+    const formUserId = form?.createdBy?._id?.toString();
+
+    if (form == null)
       return res.status(404).send(Constants.ERROR_FORM_NOT_FOUND);
-    }
-    if (form.createdBy != userId) {
+    if (formUserId != userId)
       return res.status(401).send(Constants.ERROR_FORM_AUTH_ERROR);
-    }
-    form.remove((err) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      console.log('Form deleted');
-      return res.status(202).send(Constants.FORM_DELETED);
-    });
+
+    await form.remove();
+    console.log(`Form deleted ${formId}`);
+
+    const updatedUser = await User.updateOne(
+      { createdForms: formId },
+      { $pull: { createdForms: formId } }
+    );
+    console.log(`User Updated ${userId}`);
+    res.status(200).send(Constants.FORM_DELETED);
   } catch (error) {
+    console.error(error);
     return res.send(error);
   }
 };
@@ -87,6 +100,7 @@ const editForm = async ({ body }, res) => {
     )
       .clone()
       .exec();
+    console.log(`Form ${formId} edited successfully`);
     res.status(200).json(newFormData);
   } catch (error) {
     console.error(error);
@@ -99,9 +113,7 @@ const getFormsByUser = async (req, res) => {
     const userId = req.params.userId;
     console.log('User ', userId);
     const user = await UserUtils.findUserById(userId);
-    if (user == null) {
-      return res.status(404).send(Constants.ERROR_NO_USER);
-    }
+    if (user == null) return res.status(404).send(Constants.ERROR_NO_USER);
     FormModel.find()
       .where(Constants.ID)
       .in(user.createdForms)
@@ -111,6 +123,7 @@ const getFormsByUser = async (req, res) => {
         res.status(200).json(records);
       });
   } catch (error) {
+    console.eror(error);
     res.send(error);
   }
 };
@@ -119,11 +132,11 @@ const getFormById = async (req, res) => {
   try {
     const formId = req.params.formId;
     const form = await FormModel.findOne({ _id: formId });
-    if (form == null) {
-      return res.status(404).send(Constants.ERROR_NO_FORM);
-    }
+    if (form == null) return res.status(404).send(Constants.ERROR_NO_FORM);
+    console.log(`Form Fetched : ${formId}`);
     res.status(200).json(form);
   } catch (error) {
+    console.eror(error);
     res.send(error);
   }
 };

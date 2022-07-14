@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "name": "TECHNIA",
+      "password": "123456",
+      "email": "admin@technia.com",
+      "organization": "TECHNIA",
+      "admin": "true"
+    }
+  ]
+}

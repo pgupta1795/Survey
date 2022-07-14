@@ -26,5 +26,5 @@ const FormSchema = new Schema(
 );
 
 FormSchema.plugin(mongoosePaginate);
-const Form = model(SchemaConstants.FORM, FormSchema);
+const Form = model(SchemaConstants.FORM, FormSchema, SchemaConstants.FORM);
 module.exports = Form;
