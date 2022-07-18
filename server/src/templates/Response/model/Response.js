@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
-const response = require('../model/schema/response');
 const SchemaConstants = require('../../../helper/SchemaConstants');
 
 const ResponseSchema = new Schema(
@@ -9,10 +8,23 @@ const ResponseSchema = new Schema(
       type: String,
       ref: SchemaConstants.FORM,
     },
+    completed: { type: Boolean, default: false },
     userId: {
       type: String,
     },
-    response,
+    sections: [
+      {
+        _id: {
+          type: String,
+        },
+        response: [
+          {
+            questionId: String,
+            optionId: String,
+          },
+        ],
+      },
+    ],
   },
   { timestamps: true }
 );

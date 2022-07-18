@@ -9,6 +9,7 @@ const CreateForm = () => {
   const navigate = useNavigate();
   const addForm = async () => {
     const formData = await FormService.createForm();
+    if (!formData) return;
     const id = formData._id;
     console.log(`Created Following Form with ID ${id}: ${formData}`);
     await refresh();

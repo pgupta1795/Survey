@@ -8,13 +8,17 @@ import EditableAllOptionsView from '../../options/editable/EditableAllOptionsVie
 import EditableTextField from '../../options/editable/types/EditableTextField';
 
 const EditableQuestionsView = ({ questionIndex, question }) => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
-  const handleQuestionValue = (text, i) => {
-    const optionsOfQuestion = [...questions];
-    optionsOfQuestion[i].text = text;
-    setQuestions(optionsOfQuestion);
-  };
+  const handleQuestionValue = (text, i) =>
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions[i].text = text;
+        return sec;
+      })
+    );
+
   return (
     <>
       <div className="edit-form-question">

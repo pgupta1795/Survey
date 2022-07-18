@@ -5,14 +5,19 @@ import React, { useContext } from 'react';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const RemoveOption = ({ questionIndex, optionIndex }) => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
   const removeOption = (i, j) => {
-    const optionsOfQuestion = [...questions];
+    const optionsOfQuestion = [...section.questions];
     if (optionsOfQuestion[i].options.length > 1) {
       optionsOfQuestion[i].options.splice(j, 1);
-      setQuestions(optionsOfQuestion);
-      console.log(`${i}__${j}`);
+      setSections((prev) =>
+        [...prev].map((sec) => {
+          if (sec._id !== section._id) return sec;
+          sec.questions = optionsOfQuestion;
+          return sec;
+        })
+      );
     }
   };
 

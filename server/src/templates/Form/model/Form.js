@@ -9,16 +9,24 @@ const FormSchema = new Schema(
     _id: {
       type: String,
     },
+    name: String,
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: SchemaConstants.USER,
     },
-    name: String,
-    description: {
-      type: String,
-      default: Constants.EMPTY_STRING,
-    },
-    questions,
+    sections: [
+      {
+        _id: {
+          type: String,
+        },
+        name: String,
+        description: {
+          type: String,
+          default: Constants.EMPTY_STRING,
+        },
+        questions,
+      },
+    ],
     stared: { type: Boolean, default: false },
     type: { type: String, default: Constants.ANONYMOUS },
   },

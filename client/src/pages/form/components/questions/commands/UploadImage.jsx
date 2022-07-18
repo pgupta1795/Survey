@@ -5,12 +5,13 @@ import React, { useContext } from 'react';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const UploadImage = ({ questionIndex, optionIndex }) => {
-  const { uploadImage } = useContext(QuestionsContext);
+  const { section, uploadImage } = useContext(QuestionsContext);
 
   return (
     <IconButton
       aria-label="upload image"
       onClick={() => {
+        localStorage.setItem('section', JSON.stringify(section));
         uploadImage(questionIndex, optionIndex);
       }}
     >

@@ -21,7 +21,7 @@ const getForms = async (req, res) => {
     res.send(result);
   } catch (e) {
     console.error(e);
-    res.send(e);
+    res.status(500).send(e);
   }
 };
 
@@ -32,22 +32,15 @@ const getForms = async (req, res) => {
 const createForm = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const { _id, createdBy, name, description } = req.body;
-    const formData = {
-      _id,
-      createdBy: userId,
-      name,
-      description,
-    };
+    const formData = req.body;
+    console.log('FormData : ', formData);
     const form = await new FormModel(formData).save();
     await UserUtils.addForm(userId, form._id);
-    console.log(
-      `Form id ${form._id} added to user ${createdBy} with id ${userId}`
-    );
+    console.log(`Form id ${form._id} added to user ${userId}`);
     res.status(200).json(form);
   } catch (error) {
     console.log(error);
-    res.send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -100,7 +93,7 @@ const editForm = async ({ body }, res) => {
     )
       .clone()
       .exec();
-    console.log(`Form ${formId} edited successfully`);
+    console.log(`Form ${formId} saved successfully`);
     res.status(200).json(newFormData);
   } catch (error) {
     console.error(error);
@@ -124,7 +117,7 @@ const getFormsByUser = async (req, res) => {
       });
   } catch (error) {
     console.eror(error);
-    res.send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -137,7 +130,7 @@ const getFormById = async (req, res) => {
     res.status(200).json(form);
   } catch (error) {
     console.eror(error);
-    res.send(error);
+    res.status(500).send(error);
   }
 };
 

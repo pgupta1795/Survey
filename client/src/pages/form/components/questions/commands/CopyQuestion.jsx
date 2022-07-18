@@ -6,11 +6,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const CopyQuestion = ({ questionIndex }) => {
-  const { questions, setQuestions, expandCloseAll } =
-    useContext(QuestionsContext);
+  const { section, setSections, expandCloseAll } = useContext(QuestionsContext);
 
   const copyQuestion = () => {
-    const qs = [...questions];
+    const qs = [...section.questions];
     expandCloseAll();
     const newOptions = qs[questionIndex].options.map((opn) => ({
       _id: uuidv4(),
@@ -24,7 +23,13 @@ const CopyQuestion = ({ questionIndex }) => {
       options: newOptions,
       open: true,
     };
-    setQuestions((prevQuestions) => [...prevQuestions, newQuestion]);
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions = [...sec.questions, newQuestion];
+        return sec;
+      })
+    );
   };
 
   return (

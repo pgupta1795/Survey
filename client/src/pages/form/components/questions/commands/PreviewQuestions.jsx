@@ -5,12 +5,18 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const PreviewQuestions = ({ questionIndex }) => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
   const showAsQuestion = () => {
-    const qs = [...questions];
+    const qs = [...section.questions];
     qs[questionIndex].open = false;
-    setQuestions(qs);
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions = qs;
+        return sec;
+      })
+    );
   };
 
   return (

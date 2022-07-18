@@ -1,17 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import React, { useContext } from 'react';
-import {
-  QuestionsContext,
-  UserFormContext,
-} from '../../../../../hooks/contexts';
+import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const HeaderSection = () => {
-  const formData = useContext(UserFormContext);
   const createContext = useContext(QuestionsContext);
-  let title = createContext?.header?.title;
-  if (!title) title = formData?.name;
-  let description = createContext?.header?.description;
-  if (!description) description = formData?.description;
+  const name = createContext?.section?.name;
+  const description = createContext?.section?.description;
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -22,7 +16,7 @@ const HeaderSection = () => {
             mb: 1,
           }}
         >
-          {title}
+          {name}
         </Typography>
         <Typography variant="subtitle1">{description}</Typography>
       </div>

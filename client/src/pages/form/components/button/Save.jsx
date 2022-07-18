@@ -1,26 +1,27 @@
 import React, { useContext } from 'react';
 import { Button } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
+import PropTypes from 'prop-types';
 import FormService from '../../services/FormService';
 import { QuestionsContext, UserFormContext } from '../../../../hooks/contexts';
 
-const SaveQuestions = () => {
+const Save = ({ formName }) => {
   const formData = useContext(UserFormContext);
-  const { header, questions, setQuestions } = useContext(QuestionsContext);
+  const { sections } = useContext(QuestionsContext);
 
-  const saveQuestions = async () => {
+  const save = async () => {
     try {
       console.log('Saving Questions');
       const data = {
         formId: formData._id,
-        name: header.title,
-        description: header.description,
-        questions,
+        name: formName,
+        sections,
       };
       const result = await FormService.autoSave(data);
-      setQuestions(result.questions);
+      console.log(result);
     } catch (error) {
       console.error(error);
+      throw error;
     }
   };
 
@@ -28,13 +29,15 @@ const SaveQuestions = () => {
     <Button
       variant="contained"
       color="primary"
-      onClick={saveQuestions}
-      style={{ margin: '15px' }}
+      onClick={save}
       endIcon={<SaveIcon />}
     >
-      Save Questions{' '}
+      Save{' '}
     </Button>
   );
 };
 
-export default SaveQuestions;
+Save.propTypes = {
+  formName: PropTypes.string.isRequired,
+};
+export default Save;

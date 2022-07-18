@@ -13,9 +13,12 @@ const Constants = Object.freeze({
   },
   DEFAULT_OPTION_1: { text: 'Option 1', image: '' },
   DEFAULT_OPTION_2: { text: 'Option 2', image: '' },
-  DEFAULT_FORM: {
+  DEFAULT_SECTION: {
     name: 'Untitled Form',
     description: 'Form Description',
+  },
+  DEFAULT_FORM: {
+    name: 'PLM Maturity Survey',
   },
   ANONYMOUS: 'anonymous',
 });

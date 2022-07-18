@@ -4,14 +4,20 @@ import PropTypes from 'prop-types';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const AddOption = ({ questionIndex }) => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
   const addOption = () => {
-    const optionsOfQuestion = [...questions];
+    const optionsOfQuestion = [...section.questions];
     optionsOfQuestion[questionIndex].options.push({
       text: `Option ${optionsOfQuestion[questionIndex].options.length + 1}`,
     });
-    setQuestions(optionsOfQuestion);
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions = optionsOfQuestion;
+        return sec;
+      })
+    );
   };
   return (
     <Button

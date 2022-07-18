@@ -5,24 +5,30 @@ import React, { useContext } from 'react';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const RemoveImage = ({ questionIndex, optionIndex }) => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
   const updateImageLink = (i, j) => {
-    const optionsOfQuestion = [...questions];
+    const optionsOfQuestion = [...section.questions];
 
     if (j == null) {
       optionsOfQuestion[i].image = '';
     } else {
       optionsOfQuestion[i].options[j].image = '';
     }
-    setQuestions(optionsOfQuestion);
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions = optionsOfQuestion;
+        return sec;
+      })
+    );
   };
 
   return (
     <IconButton
       sx={{
-        marginLeft: '-15px',
-        marginTop: '-15px',
+        ml: '-15px',
+        mt: '-15px',
         zIndex: 999,
         backgroundColor: '#d3d3d3',
       }}

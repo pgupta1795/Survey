@@ -1,24 +1,11 @@
 import { Button } from '@mui/material';
-import React, { useContext } from 'react';
-import { getCurrentUser } from '../../../../auth/services/AuthService';
-import { UserRespondingContext } from '../../../../hooks/contexts';
-import ResponseService from '../../services/ResponseService';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { submitResponse } from '../../utils/ResponseUtils';
 
-const SubmitResponse = () => {
-  const userId = getCurrentUser()?.id;
-  const { formData, responseData, setIsSubmitted } = useContext(
-    UserRespondingContext
-  );
-
-  const submitResponse = async () => {
-    const submissionData = {
-      formId: formData._id,
-      userId,
-      response: responseData,
-    };
-    console.log(submissionData);
-
-    const data = await ResponseService.submitResponse(submissionData);
+const SubmitResponse = ({ formData, setIsSubmitted, sectionData }) => {
+  const submit = async () => {
+    const data = submitResponse(formData, sectionData);
     setIsSubmitted(true);
     console.log(data);
   };
@@ -28,11 +15,21 @@ const SubmitResponse = () => {
       fullWidth
       variant="contained"
       color="primary"
-      onClick={submitResponse}
+      onClick={submit}
       sx={{ mt: 2 }}
     >
       Submit
     </Button>
   );
+};
+
+SubmitResponse.defaultProps = {
+  formData: null,
+};
+
+SubmitResponse.propTypes = {
+  formData: PropTypes.object,
+  setIsSubmitted: PropTypes.func.isRequired,
+  sectionData: PropTypes.array.isRequired,
 };
 export default SubmitResponse;

@@ -10,19 +10,23 @@ import { QuestionsContext } from '../../../../../../hooks/contexts';
 import FullTextField from '../../../../../../common/components/field/FullTextField';
 
 const EditableRadioOptionsView = ({ question, questionIndex }) => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
-  const handle = (text, i, j) => {
-    const optionsOfQuestion = [...questions];
-    optionsOfQuestion[i].options[j].text = text;
-    setQuestions(optionsOfQuestion);
-  };
+  const handle = (text, i, j) =>
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions[i].options[j].text = text;
+        return sec;
+      })
+    );
 
   const radioOptions = question.options.map((op, j) => (
     <div key={`${op?._id}id2`}>
       <div className="edit-form-option">
         <Radio disabled />
         <FullTextField
+          sx={{ mt: 1 }}
           value={question.options[j].text}
           onChange={(e) => handle(e.target.value, questionIndex, j)}
         />

@@ -5,15 +5,16 @@ import PropTypes from 'prop-types';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const DeleteQuestion = ({ questionIndex }) => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
-  const deleteQuestion = () => {
-    const qs = [...questions];
-    if (questions.length > 1) {
-      qs.splice(questionIndex, 1);
-    }
-    setQuestions(qs);
-  };
+  const deleteQuestion = () =>
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions.splice(questionIndex, 1);
+        return sec;
+      })
+    );
 
   return (
     <IconButton

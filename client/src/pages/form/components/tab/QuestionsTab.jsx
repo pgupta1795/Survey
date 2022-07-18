@@ -1,63 +1,57 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Grid } from '@mui/material';
 import {
-  SaveQuestions,
-  AddQuestion,
   ImageUploadModal,
   QuestionsContext,
   DroppableSection,
-  useCreateQuestions,
+  useFormSections,
   CenteredGridBox,
+  CreateHeaders,
+  useFormNameAndActions,
 } from './index';
-import { UserFormContext } from '../../../../hooks/contexts';
-import CreateHeaders from '../header/CreateHeaders';
 
 const QuestionsTab = () => {
   const [
-    questions,
-    setQuestions,
+    sections,
+    setSections,
     expandCloseAll,
     uploadImage,
     imageContextData,
     openUploadImagePop,
     setOpenUploadImagePop,
-  ] = useCreateQuestions();
+  ] = useFormSections();
 
-  const formData = useContext(UserFormContext);
-  const [header, setHeader] = useState({
-    title: formData?.name,
-    description: formData?.description,
-  });
+  const [formNameField, formActions] = useFormNameAndActions();
 
   return (
-    <QuestionsContext.Provider
-      value={{
-        header,
-        setHeader,
-        questions,
-        setQuestions,
-        expandCloseAll,
-        uploadImage,
-      }}
-    >
-      <CenteredGridBox>
-        <CreateHeaders />
-        <Grid sx={{ paddingTop: '10px' }}>
-          <div>
-            <ImageUploadModal
-              handleImagePopOpen={openUploadImagePop}
-              handleImagePopClose={() => setOpenUploadImagePop(false)}
-              contextData={imageContextData}
-            />
-            <DroppableSection />
-            <div>
-              <AddQuestion />
-              <SaveQuestions />
-            </div>
-          </div>
-        </Grid>
-      </CenteredGridBox>
-    </QuestionsContext.Provider>
+    <div>
+      {formNameField}
+      {sections.map((section) => (
+        <QuestionsContext.Provider
+          key={section?._id}
+          value={{
+            section,
+            sections,
+            setSections,
+            expandCloseAll,
+            uploadImage,
+          }}
+        >
+          <CenteredGridBox key={section?._id}>
+            <CreateHeaders />
+            <Grid sx={{ pt: 1 }}>
+              <ImageUploadModal
+                handleImagePopOpen={openUploadImagePop}
+                handleImagePopClose={() => setOpenUploadImagePop(false)}
+                contextData={imageContextData}
+              />
+              <DroppableSection />
+              {formActions}
+            </Grid>
+          </CenteredGridBox>
+        </QuestionsContext.Provider>
+      ))}
+    </div>
   );
 };
 

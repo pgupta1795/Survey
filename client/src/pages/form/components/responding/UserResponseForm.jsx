@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useTheme } from '@mui/material';
 import {
   CenteredGridBox,
   BasicUserForm,
-  useFormById,
-  HeaderSection,
   ThanksPage,
   AllQuestions,
+  useFormById,
 } from './index';
-import { UserRespondingContext } from '../../../../hooks/contexts';
 import '../../styles/Form.css';
+import RespondingHeaderSection from '../header/responding/RespondingHeaderSection';
 
 const UserResponseForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [responseData, setResponseData] = useState([]);
   const { formId } = useParams();
   const formData = useFormById(formId);
+  const theme = useTheme();
 
   return (
     <BasicUserForm
@@ -23,14 +23,25 @@ const UserResponseForm = () => {
         mt: 5,
       }}
     >
-      <UserRespondingContext.Provider
-        value={{ formData, responseData, setResponseData, setIsSubmitted }}
-      >
-        <CenteredGridBox key={formId}>
-          <HeaderSection />
-          {!isSubmitted ? <AllQuestions /> : <ThanksPage />}
-        </CenteredGridBox>
-      </UserRespondingContext.Provider>
+      <CenteredGridBox key={formId}>
+        <RespondingHeaderSection
+          sx={{
+            mb: 4,
+            mx: -2,
+            background: `${theme.palette.primary.main}`,
+            borderTop: `10px solid ${theme.palette.primary.main}`,
+            borderTopRightRadius: 4,
+            borderTopLeftRadius: 4,
+          }}
+          name={formData?.name}
+          description={formData?.description}
+        />
+        {!isSubmitted ? (
+          <AllQuestions setIsSubmitted={setIsSubmitted} />
+        ) : (
+          <ThanksPage />
+        )}
+      </CenteredGridBox>
     </BasicUserForm>
   );
 };

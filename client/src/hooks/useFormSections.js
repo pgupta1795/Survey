@@ -3,18 +3,25 @@ import { v4 as uuidv4 } from 'uuid';
 import Constants from '../helper/Constants';
 import { UserFormContext } from './contexts';
 
-const useCreateQuestions = () => {
+const useFormSections = () => {
   const formData = useContext(UserFormContext);
-  const [questions, setQuestions] = useState([
+  const [sections, setSections] = useState([
     {
       _id: uuidv4(),
-      ...Constants.DEFAULT_QUESTION,
-      options: [
-        { _id: uuidv4(), ...Constants.DEFAULT_OPTION_1 },
-        { _id: uuidv4(), ...Constants.DEFAULT_OPTION_2 },
+      ...Constants.DEFAULT_SECTION,
+      questions: [
+        {
+          _id: uuidv4(),
+          ...Constants.DEFAULT_QUESTION,
+          options: [
+            { _id: uuidv4(), ...Constants.DEFAULT_OPTION_1 },
+            { _id: uuidv4(), ...Constants.DEFAULT_OPTION_2 },
+          ],
+        },
       ],
     },
   ]);
+
   const [openUploadImagePop, setOpenUploadImagePop] = useState(false);
   const [imageContextData, setImageContextData] = useState({
     question: null,
@@ -22,16 +29,18 @@ const useCreateQuestions = () => {
   });
 
   useEffect(() => {
-    if (!formData.questions) return;
-    if (formData.questions.length !== 0) setQuestions(formData.questions);
+    if (!formData.sections) return;
+    if (formData.sections.length !== 0) setSections(formData.sections);
   }, [formData]);
 
   const expandCloseAll = () => {
-    const qs = [...questions];
-    for (let j = 0; j < qs.length; j += 1) {
-      qs[j].open = false;
-    }
-    setQuestions(qs);
+    const newSections = [...sections].map((sec) => {
+      for (let j = 0; j < sec.questions.length; j += 1) {
+        sec.questions[j].open = false;
+      }
+      return sec;
+    });
+    setSections(newSections);
   };
 
   const uploadImage = (i, j) => {
@@ -43,8 +52,8 @@ const useCreateQuestions = () => {
   };
 
   return [
-    questions,
-    setQuestions,
+    sections,
+    setSections,
     expandCloseAll,
     uploadImage,
     imageContextData,
@@ -53,4 +62,4 @@ const useCreateQuestions = () => {
   ];
 };
 
-export default useCreateQuestions;
+export default useFormSections;

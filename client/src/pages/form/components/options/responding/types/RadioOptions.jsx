@@ -1,16 +1,42 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import RadioOptionsView from '../../noneditable/types/RadioOptionsView';
 import { UserRespondingContext } from '../../../../../../hooks/contexts';
+import {
+  getInitialData,
+  getNewSectiondata,
+  saveResponse,
+} from '../../../../utils/ResponseUtils';
+import ResponseService from '../../../../services/ResponseService';
 
 const RadioOptions = ({ question, questionIndex }) => {
   const [value, setValue] = useState('');
-  const { formData, responseData, setResponseData } = useContext(
+  const { section, formData, sectionData, setSectionData } = useContext(
     UserRespondingContext
   );
-  const questions = formData?.questions;
+
+  const setPendingResponse = async () => {
+    const id = section._id;
+    const pRes = await ResponseService.getPendingResponse();
+    pRes?.sections?.forEach((sec) => {
+      const data = getInitialData(sec, id, question);
+      question.options.forEach(({ _id: optId, text }) => {
+        if (optId !== data.optionId) return;
+        setValue(text);
+      });
+    });
+    if (pRes?.sections) setSectionData((prev) => [...prev, ...pRes.sections]);
+  };
+
+  useEffect(() => {
+    setPendingResponse();
+    return () => {
+      setValue('');
+    };
+  }, []);
 
   const handleChange = (j, i) => {
+    const questions = section?.questions;
     const questionId = questions[i]?._id;
     const optionId = questions[i]?.options?.find((opt) => opt.text === j)?._id;
     if (!optionId || optionId === '') return;
@@ -19,14 +45,10 @@ const RadioOptions = ({ question, questionIndex }) => {
       optionId,
     };
     setValue(j);
-    const newData = [...responseData];
-    const responseIndex = newData.findIndex((x) => x.questionId === questionId);
-    if (responseIndex === -1) {
-      setResponseData((previous) => [...previous, data]);
-      return;
-    }
-    newData[responseIndex].questionId = questionId;
-    setResponseData(newData);
+    const newSectionData = getNewSectiondata(sectionData, section._id, data);
+    setSectionData(newSectionData);
+    saveResponse(formData, newSectionData);
+    console.log('SAVED RESPONSE');
   };
 
   return (

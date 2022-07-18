@@ -16,16 +16,19 @@ import {
 } from './index';
 
 const CreateQuestions = () => {
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
-  const handleExpand = (i) => {
-    const qs = [...questions];
-    qs[i].open = true;
-    setQuestions(qs);
-  };
+  const handleExpand = (i) =>
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions[i].open = true;
+        return sec;
+      })
+    );
 
   return React.Children.toArray(
-    questions.map((ques, i) => (
+    section.questions.map((ques, i) => (
       <Draggable key={ques._id} draggableId={ques._id} index={i}>
         {(provided) => (
           <div
@@ -37,7 +40,7 @@ const CreateQuestions = () => {
               <DragIcon />
               <Accordion
                 onChange={() => handleExpand(i)}
-                expanded={questions[i].open}
+                expanded={section.questions[i].open}
               >
                 <AccordionSummary
                   aria-controls="panel1a-content"
@@ -47,17 +50,12 @@ const CreateQuestions = () => {
                 >
                   {!ques?.open ? (
                     <CreateQuestionsView question={ques} questionIndex={i} />
-                  ) : (
-                    ''
-                  )}
+                  ) : null}
                 </AccordionSummary>
-
                 <AccordionDetails className="edit-question-options-view">
                   <EditableQuestionsView question={ques} questionIndex={i} />
                 </AccordionDetails>
-
                 <Divider />
-
                 <AccordionActions>
                   <PreviewQuestions questionIndex={i} />
                   <CopyQuestion questionIndex={i} />

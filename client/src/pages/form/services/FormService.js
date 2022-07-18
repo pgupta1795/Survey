@@ -4,11 +4,12 @@ import { getCurrentUser } from '../../../auth/services/AuthService';
 import { Constants } from '../../login';
 
 export default {
-  getFormUrl: (id) => `/form/${id}`,
+  getFormUrl: (id) => `/createform/${id}`,
 
   getFormByUser: async (userId) => {
     const response = await axios.get(`/form/getuserforms/${userId}`);
-    console.log(response.data);
+    if (response?.status !== 200)
+      return console.error('Error Getting User Form');
     return response?.data;
   },
 
@@ -19,24 +20,41 @@ export default {
       console.error('User id cannot be found');
       return null;
     }
-    const response = await axios.post(`/form/create/${id}`, {
+    const data = {
       ...Constants.DEFAULT_FORM,
-      createdBy: user?.name,
+      sections: [
+        {
+          _id: uuidv4(),
+          ...Constants.DEFAULT_SECTION,
+          questions: [
+            {
+              _id: uuidv4(),
+              ...Constants.DEFAULT_QUESTION,
+              options: [
+                { _id: uuidv4(), ...Constants.DEFAULT_OPTION_1 },
+                { _id: uuidv4(), ...Constants.DEFAULT_OPTION_2 },
+              ],
+            },
+          ],
+        },
+      ],
+      createdBy: id,
       _id: uuidv4(),
-    });
-    console.log(response.data);
+    };
+    const response = await axios.post(`/form/create/${id}`, data);
+    if (response?.status !== 200) return console.error('Error Creating Form');
     return response?.data;
   },
 
   getFormById: async (formId) => {
     const response = await axios.get(`/form/${formId}`);
-    console.log(response.data);
+    if (response?.status !== 200) return console.error('Error getting Form');
     return response?.data;
   },
 
   autoSave: async (data) => {
     const response = await axios.put('/form/editform/', data);
-    console.log(response.data);
+    if (response?.status !== 200) return console.error('Error saving Form');
     return response?.data;
   },
 

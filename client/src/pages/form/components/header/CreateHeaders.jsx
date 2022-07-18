@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
-import { Box, Divider, Accordion, IconButton, useTheme } from '@mui/material';
+import React, { useContext, useState } from 'react';
+import { Divider, Accordion, IconButton } from '@mui/material';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionActions from '@mui/material/AccordionActions';
 import Visibility from '@mui/icons-material/Visibility';
 import { HeaderSection } from '../responding';
 import EditableHeaderSection from './editable/EditableHeaderSection';
+import AddQuestions from '../button/AddQuestions';
+import BasicSectionBox from '../basic/BasicSectionBox';
+import { QuestionsContext } from '../tab';
 
 const CreateHeaders = () => {
   const [open, setOpen] = useState(true);
-  const theme = useTheme();
-  const handleExpand = () => {
-    setOpen((prev) => !prev);
-  };
+  const { section, sections } = useContext(QuestionsContext);
 
   return (
-    <Box
-      sx={{
-        borderTop: `10px solid ${theme.palette.primary.main}`,
-        borderRadius: 4,
-        mb: 1,
-      }}
-    >
-      <Accordion onChange={() => handleExpand()} expanded={open}>
+    <BasicSectionBox section={section} sections={sections}>
+      <Accordion onChange={() => setOpen((prev) => !prev)} expanded={open}>
         <AccordionSummary
           aria-controls="panel1a-content"
           id="panel1a-header"
@@ -36,12 +30,17 @@ const CreateHeaders = () => {
         </AccordionDetails>
         <Divider />
         <AccordionActions>
-          <IconButton aria-label="View" onClick={() => handleExpand()}>
+          <IconButton
+            aria-label="View"
+            title="View"
+            onClick={() => setOpen((prev) => !prev)}
+          >
             <Visibility color="primary" />
           </IconButton>
+          <AddQuestions />
         </AccordionActions>
       </Accordion>
-    </Box>
+    </BasicSectionBox>
   );
 };
 

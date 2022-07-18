@@ -4,8 +4,7 @@ import { QuestionsContext } from '../form';
 import CreateQuestions from '../form/CreateQuestions';
 
 const DroppableSection = () => {
-  const { questions, setQuestions, uploadImage, expandCloseAll } =
-    useContext(QuestionsContext);
+  const { section, setSections } = useContext(QuestionsContext);
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -16,13 +15,19 @@ const DroppableSection = () => {
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
-    const itemgg = [...questions];
+    const itemgg = [...section.questions];
     const itemF = reorder(
       itemgg,
       result.source.index,
       result.destination.index
     );
-    setQuestions(itemF);
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions = itemF;
+        return sec;
+      })
+    );
   };
 
   return (
@@ -30,12 +35,7 @@ const DroppableSection = () => {
       <Droppable droppableId="droppable">
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
-            <CreateQuestions
-              questions={questions}
-              setQuestions={setQuestions}
-              uploadImage={uploadImage}
-              expandCloseAll={expandCloseAll}
-            />
+            <CreateQuestions />
             {provided.placeholder}
           </div>
         )}

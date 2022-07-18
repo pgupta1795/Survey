@@ -1,12 +1,10 @@
 const multer = require('multer');
 const path = require('path');
 
-const imageName = `technia-image-${Date.now()}`;
-
 const storage = multer.diskStorage({
   destination: process.env.IMAGE_PATH,
-  filename(req, file, cb) {
-    cb(null, imageName + path.extname(file.originalname));
+  filename: (req, file, cb) => {
+    cb(null, `technia-image-${Date.now()}${path.extname(file.originalname)}`);
   },
 });
 

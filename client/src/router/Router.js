@@ -34,8 +34,8 @@ const Router = () => (
             <Route path={RoutePaths.FORM} element={<CreateForm />} />
             <Route path={RoutePaths.DASHBAORD} element={<Dashboard />} />
           </Route>
-          <Route path={RoutePaths.SUBMIT_FORM} element={<UserResponseForm />} />
         </Route>
+        <Route path={RoutePaths.SUBMIT_FORM} element={<UserResponseForm />} />
         <Route path={RoutePaths.ERROR} element={<Error />} />
       </Routes>
     </Suspense>

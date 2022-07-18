@@ -50,12 +50,24 @@ export const isAdminUser = () => {
   return isAdmin;
 };
 
+const getNormalUserPath = async () => {
+  let formId;
+  const pendingResponse = await ResponseService.getPendingResponse();
+  if (pendingResponse) {
+    formId = pendingResponse.formId;
+  } else {
+    const formToSubmit = await FormService.getForms(Constants.ANONYMOUS);
+    formId = formToSubmit[0]?._id;
+  }
+  return ResponseService.getViewFormUrl(formId || '');
+};
+
 export const getReDirectPath = async () => {
   const user = getCurrentUser();
   const isAdmin = user?.admin;
   if (isAdmin) {
     return RoutePaths.DASHBAORD;
   }
-  const formsToSubmit = await FormService.getForms(Constants.ANONYMOUS);
-  return ResponseService.getViewFormUrl(formsToSubmit[0]?._id || '');
+  const normalUserPath = await getNormalUserPath();
+  return normalUserPath;
 };

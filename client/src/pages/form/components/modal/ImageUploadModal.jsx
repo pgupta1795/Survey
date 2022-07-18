@@ -17,7 +17,7 @@ const ImageUploadModal = ({
 }) => {
   const [image, field] = useImage();
   const [imageWarning, setImageWarning] = useState('');
-  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { setSections } = useContext(QuestionsContext);
 
   useEffect(() => {
     setImageWarning('');
@@ -27,16 +27,24 @@ const ImageUploadModal = ({
   }, [image]);
 
   const updateImageLink = (link, context) => {
-    const optionsOfQuestion = [...questions];
-    const i = context.question;
+    const section = JSON.parse(localStorage.getItem('section'));
+    const optionsOfQuestion = [...section.questions];
+    const i = context?.question;
 
     if (context.option == null) {
       optionsOfQuestion[i].image = link;
     } else {
-      const j = context.option;
+      const j = context?.option;
       optionsOfQuestion[i].options[j].image = link;
     }
-    setQuestions(optionsOfQuestion);
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions = optionsOfQuestion;
+        return sec;
+      })
+    );
+    localStorage.removeItem('section');
   };
 
   const upload = async () => {
