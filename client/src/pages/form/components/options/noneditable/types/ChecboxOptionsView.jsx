@@ -1,22 +1,28 @@
 import {
+  Checkbox,
   FormControl,
   FormControlLabel,
-  Radio,
-  RadioGroup,
+  FormGroup,
   Typography,
 } from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
 import OptionsImageView from '../../../questions/noneditable/OptionsImageView';
 
-const RadioOptionsView = ({ question, ...rest }) => (
+const CheckboxOptionsView = ({ question, values, ...rest }) => (
   <FormControl>
-    <RadioGroup sx={{ pl: 1 }} aria-label="quiz" name="quiz" {...rest}>
+    <FormGroup sx={{ pl: 1 }} aria-label="quiz" name="quiz">
       {React.Children.toArray(
         question?.options?.map((op) => (
-          <div key={`${op?._id}id1`}>
+          <div key={`${op?._id}id1-checkbox`}>
             <FormControlLabel
-              control={<Radio />}
+              control={
+                <Checkbox
+                  checked={values?.includes(op?.text)}
+                  value={op?.text}
+                  {...rest}
+                />
+              }
               label={
                 <Typography sx={{ color: '#555555' }}>{op?.text}</Typography>
               }
@@ -26,11 +32,16 @@ const RadioOptionsView = ({ question, ...rest }) => (
           </div>
         ))
       )}
-    </RadioGroup>
+    </FormGroup>
   </FormControl>
 );
 
-RadioOptionsView.propTypes = {
-  question: PropTypes.object.isRequired,
+CheckboxOptionsView.defaultProps = {
+  values: [],
 };
-export default RadioOptionsView;
+
+CheckboxOptionsView.propTypes = {
+  question: PropTypes.object.isRequired,
+  values: PropTypes.any,
+};
+export default CheckboxOptionsView;

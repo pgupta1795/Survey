@@ -9,11 +9,9 @@ const useFormNameAndActions = () => {
   const [formName, setFormName] = useState(formData?.name);
   return [
     <FullTextField
-      variant="outlined"
+      variant="standard"
       sx={{
-        backgroundColor: 'primary.main',
-        borderRadius: '5px',
-        mb: 3,
+        mb: 5,
       }}
       value={formName}
       onChange={(e) => {

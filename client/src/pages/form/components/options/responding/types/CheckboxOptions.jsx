@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RadioOptionsView from '../../noneditable/types/RadioOptionsView';
 import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
 import FieldTypes from '../../../../../../helper/FieldTypes';
+import CheckboxOptionsView from '../../noneditable/types/ChecboxOptionsView';
 
-const RadioOptions = ({ question, questionIndex, ...rest }) => {
+const CheckboxOptions = ({ question, questionIndex }) => {
   const { values, handleChange } = useHandleResponseChange(
     question,
-    FieldTypes.RADIO
+    FieldTypes.CHECKBOX
   );
 
   return (
-    <RadioOptionsView
+    <CheckboxOptionsView
       question={question}
-      value={values && values.length > 0 ? values[0] : ''}
-      onChange={(e) => handleChange(e.target.value, questionIndex)}
-      {...rest}
+      values={values}
+      onChange={(e) =>
+        handleChange(e.target.value, questionIndex, e.target.checked)
+      }
     />
   );
 };
 
-RadioOptions.propTypes = {
+CheckboxOptions.propTypes = {
   question: PropTypes.object.isRequired,
   questionIndex: PropTypes.number.isRequired,
 };
-export default RadioOptions;
+export default CheckboxOptions;

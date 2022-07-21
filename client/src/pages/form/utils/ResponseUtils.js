@@ -1,19 +1,27 @@
 import { getCurrentUser } from '../../../auth/services/AuthService';
+import FieldTypes from '../../../helper/FieldTypes';
 import ResponseService from '../services/ResponseService';
 
 export const getInitialData = (sec, id, question) => {
   const { _id: secId, response } = sec;
-  if (secId !== id) return;
+  if (secId !== id) return null;
   const data = {};
-  response.forEach(({ questionId, optionId }) => {
+  response.forEach(({ questionId, options }) => {
     if (questionId !== question._id) return;
     data.questionId = questionId;
-    data.optionId = optionId;
+    data.options = options;
   });
+  return data;
 };
 
-export const getSectionResponse = (sectionData, sIndex, data) => {
-  const { questionId } = data;
+export const getSectionResponse = (
+  sectionData,
+  sIndex,
+  data,
+  type,
+  isChecked
+) => {
+  const { questionId, options } = data;
   const sqIndex = [...sectionData][sIndex].response.findIndex(
     (resData) => resData.questionId === questionId
   );
@@ -23,13 +31,22 @@ export const getSectionResponse = (sectionData, sIndex, data) => {
     return newSectionResponse;
   }
   newSectionResponse = newSectionResponse.map((questionOptionData) => {
-    if (questionOptionData.questionId !== questionId) return questionOptionData;
-    return data;
+    const { questionId: qId, options: opts } = questionOptionData;
+    if (qId !== questionId) return questionOptionData;
+    let newOptions = options;
+    if (FieldTypes.CHECKBOX === type) {
+      if (!isChecked) {
+        newOptions = opts.filter((opt) => opt.optionId !== options[0].optionId);
+      } else {
+        newOptions = [...opts, ...options];
+      }
+    }
+    return { questionId, options: newOptions };
   });
   return newSectionResponse;
 };
 
-export const getNewSectiondata = (sectionData, id, data) => {
+export const getNewSectiondata = (sectionData, id, data, type, isChecked) => {
   const sIndex = [...sectionData]?.findIndex((secData) => secData._id === id);
   if (sIndex === -1) {
     return [
@@ -40,7 +57,13 @@ export const getNewSectiondata = (sectionData, id, data) => {
       },
     ];
   }
-  const newSectionResponse = getSectionResponse(sectionData, sIndex, data);
+  const newSectionResponse = getSectionResponse(
+    sectionData,
+    sIndex,
+    data,
+    type,
+    isChecked
+  );
   const newSectionData = [...sectionData].map((sec) => {
     if (sec._id !== id) return sec;
     sec.response = newSectionResponse;

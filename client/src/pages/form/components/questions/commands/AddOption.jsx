@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const AddOption = ({ questionIndex }) => {
@@ -9,6 +10,7 @@ const AddOption = ({ questionIndex }) => {
   const addOption = () => {
     const optionsOfQuestion = [...section.questions];
     optionsOfQuestion[questionIndex].options.push({
+      _id: uuidv4(),
       text: `Option ${optionsOfQuestion[questionIndex].options.length + 1}`,
     });
     setSections((prev) =>

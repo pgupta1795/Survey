@@ -46,7 +46,7 @@ export const isAuthenticated = () => {
 export const isAdminUser = () => {
   const user = getCurrentUser();
   const isAdmin = user?.admin;
-  if (!isAdmin) alert('Unable to access url');
+  if (!isAdmin) console.log('Unable to access url');
   return isAdmin;
 };
 

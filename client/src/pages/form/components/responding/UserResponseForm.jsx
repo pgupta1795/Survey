@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTheme } from '@mui/material';
+import { Box, Paper, useTheme } from '@mui/material';
 import {
   CenteredGridBox,
   BasicUserForm,
@@ -24,18 +24,25 @@ const UserResponseForm = () => {
       }}
     >
       <CenteredGridBox key={formId}>
-        <RespondingHeaderSection
+        <Box
           sx={{
-            mb: 4,
-            mx: -2,
-            background: `${theme.palette.primary.main}`,
             borderTop: `10px solid ${theme.palette.primary.main}`,
-            borderTopRightRadius: 4,
             borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
           }}
-          name={formData?.name}
-          description={formData?.description}
-        />
+        >
+          <Paper sx={{ width: '100%' }}>
+            <RespondingHeaderSection
+              sx={{
+                mb: 4,
+                px: 1,
+              }}
+              name={formData?.name}
+              description={formData?.description}
+            />
+          </Paper>
+        </Box>
+        <Box sx={{ mb: 10 }} />
         {!isSubmitted ? (
           <AllQuestions setIsSubmitted={setIsSubmitted} />
         ) : (

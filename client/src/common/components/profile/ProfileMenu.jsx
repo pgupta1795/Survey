@@ -6,13 +6,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { Dashboard } from '@mui/icons-material';
 import Logout from '@mui/icons-material/Logout';
 import LoginService from '../../../pages/login/services/LoginService';
 import RoutePaths from '../../../helper/RoutePaths';
-import { getCurrentUser } from '../../../auth/services/AuthService';
+import {
+  getCurrentUser,
+  isAdminUser,
+} from '../../../auth/services/AuthService';
 
-const AccountMenu = ({ anchorEl, setAnchorEl }) => {
+const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
   const openAchor = Boolean(anchorEl);
   const navigate = useNavigate();
   const handleClose = () => setAnchorEl(null);
@@ -54,17 +56,13 @@ const AccountMenu = ({ anchorEl, setAnchorEl }) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      <MenuItem>
-        <Avatar sx={{ bgcolor: 'primary.main', width: 16, height: 16 }} />
-        {user?.name}
-      </MenuItem>
-      <Divider />
-      <MenuItem>
-        <ListItemIcon>
-          <Dashboard fontSize="small" color="primary" />
-        </ListItemIcon>
-        Report Dashboard
-      </MenuItem>
+      {isAdminUser() ? (
+        <MenuItem>
+          <Avatar sx={{ bgcolor: 'primary.main', width: 16, height: 16 }} />
+          {user?.name}
+        </MenuItem>
+      ) : null}
+      {isAdminUser() ? <Divider /> : null}
       <MenuItem
         onClick={() => {
           LoginService.logout();
@@ -80,12 +78,12 @@ const AccountMenu = ({ anchorEl, setAnchorEl }) => {
   );
 };
 
-AccountMenu.defaultProps = {
+ProfileMenu.defaultProps = {
   anchorEl: () => null,
 };
 
-AccountMenu.propTypes = {
+ProfileMenu.propTypes = {
   anchorEl: PropTypes.any,
   setAnchorEl: PropTypes.func.isRequired,
 };
-export default AccountMenu;
+export default ProfileMenu;

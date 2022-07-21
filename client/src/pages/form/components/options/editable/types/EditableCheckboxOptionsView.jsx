@@ -1,22 +1,21 @@
 import React from 'react';
-import Radio from '@mui/material/Radio';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import PropTypes from 'prop-types';
-import AddOption from '../../../questions/commands/AddOption';
-import FullTextField from '../../../../../../common/components/field/FullTextField';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import BasicOption from '../../../basic/BasicOption';
 import FieldTypes, { getKey } from '../../../../../../helper/FieldTypes';
+import FullTextField from '../../../../../../common/components/field/FullTextField';
+import AddOption from '../../../questions/commands/AddOption';
 
-const EditableRadioOptionsView = ({ question, questionIndex, onChange }) => {
-  const radioOptions = question.options.map((op, j) => (
+const EditableCheckboxOptionsView = ({ question, questionIndex, onChange }) => {
+  const checkboxOptions = question.options.map((op, j) => (
     <BasicOption
       questionIndex={questionIndex}
       option={op}
       optionIndex={j}
-      type={`${getKey(FieldTypes.RADIO)}`}
-      key={`${op?._id}-radioField`}
+      type={getKey(FieldTypes.CHECKBOX)}
+      key={`${op?._id}-checkbox-field`}
     >
-      <Radio disabled />
+      <Checkbox disabled />
       <FullTextField
         sx={{ mt: 1 }}
         value={question.options[j].text}
@@ -27,23 +26,23 @@ const EditableRadioOptionsView = ({ question, questionIndex, onChange }) => {
 
   return (
     <>
-      <div style={{ width: '100%' }}>{radioOptions}</div>
+      <div style={{ width: '100%' }}>{checkboxOptions}</div>
       <FormControlLabel
         disabled
-        control={<Radio />}
+        control={<Checkbox />}
         label={<AddOption questionIndex={questionIndex} />}
       />
     </>
   );
 };
 
-EditableRadioOptionsView.defaultProps = {
+EditableCheckboxOptionsView.defaultProps = {
   onChange: () => null,
 };
 
-EditableRadioOptionsView.propTypes = {
+EditableCheckboxOptionsView.propTypes = {
   question: PropTypes.object.isRequired,
   questionIndex: PropTypes.number.isRequired,
   onChange: PropTypes.func,
 };
-export default EditableRadioOptionsView;
+export default EditableCheckboxOptionsView;

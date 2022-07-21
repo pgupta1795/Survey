@@ -11,7 +11,7 @@ const CreateQuestionsView = ({ question, questionIndex }) => (
       {questionIndex + 1}. {question?.text}
     </Typography>
     <QuestionImageView question={question} />
-    <CreateAllOptions question={question} />
+    <CreateAllOptions question={question} questionIndex={questionIndex} />
   </FlexStartBox>
 );
 

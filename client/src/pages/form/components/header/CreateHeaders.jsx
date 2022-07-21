@@ -30,6 +30,8 @@ const CreateHeaders = () => {
         </AccordionDetails>
         <Divider />
         <AccordionActions>
+          <AddQuestions />
+          <Divider orientation="vertical" flexItem />
           <IconButton
             aria-label="View"
             title="View"
@@ -37,7 +39,6 @@ const CreateHeaders = () => {
           >
             <Visibility color="primary" />
           </IconButton>
-          <AddQuestions />
         </AccordionActions>
       </Accordion>
     </BasicSectionBox>

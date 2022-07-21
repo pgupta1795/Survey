@@ -44,4 +44,12 @@
 .section-commands {
   display: flex;
   gap: 1em;
+  margin-bottom: 1em;
+}
+
+.flex-box-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33vw;
 }

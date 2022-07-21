@@ -10,7 +10,7 @@ const ViewFormCommand = () => {
 
   return (
     <Link to={url} target="_blank" rel="noopener noreferrer">
-      <IconButton aria-label="view">
+      <IconButton aria-label="view" title="Preview">
         <Visibility color="primary" />
       </IconButton>
     </Link>

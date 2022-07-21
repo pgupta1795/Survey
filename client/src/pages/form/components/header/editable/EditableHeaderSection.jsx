@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import EditableTextField from '../../options/editable/types/EditableTextField';
+import MultilineTextField from '../../../../../common/components/field/MultilineTextField';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 
 const EditableHeaderSection = () => {
@@ -25,13 +25,13 @@ const EditableHeaderSection = () => {
 
   return (
     <>
-      <EditableTextField
+      <MultilineTextField
         placeholder="Header Text"
         sx={{ mb: 2 }}
         value={section?.name}
         onChange={handleNameChange}
       />
-      <EditableTextField
+      <MultilineTextField
         placeholder="Header Description"
         sx={{ mb: 2 }}
         value={section?.description}

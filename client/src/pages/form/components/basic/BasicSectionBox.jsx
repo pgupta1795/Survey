@@ -18,8 +18,8 @@ const BasicSectionBox = ({ children, section, sections }) => {
         '&:before': {
           position: 'absolute',
           display: 'flex',
-          top: -29,
-          pt: 0.5,
+          top: -41,
+          py: 1,
           px: 0.5,
           zIndex: '100',
           backgroundColor: `${theme.palette.primary.main}`,

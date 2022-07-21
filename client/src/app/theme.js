@@ -9,6 +9,21 @@ const primary = {
   contrastText: '#fff',
 };
 
+const typography = {
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+};
+
 const getBackground = () => ({
   MuiCssBaseline: {
     styleOverrides: {
@@ -23,6 +38,7 @@ const getBackground = () => ({
 });
 
 export const lightTheme = createTheme({
+  typography,
   components: getBackground(),
   palette: {
     mode: 'light',
@@ -31,6 +47,7 @@ export const lightTheme = createTheme({
 });
 
 export const darkTheme = createTheme({
+  typography,
   palette: {
     mode: 'dark',
     primary,

@@ -1,27 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RadioOptionsView from '../../noneditable/types/RadioOptionsView';
 import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
 import FieldTypes from '../../../../../../helper/FieldTypes';
+import DropDownOptionsView from '../../noneditable/types/DropDownOptionsView';
 
-const RadioOptions = ({ question, questionIndex, ...rest }) => {
+const DropdownOptions = ({ question, questionIndex }) => {
   const { values, handleChange } = useHandleResponseChange(
     question,
-    FieldTypes.RADIO
+    FieldTypes.DROPDOWN
   );
 
   return (
-    <RadioOptionsView
+    <DropDownOptionsView
       question={question}
       value={values && values.length > 0 ? values[0] : ''}
       onChange={(e) => handleChange(e.target.value, questionIndex)}
-      {...rest}
     />
   );
 };
 
-RadioOptions.propTypes = {
+DropdownOptions.propTypes = {
   question: PropTypes.object.isRequired,
   questionIndex: PropTypes.number.isRequired,
 };
-export default RadioOptions;
+export default DropdownOptions;

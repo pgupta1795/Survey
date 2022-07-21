@@ -20,7 +20,7 @@ const ResponseSchema = new Schema(
         response: [
           {
             questionId: String,
-            optionId: String,
+            options: [{ optionId: String, optionText: String }],
           },
         ],
       },

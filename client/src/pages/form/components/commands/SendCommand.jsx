@@ -6,7 +6,7 @@ const SendCommand = () => {
   const sendForm = () => {};
 
   return (
-    <IconButton aria-label="search" onClick={sendForm}>
+    <IconButton aria-label="search" onClick={sendForm} title="Send">
       <Send color="primary" />
     </IconButton>
   );
