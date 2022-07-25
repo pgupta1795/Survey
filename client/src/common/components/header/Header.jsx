@@ -27,7 +27,6 @@ const Header = () => {
         <Box sx={{ flexGrow: 1 }} />
         <Typography
           noWrap
-          // variant="h4"
           sx={{
             typography: { xs: 'caption', sm: 'h6', md: 'h4' },
             fontWeight: '600',
