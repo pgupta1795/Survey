@@ -27,11 +27,15 @@ const Header = () => {
         <Box sx={{ flexGrow: 1 }} />
         <Typography
           noWrap
+          // variant="h4"
           sx={{
-            typography: { xs: 'body1', md: 'h5' },
+            typography: { xs: 'caption', sm: 'h6', md: 'h4' },
+            fontWeight: '600',
+            letterSpacing: 1,
+            wordSpacing: 1.5,
           }}
         >
-          {document.title}
+          {document.title.toUpperCase()}
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <Box

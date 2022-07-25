@@ -4,7 +4,7 @@ import RadioOptionsView from './types/RadioOptionsView';
 import FieldTypes, { getKey } from '../../../../../helper/FieldTypes';
 import useOptionsOnChange from '../../../../../hooks/useOptionsOnChange';
 import EditableTextField from '../editable/types/EditableTextField';
-import CheckboxOptionsView from './types/ChecboxOptionsView';
+import CheckboxOptionsView from './types/CheckboxOptionsView';
 
 const CreateAllOptions = ({ question, questionIndex, ...rest }) => {
   const qType = question?.type;

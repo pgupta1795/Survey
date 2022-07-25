@@ -15,7 +15,10 @@ const TexFieldOption = ({ question, questionIndex }) => {
     <FormControl sx={{ width: '100%' }}>
       <MultilineTextField
         placeholder="Add Text"
-        sx={{ my: 2, px: 1.5 }}
+        sx={{
+          my: 2,
+          px: 1.5,
+        }}
         value={values && values.length > 0 ? values[0] : ''}
         variant="standard"
         onChange={(e) => {

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 const RespondingHeaderSection = ({ name, description, ...props }) => (
   <Box sx={{ width: '100%' }} className="edit-form-header">
     <Typography variant="h4" {...props}>
-      {name}
+      <strong>{name}</strong>
     </Typography>
-    <Typography variant="subtitle1">{description}</Typography>
+    <Typography variant="h6">{description}</Typography>
   </Box>
 );
 

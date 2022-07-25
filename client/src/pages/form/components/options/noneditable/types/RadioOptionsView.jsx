@@ -17,9 +17,7 @@ const RadioOptionsView = ({ question, ...rest }) => (
           <div key={`${op?._id}id1`}>
             <FormControlLabel
               control={<Radio />}
-              label={
-                <Typography sx={{ color: '#555555' }}>{op?.text}</Typography>
-              }
+              label={<Typography variant="answer">{op?.text}</Typography>}
               value={op?.text}
             />
             {question.open ? <OptionsImageView option={op} /> : null}

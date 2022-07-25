@@ -44,7 +44,12 @@ const AllQuestions = ({ setIsSubmitted }) => {
             }}
           >
             <BasicSectionBox section={section} sections={formData?.sections}>
-              <Paper sx={{ width: '100%' }}>
+              <Paper
+                sx={{
+                  width: '100%',
+                }}
+                elevation={0}
+              >
                 <RespondingHeaderSection
                   sx={{
                     mb: 4,
@@ -54,18 +59,25 @@ const AllQuestions = ({ setIsSubmitted }) => {
                 />
               </Paper>
             </BasicSectionBox>
-            <Grid sx={{ width: '100%' }}>
+            <Grid
+              sx={{
+                width: '100%',
+              }}
+            >
               {section?.questions?.map((ques, i) => (
                 <Paper
                   key={`user-res-${ques._id}`}
-                  sx={{ my: 5, px: 1 }}
-                  elevation={1}
+                  sx={{
+                    my: 5,
+                    px: 1,
+                  }}
+                  elevation={0}
                 >
                   <FlexStartBox>
                     <Typography
                       component="div"
-                      variant="subtitle1"
-                      sx={{ ml: '10px' }}
+                      variant="question"
+                      sx={{ mx: 1 }}
                     >
                       {i + 1}. {ques.text}
                     </Typography>

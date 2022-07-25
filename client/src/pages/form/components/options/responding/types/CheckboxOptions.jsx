@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
 import FieldTypes from '../../../../../../helper/FieldTypes';
-import CheckboxOptionsView from '../../noneditable/types/ChecboxOptionsView';
+import CheckboxOptionsView from '../../noneditable/types/CheckboxOptionsView';
 
 const CheckboxOptions = ({ question, questionIndex }) => {
   const { values, handleChange } = useHandleResponseChange(

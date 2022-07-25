@@ -10,6 +10,8 @@ import {
 } from './index';
 import '../../styles/Form.css';
 import RespondingHeaderSection from '../header/responding/RespondingHeaderSection';
+import lightFormBG from '../../../../assets/svgs/lightFormBG.svg';
+import darkFormBG from '../../../../assets/svgs/darkFormBG.svg';
 
 const UserResponseForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,11 +33,20 @@ const UserResponseForm = () => {
             borderTopRightRadius: 4,
           }}
         >
-          <Paper sx={{ width: '100%' }}>
+          <Paper
+            sx={{
+              width: '100%',
+              backgroundImage: `url(${
+                theme.palette.mode === 'dark' ? darkFormBG : lightFormBG
+              })`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
             <RespondingHeaderSection
               sx={{
                 mb: 4,
-                px: 1,
+                px: 2,
               }}
               name={formData?.name}
               description={formData?.description}

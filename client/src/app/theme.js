@@ -11,17 +11,28 @@ const primary = {
 
 const typography = {
   fontFamily: [
+    '"Helvetica Neue"',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',
     'Roboto',
-    '"Helvetica Neue"',
     'Arial',
     'sans-serif',
     '"Apple Color Emoji"',
     '"Segoe UI Emoji"',
     '"Segoe UI Symbol"',
   ].join(','),
+  question: {
+    fontWeight: '500',
+    fontSize: '1.1em',
+  },
+  answer: {
+    fontWeight: '500',
+    color: Colors.GREY_TEXT,
+  },
+  italic: {
+    fontWeight: 'italic',
+  },
 };
 
 const getBackground = () => ({

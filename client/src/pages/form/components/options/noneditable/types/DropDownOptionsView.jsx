@@ -1,4 +1,4 @@
-import { FormControl, MenuItem, Select } from '@mui/material';
+import { FormControl, MenuItem, Select, Typography } from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,7 +7,7 @@ const DropDownOptionsView = ({ question, ...rest }) => (
     <Select {...rest}>
       {question?.options?.map((op) => (
         <MenuItem value={op?.text} key={`${op?._id}dropdown`}>
-          {op?.text}
+          <Typography variant="answer">{op?.text}</Typography>
         </MenuItem>
       ))}
     </Select>
