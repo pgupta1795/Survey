@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { lazy, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Paper, useTheme } from '@mui/material';
 import {
@@ -8,10 +8,13 @@ import {
   AllQuestions,
   useFormById,
 } from './index';
-import '../../styles/Form.css';
 import RespondingHeaderSection from '../header/responding/RespondingHeaderSection';
-import lightFormBG from '../../../../assets/svgs/lightFormBG.svg';
-import darkFormBG from '../../../../assets/svgs/darkFormBG.svg';
+import '../../styles/Form.css';
+
+const lightFormBG = lazy(() =>
+  import('../../../../assets/svgs/lightFormBG.svg')
+);
+const darkFormBG = lazy(() => import('../../../../assets/svgs/darkFormBG.svg'));
 
 const UserResponseForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
