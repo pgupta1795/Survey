@@ -1,5 +1,6 @@
 import { getCurrentUser } from '../../../auth/services/AuthService';
 import FieldTypes from '../../../helper/FieldTypes';
+import { Constants } from '../../signup';
 import ResponseService from '../services/ResponseService';
 
 export const getInitialData = (sec, id, question) => {
@@ -87,7 +88,7 @@ export const saveResponse = async (formData, sectionData) => {
     completed: false,
   };
   const data = await ResponseService.submitResponse(userResponseData);
-  if (!data) throw new Error('Unable to save response currently');
+  if (!data) throw new Error(Constants.ERROR_SAVE_FORM);
   return data;
 };
 
@@ -105,6 +106,6 @@ export const submitResponse = async (formData, sectionData) => {
     completed: true,
   };
   const data = await ResponseService.submitResponse(userResponseData);
-  if (!data) throw new Error('Unable to submit response currently');
+  if (!data) throw new Error(Constants.ERROR_SUBMIT_FORM);
   return data;
 };

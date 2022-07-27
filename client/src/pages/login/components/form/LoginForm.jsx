@@ -1,6 +1,7 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from '../../../../app/toast';
 import { getReDirectPath } from '../../../../auth/services/AuthService';
 import {
   Email,
@@ -10,6 +11,7 @@ import {
   FormContext,
   LoginService,
   SubmitButton,
+  Constants,
 } from './index';
 
 const LoginForm = () => {
@@ -22,12 +24,12 @@ const LoginForm = () => {
     console.log(user);
     const redirectPath = await getReDirectPath();
     if (redirectPath) {
-      console.log('USER LOGGED IN ');
+      console.log(Constants.LOGIN_OK);
       navigate(redirectPath);
       return;
     }
-    console.error('USER LOGGED FAILED');
-    alert('USER LOGGED FAILED');
+    console.error(Constants.LOGIN_NOT_OK);
+    toast.error(Constants.LOGIN_NOT_OK);
   };
 
   const handleSubmit = async (event) => {
@@ -42,6 +44,7 @@ const LoginForm = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      toast.error(error);
     }
   };
 

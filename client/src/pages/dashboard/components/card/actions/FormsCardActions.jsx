@@ -7,6 +7,7 @@ import TextButton from '../../../../../common/components/button/TextButton';
 import FormService from '../../../../form/services/FormService';
 import { refresh } from '../../../../../auth/services/AuthService';
 import ResponseService from '../../../../form/services/ResponseService';
+import toast from '../../../../../app/toast';
 
 const FormsCardActions = ({ formId }) => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const FormsCardActions = ({ formId }) => {
       window.location.reload(true);
     } catch (error) {
       console.error(error);
+      toast.error(error);
     }
   };
 

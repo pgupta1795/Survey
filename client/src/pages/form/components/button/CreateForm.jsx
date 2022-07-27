@@ -2,18 +2,25 @@ import { Add } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from '../../../../app/toast';
 import { refresh } from '../../../../auth/services/AuthService';
 import FormService from '../../services/FormService';
 
 const CreateForm = () => {
   const navigate = useNavigate();
   const addForm = async () => {
-    const formData = await FormService.createForm();
-    if (!formData) return;
-    const id = formData._id;
-    console.log(`Created Following Form with ID ${id}: ${formData}`);
-    await refresh();
-    navigate(FormService.getFormUrl(id));
+    try {
+      const formData = await FormService.createForm();
+      if (!formData) return;
+      const id = formData._id;
+      console.log(`Form Created with ID ${id}: ${formData}`);
+      toast.info(`Form Created with ID ${id}`);
+      await refresh();
+      navigate(FormService.getFormUrl(id));
+    } catch (error) {
+      toast.error(error);
+      console.error(error);
+    }
   };
 
   return (

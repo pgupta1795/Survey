@@ -1,13 +1,16 @@
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import { Button } from '@mui/material';
 import React, { useContext } from 'react';
-import { QuestionsContext } from '../tab';
+import toast from '../../../../app/toast';
+import { Constants, QuestionsContext } from '../tab';
 
 const DeleteSection = () => {
   const { section, setSections } = useContext(QuestionsContext);
 
-  const deleteSection = () =>
+  const deleteSection = () => {
     setSections((prev) => [...prev].filter((sec) => sec._id !== section._id));
+    toast.warning(Constants.SECTION_DELETED);
+  };
 
   return (
     <Button

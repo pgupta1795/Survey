@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import FormService from '../../services/FormService';
 import useImage from '../../../../hooks/useImage';
 import { QuestionsContext } from '../tab';
+import toast from '../../../../app/toast';
 
 const ImageUploadModal = ({
   handleImagePopOpen,
@@ -62,6 +63,7 @@ const ImageUploadModal = ({
     } catch (error) {
       setImageWarning(error);
       console.error(error);
+      toast.error(error);
     }
   };
 

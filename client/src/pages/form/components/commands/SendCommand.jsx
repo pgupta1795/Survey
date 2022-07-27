@@ -1,14 +1,18 @@
 import React from 'react';
 import { Send } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
+import SendModal from '../modal/SendModal';
 
 const SendCommand = () => {
-  const sendForm = () => {};
+  const [open, setOpen] = React.useState(false);
 
   return (
-    <IconButton aria-label="search" onClick={sendForm} title="Send">
-      <Send color="primary" />
-    </IconButton>
+    <div>
+      <IconButton aria-label="send" onClick={() => setOpen(true)} title="Send">
+        <Send color="primary" />
+      </IconButton>
+      <SendModal open={open} onClose={() => setOpen(false)} />
+    </div>
   );
 };
 

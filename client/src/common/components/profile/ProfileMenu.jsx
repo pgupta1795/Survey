@@ -9,10 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
 import LoginService from '../../../pages/login/services/LoginService';
 import RoutePaths from '../../../helper/RoutePaths';
-import {
-  getCurrentUser,
-  isAdminUser,
-} from '../../../auth/services/AuthService';
+import { getCurrentUser } from '../../../auth/services/AuthService';
 
 const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
   const openAchor = Boolean(anchorEl);
@@ -56,13 +53,13 @@ const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      {isAdminUser() ? (
+      {user?.admin ? (
         <MenuItem>
           <Avatar sx={{ bgcolor: 'primary.main', width: 16, height: 16 }} />
           {user?.name}
         </MenuItem>
       ) : null}
-      {isAdminUser() ? <Divider /> : null}
+      {user?.admin ? <Divider /> : null}
       <MenuItem
         onClick={() => {
           LoginService.logout();

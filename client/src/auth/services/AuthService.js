@@ -1,5 +1,6 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import toast from '../../app/toast';
 import Constants from '../../helper/Constants';
 import FormService from '../../pages/form/services/FormService';
 import ResponseService from '../../pages/form/services/ResponseService';
@@ -24,7 +25,8 @@ export const refresh = async () => {
   try {
     const userId = getCurrentUser()?.id;
     if (!userId) {
-      console.error('REFRESH NOT REQUIRED');
+      console.error(Constants.ERROR_NO_USER);
+      toast.error(Constants.ERROR_NO_USER);
       return;
     }
     const response = await axios.get(`/user/refresh/${userId}`);
@@ -35,6 +37,7 @@ export const refresh = async () => {
     setUserTicket(response.data.accessToken);
   } catch (error) {
     console.error(error);
+    toast.error(error);
   }
 };
 
@@ -46,7 +49,10 @@ export const isAuthenticated = () => {
 export const isAdminUser = () => {
   const user = getCurrentUser();
   const isAdmin = user?.admin;
-  if (!isAdmin) console.log('Unable to access url');
+  if (!isAdmin) {
+    console.error(Constants.WARNING_INCORRECT_URL);
+    toast.warning(Constants.WARNING_INCORRECT_URL);
+  }
   return isAdmin;
 };
 

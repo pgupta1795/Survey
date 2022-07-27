@@ -1,6 +1,7 @@
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
+import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import Router from './router/Router';
 import { darkTheme, lightTheme } from './app/theme';
@@ -11,6 +12,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+      <ToastContainer />
       <div className="App">
         <CssBaseline />
         <Router />

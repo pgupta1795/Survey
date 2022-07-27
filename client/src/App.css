@@ -1,5 +1,13 @@
+@import '~react-toastify/dist/ReactToastify.css';
+
 :root {
   --height-toolbar: 48px;
+
+  /* Toast colors */
+  --toastify-color-success: #1da522;
+  --toastify-color-info: #3eb1c8;
+  --toastify-color-warning: #f1c40f;
+  --toastify-color-error: #9f2a1d;
 }
 
 * {

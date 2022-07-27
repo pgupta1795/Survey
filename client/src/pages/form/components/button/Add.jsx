@@ -2,6 +2,7 @@ import AddCircle from '@mui/icons-material/AddCircle';
 import { Button } from '@mui/material';
 import React, { useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import toast from '../../../../app/toast';
 import { Constants, QuestionsContext } from '../tab';
 
 const Add = () => {
@@ -25,6 +26,7 @@ const Add = () => {
         ],
       },
     ]);
+    toast.info(Constants.SECTION_ADDED);
   };
 
   return (

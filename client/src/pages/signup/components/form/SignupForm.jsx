@@ -11,6 +11,8 @@ import LoginService from '../../../login/services/LoginService';
 import { FormContext } from '../../../../hooks/contexts';
 import SubmitButton from '../../../../common/components/button/SubmitButton';
 import { getReDirectPath } from '../../../../auth/services/AuthService';
+import { Constants } from '../../../login';
+import toast from '../../../../app/toast';
 
 const SingupForm = () => {
   const [loading, setLoading] = useState(false);
@@ -22,12 +24,13 @@ const SingupForm = () => {
     console.log(user);
     const redirectPath = await getReDirectPath();
     if (redirectPath) {
-      console.log('USER LOGGED IN ');
+      console.log(Constants.LOGIN_OK);
+      toast.info(Constants.LOGIN_OK);
       navigate(redirectPath);
       return;
     }
-    console.error('USER LOGGED FAILED');
-    alert('USER LOGGED FAILED');
+    console.error(Constants.LOGIN_NOT_OK);
+    toast.error(Constants.LOGIN_NOT_OK);
   };
 
   const handleSubmit = async (event) => {
@@ -42,6 +45,7 @@ const SingupForm = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
+      toast.error(error);
     }
   };
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import toast from '../../../app/toast';
 import { getCurrentUser } from '../../../auth/services/AuthService';
 import { Constants } from '../../login';
 
@@ -8,53 +9,70 @@ export default {
 
   getFormByUser: async (userId) => {
     const response = await axios.get(`/form/getuserforms/${userId}`);
-    if (response?.status !== 200)
-      return console.error('Error Getting User Form');
+    if (response?.status !== 200) {
+      toast.error(Constants.ERROR_GET_FORM);
+      return console.error(Constants.ERROR_GET_FORM);
+    }
     return response?.data;
   },
 
   createForm: async () => {
-    const user = getCurrentUser();
-    const id = user?.id;
-    if (!id) {
-      console.error('User id cannot be found');
-      return null;
+    try {
+      const user = getCurrentUser();
+      const id = user?.id;
+      if (!id) {
+        toast.error(Constants.ERROR_NO_USER);
+        return console.error(Constants.ERROR_NO_USER);
+      }
+      const data = {
+        ...Constants.DEFAULT_FORM,
+        sections: [
+          {
+            _id: uuidv4(),
+            ...Constants.DEFAULT_SECTION,
+            questions: [
+              {
+                _id: uuidv4(),
+                ...Constants.DEFAULT_QUESTION,
+                options: [
+                  { _id: uuidv4(), ...Constants.DEFAULT_OPTION_1 },
+                  { _id: uuidv4(), ...Constants.DEFAULT_OPTION_2 },
+                ],
+              },
+            ],
+          },
+        ],
+        createdBy: id,
+        _id: uuidv4(),
+      };
+      const response = await axios.post(`/form/create/${id}`, data);
+      if (response?.status !== 200) {
+        toast.error(Constants.ERROR_CREATE_FORM);
+        return console.error(Constants.ERROR_CREATE_FORM);
+      }
+      return response?.data;
+    } catch (error) {
+      console.error(error);
+      toast.error(error);
+      throw error;
     }
-    const data = {
-      ...Constants.DEFAULT_FORM,
-      sections: [
-        {
-          _id: uuidv4(),
-          ...Constants.DEFAULT_SECTION,
-          questions: [
-            {
-              _id: uuidv4(),
-              ...Constants.DEFAULT_QUESTION,
-              options: [
-                { _id: uuidv4(), ...Constants.DEFAULT_OPTION_1 },
-                { _id: uuidv4(), ...Constants.DEFAULT_OPTION_2 },
-              ],
-            },
-          ],
-        },
-      ],
-      createdBy: id,
-      _id: uuidv4(),
-    };
-    const response = await axios.post(`/form/create/${id}`, data);
-    if (response?.status !== 200) return console.error('Error Creating Form');
-    return response?.data;
   },
 
   getFormById: async (formId) => {
     const response = await axios.get(`/form/${formId}`);
-    if (response?.status !== 200) return console.error('Error getting Form');
+    if (response?.status !== 200) {
+      toast.error(Constants.ERROR_GET_FORM);
+      return console.error(Constants.ERROR_GET_FORM);
+    }
     return response?.data;
   },
 
   autoSave: async (data) => {
     const response = await axios.put('/form/editform/', data);
-    if (response?.status !== 200) return console.error('Error saving Form');
+    if (response?.status !== 200) {
+      toast.error(Constants.ERROR_SAVE_CREATEFORM);
+      return console.error(Constants.ERROR_SAVE_CREATEFORM);
+    }
     return response?.data;
   },
 
@@ -69,8 +87,8 @@ export default {
     const user = getCurrentUser();
     const id = user?.id;
     if (!id) {
-      console.error('User id cannot be found');
-      return null;
+      toast.error(Constants.ERROR_NO_USER);
+      return console.error(Constants.ERROR_NO_USER);
     }
     const response = await axios.delete(`/form/deleteform/${formId}/${id}`);
     console.log(response.data);

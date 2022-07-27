@@ -8,9 +8,11 @@ import {
   FormContext,
   SubmitButton,
   Token,
+  Constants,
 } from './index';
 import ResetService from '../../services/ResetService';
 import { getReDirectPath } from '../../../../auth/services/AuthService';
+import toast from '../../../../app/toast';
 
 const ResetForm = () => {
   const [loading, setLoading] = useState(false);
@@ -22,12 +24,13 @@ const ResetForm = () => {
     console.log(user);
     const redirectPath = await getReDirectPath();
     if (redirectPath) {
-      console.log('RESETTED PASSWORD ');
+      console.log(Constants.RESETTED_PASSWORD);
+      toast.info(Constants.RESETTED_PASSWORD);
       navigate(redirectPath);
       return;
     }
-    console.error('USER LOGGED FAILED');
-    alert('USER LOGGED FAILED');
+    console.error(Constants.LOGIN_NOT_OK);
+    toast.error(Constants.LOGIN_NOT_OK);
   };
 
   const handleSubmit = async (event) => {
@@ -41,6 +44,7 @@ const ResetForm = () => {
       if (response) redirectTo(response);
       setLoading(false);
     } catch (error) {
+      toast.error(error);
       console.error(error);
     }
   };

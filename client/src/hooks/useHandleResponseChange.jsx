@@ -1,4 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import toast, { INFO } from '../app/toast';
+import Constants from '../helper/Constants';
 import FieldTypes from '../helper/FieldTypes';
 import {
   getInitialData,
@@ -9,6 +11,7 @@ import { UserRespondingContext } from './contexts';
 
 const useHandleResponseChange = (question, type) => {
   const [values, setValues] = useState([]);
+  const toastId = useRef(null);
   const { section, formData, sectionData, setSectionData, pendingRes } =
     useContext(UserRespondingContext);
 
@@ -45,39 +48,45 @@ const useHandleResponseChange = (question, type) => {
   };
 
   const handleChange = (optionText, qIndex, isChecked = true) => {
-    const questions = section?.questions;
-    const questionId = questions[qIndex]?._id;
-    const optionId = getOptionId(optionText, qIndex);
-    if (!optionId || optionId === '') return;
-    setValues((prev) => {
-      let newOptions = [optionText];
-      if (FieldTypes.CHECKBOX === type) {
-        if (!isChecked) {
-          newOptions = prev.filter((item) => item !== optionText);
-        } else {
-          newOptions = [...prev, optionText];
+    try {
+      toastId.current = toast.info(Constants.SAVING);
+      const questions = section?.questions;
+      const questionId = questions[qIndex]?._id;
+      const optionId = getOptionId(optionText, qIndex);
+      if (!optionId || optionId === '') return;
+      setValues((prev) => {
+        let newOptions = [optionText];
+        if (FieldTypes.CHECKBOX === type) {
+          if (!isChecked) {
+            newOptions = prev.filter((item) => item !== optionText);
+          } else {
+            newOptions = [...prev, optionText];
+          }
         }
-      }
-      return [...newOptions];
-    });
-    // if (!isChecked) {
-    //   optionText = '';
-    //   optionId = '';
-    // }
-    const data = {
-      questionId,
-      options: [{ optionId, optionText }],
-    };
-    const newSectionData = getNewSectiondata(
-      sectionData,
-      section._id,
-      data,
-      type,
-      isChecked
-    );
-    setSectionData(newSectionData);
-    saveResponse(formData, newSectionData);
-    console.log('SAVED RESPONSE');
+        return [...newOptions];
+      });
+      const data = {
+        questionId,
+        options: [{ optionId, optionText }],
+      };
+      const newSectionData = getNewSectiondata(
+        sectionData,
+        section._id,
+        data,
+        type,
+        isChecked
+      );
+      setSectionData(newSectionData);
+      saveResponse(formData, newSectionData);
+      console.info(Constants.SAVED);
+      toast.update(toastId.current, Constants.SAVED, {
+        type: INFO,
+        autoClose: 2000,
+      });
+    } catch (error) {
+      toast.error(error);
+      console.error(error);
+    }
   };
 
   return { values, handleChange };

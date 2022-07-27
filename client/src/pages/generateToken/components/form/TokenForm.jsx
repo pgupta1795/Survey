@@ -1,6 +1,7 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from '../../../../app/toast';
 import {
   LoginFooter,
   LoginHeader,
@@ -9,6 +10,7 @@ import {
   Email,
   TokenService,
   RoutePaths,
+  Constants,
 } from './index';
 
 const TokenForm = () => {
@@ -25,14 +27,17 @@ const TokenForm = () => {
       data = Object.fromEntries(data);
       const response = await TokenService.sendToken(data);
       if (!response?.data) {
-        console.log('Token Generation failed');
+        toast.error(Constants.ERROR_GENERATE_TOKEN);
+        console.error(Constants.ERROR_GENERATE_TOKEN);
         return;
       }
-      console.log('Token Generated');
+      toast.info(Constants.TOKEN_OK);
+      console.log(Constants.TOKEN_OK);
       navigate(RoutePaths.RESET_PASSWORD);
       setLoading(false);
     } catch (error) {
       console.error(error);
+      toast.error(error);
     }
   };
 

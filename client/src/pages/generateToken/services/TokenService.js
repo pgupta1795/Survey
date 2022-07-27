@@ -1,4 +1,6 @@
 import axios from 'axios';
+import toast from '../../../app/toast';
+import { Constants } from '../../signup';
 
 const TokenService = {
   sendToken: async (formData) => {
@@ -7,7 +9,8 @@ const TokenService = {
     const response = await axios.get(`/email/sendResetToken/${email}`);
     console.log(response.data);
     if (!response.data) {
-      console.log('Unable to generate response');
+      toast.error(Constants.ERROR_GET_RESPONSE);
+      console.error(Constants.ERROR_GET_RESPONSE);
       return response;
     }
     return response.data;
