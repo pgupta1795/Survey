@@ -4,6 +4,7 @@ const Constants = require('../../../helper/Constants');
 const { generateToken } = require('../../Token/utils/TokenUtils');
 const tokenEmailView = require('../views/SendTokenView');
 const { findUserByEmail } = require('../../User/utils/UserUtils');
+const formEmailView = require('../views/SendFormView');
 
 const test = async (req, res) => {
   try {
@@ -46,16 +47,15 @@ const sendResetToken = async (req, res) => {
 
 const sendForm = async (req, res) => {
   try {
-    const { userId, formUrl, to, subject, body } = req.body;
+    const { userId, formUrl, To: to, Subject: subject, Message } = req.body;
     const email = await getEmail(userId);
     if (!email) return res.status(400).send(Constants.ERROR_NO_EMAIL);
 
-    const href = `<a href=${formUrl}>FILL OUT FORM</a>`;
     const options = {
       from: email,
       to,
       subject,
-      html: `<b>Hello, </b><br>${body}<br/><br>${href}<br/>`,
+      html: formEmailView(Message, formUrl),
     };
     const info = await sendUserEmail(options);
     res.status(200).json(info.response);
