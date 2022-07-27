@@ -1,25 +1,42 @@
 import { Button } from '@mui/material';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from '../../../../app/toast';
+import FormUtils from '../../utils/FormUtils';
 import { submitResponse } from '../../utils/ResponseUtils';
 import { Constants } from '../tab';
 
 const SubmitResponse = ({ formData, setIsSubmitted, sectionData }) => {
+  const [disabled, setDisabled] = useState(true);
   const submit = async () => {
-    const data = submitResponse(formData, sectionData);
+    const data = await submitResponse(formData, sectionData);
     setIsSubmitted(true);
     console.log(data);
     toast.info(Constants.RES_SUBMIT);
   };
 
+  useEffect(() => {
+    const allQuestions = FormUtils.getAllQuestions(formData);
+    const allResponses = FormUtils.getAllResponses(sectionData);
+    console.log({ allQuestions });
+    console.log({ allResponses });
+
+    if (allQuestions?.length === allResponses?.length) {
+      setDisabled(FormUtils.hasIncompleteQuestion(allQuestions, allResponses));
+    }
+
+    return () => {
+      setDisabled(true);
+    };
+  }, [formData, sectionData]);
+
   return (
     <Button
       fullWidth
+      disabled={disabled}
       variant="contained"
       color="primary"
       onClick={submit}
-      sx={{ mt: 2 }}
     >
       Submit
     </Button>

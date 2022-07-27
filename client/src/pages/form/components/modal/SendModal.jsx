@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import { Box, DialogContent, Grid, Tab, Tabs, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import {
+  Box,
+  DialogContent,
+  Grid,
+  IconButton,
+  Tab,
+  Tabs,
+  Typography,
+} from '@mui/material';
 import LinkIcon from '@mui/icons-material/Link';
 import MailIcon from '@mui/icons-material/Mail';
 import TabPanel from '../tab/TabPanel';
@@ -21,7 +30,22 @@ const SendModal = ({ onClose, open }) => {
       onClose={onClose}
       open={open}
     >
-      <DialogTitle>Send form</DialogTitle>
+      <DialogTitle>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="question" sx={{ color: 'primary.main' }}>
+            SEND FORM
+          </Typography>
+          <Grid sx={{ flexGrow: 1 }} />
+          <IconButton onClick={onClose}>
+            <CloseIcon color="primary" />
+          </IconButton>
+        </Box>
+      </DialogTitle>
       <DialogContent>
         <Box
           sx={{
