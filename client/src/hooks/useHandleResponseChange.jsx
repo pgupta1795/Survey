@@ -1,5 +1,5 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import toast, { INFO } from '../app/toast';
+import { useContext, useEffect, useState } from 'react';
+import toast from '../app/toast';
 import Constants from '../helper/Constants';
 import FieldTypes from '../helper/FieldTypes';
 import {
@@ -11,9 +11,14 @@ import { UserRespondingContext } from './contexts';
 
 const useHandleResponseChange = (question, type) => {
   const [values, setValues] = useState([]);
-  const toastId = useRef(null);
-  const { section, formData, sectionData, setSectionData, pendingRes } =
-    useContext(UserRespondingContext);
+  const {
+    section,
+    formData,
+    sectionData,
+    setSectionData,
+    pendingRes,
+    activeStep,
+  } = useContext(UserRespondingContext);
 
   const setPendingResponse = () => {
     const id = section._id;
@@ -38,7 +43,7 @@ const useHandleResponseChange = (question, type) => {
       setValues([]);
       setSectionData([]);
     };
-  }, [pendingRes]);
+  }, [pendingRes, activeStep]);
 
   const getOptionId = (j, i) => {
     const questions = section?.questions;
@@ -49,7 +54,6 @@ const useHandleResponseChange = (question, type) => {
 
   const handleChange = (optionText, qIndex, isChecked = true) => {
     try {
-      toastId.current = toast.info(Constants.SAVING);
       const questions = section?.questions;
       const questionId = questions[qIndex]?._id;
       const optionId = getOptionId(optionText, qIndex);
@@ -79,9 +83,8 @@ const useHandleResponseChange = (question, type) => {
       setSectionData(newSectionData);
       saveResponse(formData, newSectionData);
       console.info(Constants.SAVED);
-      toast.update(toastId.current, Constants.SAVED, {
-        type: INFO,
-        autoClose: 2000,
+      toast.info(Constants.SAVED, {
+        autoClose: 1000,
       });
     } catch (error) {
       toast.error(error);

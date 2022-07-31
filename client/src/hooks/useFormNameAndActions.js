@@ -14,7 +14,7 @@ const useFormNameAndActions = () => {
         mb: 5,
       }}
       value={formName}
-      onChange={(e) => {
+      onInput={(e) => {
         setFormName(e.target.value);
       }}
     />,

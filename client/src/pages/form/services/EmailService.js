@@ -13,4 +13,17 @@ export default {
     }
     return response.data;
   },
+
+  sendPDFEmail: async (pdf) => {
+    const out = pdf.output('datauristring');
+    const userId = getCurrentUser()?.id;
+    const response = await axios.post(`/email/sendReport/${userId}`, {
+      pdf: out.split('base64,')[1],
+    });
+    if (response.status !== 200) {
+      console.error(response);
+      throw new Error(response);
+    }
+    return response.data;
+  },
 };

@@ -5,6 +5,7 @@ const { generateToken } = require('../../Token/utils/TokenUtils');
 const tokenEmailView = require('../views/SendTokenView');
 const { findUserByEmail } = require('../../User/utils/UserUtils');
 const formEmailView = require('../views/SendFormView');
+const reportEmailView = require('../views/SendReportView');
 
 const test = async (req, res) => {
   try {
@@ -65,16 +66,24 @@ const sendForm = async (req, res) => {
   }
 };
 
-// TODO
 const sendReport = async (req, res) => {
   try {
     const userId = req.params.userId;
-    // const pdf = req.body.pdf
+    const pdfData = req.body.pdf;
     const email = await getEmail(userId);
     const options = {
       to: email,
       subject: 'TECHNIA : PLM Maturity Survey',
-      html: '<b>Hey there! </b><br> Please find attached email report<br/>',
+      text: 'My <3',
+      html: reportEmailView(),
+      attachments: [
+        {
+          filename: 'TECHNIA-PLM_MATURITY_REPORT.pdf',
+          content: pdfData,
+          contentType: 'application/pdf',
+          encoding: 'base64',
+        },
+      ],
     };
     const info = await sendEmail(options);
     res.status(200).json(info.response);

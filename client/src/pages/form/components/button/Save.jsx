@@ -1,21 +1,19 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { Button } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import PropTypes from 'prop-types';
 import FormService from '../../services/FormService';
 import { QuestionsContext, UserFormContext } from '../../../../hooks/contexts';
-import toast, { SUCCESS } from '../../../../app/toast';
+import toast from '../../../../app/toast';
 import { Constants } from '../tab';
 
 const Save = ({ formName }) => {
   const formData = useContext(UserFormContext);
   const { sections } = useContext(QuestionsContext);
-  const toastId = useRef(null);
 
   const save = async () => {
     try {
       console.log(Constants.SAVING);
-      toastId.current = toast.info(Constants.SAVING);
       const data = {
         formId: formData._id,
         name: formName,
@@ -23,9 +21,7 @@ const Save = ({ formName }) => {
       };
       const result = await FormService.autoSave(data);
       console.log(result);
-      toast.update(toastId.current, Constants.SAVED, {
-        type: SUCCESS,
-      });
+      toast.info(Constants.SAVED);
     } catch (error) {
       console.error(error);
       toast.error(error);

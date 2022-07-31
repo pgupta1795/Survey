@@ -19,6 +19,7 @@ const getImage = async (req, res) => {
 const postImage = async (req, res) => {
   try {
     const { file, protocol } = req;
+    if (!file) return res.status(400).send('Invalid Uploaded Data');
     const img = await new ImageModel({
       image: file.filename,
     }).save();

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Constants from '../helper/Constants';
 import { UserFormContext } from './contexts';
 
-const useFormSections = () => {
+const useFormSections = (setLoading) => {
   const formData = useContext(UserFormContext);
   const [sections, setSections] = useState([
     {
@@ -31,6 +31,7 @@ const useFormSections = () => {
   useEffect(() => {
     if (!formData.sections) return;
     if (formData.sections.length !== 0) setSections(formData.sections);
+    setLoading(false);
   }, [formData]);
 
   const expandCloseAll = () => {

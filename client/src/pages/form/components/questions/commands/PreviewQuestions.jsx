@@ -21,6 +21,7 @@ const PreviewQuestions = ({ questionIndex }) => {
 
   return (
     <IconButton
+      disableRipple
       aria-label="View"
       onClick={() => {
         showAsQuestion();

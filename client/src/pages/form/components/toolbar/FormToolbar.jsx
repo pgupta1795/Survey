@@ -1,4 +1,4 @@
-import { Box, useMediaQuery, useTheme } from '@mui/material';
+import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import SendCommand from '../commands/SendCommand';
 import ViewFormCommand from '../commands/ViewFormCommand';
@@ -12,13 +12,13 @@ const FormToolbar = () => {
   const commands = <>{options.map((option) => option)}</>;
 
   return (
-    <Box
+    <Grid
       sx={{ display: { xs: 'flex', md: 'flex' } }}
       alignItems="center"
       justifyContent="space-around"
     >
       {matches ? commands : <MoreToolbar commands={options} />}
-    </Box>
+    </Grid>
   );
 };
 

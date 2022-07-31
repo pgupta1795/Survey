@@ -29,13 +29,13 @@ const EditableHeaderSection = () => {
         placeholder="Header Text"
         sx={{ mb: 2 }}
         value={section?.name}
-        onChange={handleNameChange}
+        onInput={handleNameChange}
       />
       <MultilineTextField
         placeholder="Header Description"
         sx={{ mb: 2 }}
         value={section?.description}
-        onChange={handleDescriptionChange}
+        onInput={handleDescriptionChange}
       />
     </>
   );

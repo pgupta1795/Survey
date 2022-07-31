@@ -59,4 +59,4 @@ EditableAllOptionsView.propTypes = {
   question: PropTypes.object.isRequired,
   questionIndex: PropTypes.number.isRequired,
 };
-export default EditableAllOptionsView;
+export default React.memo(EditableAllOptionsView);

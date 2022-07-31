@@ -29,4 +29,4 @@ EditableImageView.propTypes = {
   optionIndex: PropTypes.number,
   option: PropTypes.object.isRequired,
 };
-export default EditableImageView;
+export default React.memo(EditableImageView);

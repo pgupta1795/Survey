@@ -23,4 +23,4 @@ CreateQuestionsView.propTypes = {
   question: PropTypes.object,
   questionIndex: PropTypes.number.isRequired,
 };
-export default CreateQuestionsView;
+export default React.memo(CreateQuestionsView);

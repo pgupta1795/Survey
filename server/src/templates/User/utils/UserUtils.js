@@ -73,6 +73,17 @@ const getEmail = async (userId) => {
   }
 };
 
+const getOrganization = async (userId) => {
+  try {
+    const user = await findUserById(userId);
+    if (!user || user == null || !user?.organization)
+      throw Constants.ERROR_NO_USER;
+    return user.organization;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const addNewPassword = async (userId, password) => {
   const hash = await hashedPassword(password);
   return await UserModel.updateOne(
@@ -93,4 +104,5 @@ module.exports = {
   findUserById,
   getEmail,
   addNewPassword,
+  getOrganization,
 };

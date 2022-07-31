@@ -5,9 +5,10 @@ import toast from '../../../../app/toast';
 import { Constants, QuestionsContext } from '../tab';
 
 const DeleteSection = () => {
-  const { section, setSections } = useContext(QuestionsContext);
+  const { section, setSections, handleBack } = useContext(QuestionsContext);
 
   const deleteSection = () => {
+    handleBack();
     setSections((prev) => [...prev].filter((sec) => sec._id !== section._id));
     toast.warning(Constants.SECTION_DELETED);
   };

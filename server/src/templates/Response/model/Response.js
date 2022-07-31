@@ -12,6 +12,7 @@ const ResponseSchema = new Schema(
     userId: {
       type: String,
     },
+    organization: { type: String },
     sections: [
       {
         _id: {

@@ -38,7 +38,7 @@ const MoreToolbar = ({ commands }) => {
       >
         {commands.map((option) => (
           <MenuItem
-            key={option}
+            key={JSON.stringify(option)}
             // onClick={handleClose}
           >
             {option}

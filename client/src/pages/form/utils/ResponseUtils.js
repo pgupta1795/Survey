@@ -81,9 +81,13 @@ export const getNewSectiondata = (sectionData, id, data, type, isChecked) => {
  * @returns
  */
 export const saveResponse = async (formData, sectionData) => {
+  const user = getCurrentUser();
+  if (!user) return null;
+
   const userResponseData = {
     formId: formData._id,
-    userId: getCurrentUser()?.id,
+    userId: user?.id,
+    organization: user?.organization,
     sections: sectionData,
     completed: false,
   };
@@ -99,9 +103,13 @@ export const saveResponse = async (formData, sectionData) => {
  * @returns
  */
 export const submitResponse = async (formData, sectionData) => {
+  const user = getCurrentUser();
+  if (!user) return null;
+
   const userResponseData = {
     formId: formData._id,
-    userId: getCurrentUser()?.id,
+    userId: user?.id,
+    organization: user?.organization,
     sections: sectionData,
     completed: true,
   };

@@ -10,7 +10,7 @@ const tokenEmailView = (token) => {
         </div>
 
         <div
-          style="color: #2e3335;width:fit-content;font-weight: bold;box-shadow: 1px 1px 1px #73DDF6;padding: 10px 10px;border-radius: 10px;background: #3EB1C8;height: 4em;font-size: 1em;display: flex;align-items: center; text-align: center;">
+          style="color: #2e3335;font-weight: bold;box-shadow: 1px 1px 1px #73DDF6;padding: 10px 10px;border-radius: 10px;background: #3EB1C8;height: 4em;font-size: 1em;display: flex;align-items: center; text-align: center;width: min(50vw,90%); word-break: break-all;height: fit-content;">
           ${token}
         </div>
         

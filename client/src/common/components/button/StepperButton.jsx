@@ -10,11 +10,12 @@ const StepperButton = ({ label, ...rest }) => {
     theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />;
   const next =
     theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />;
-  const icon = label === 'Next' ? next : back;
+  const startIcon = label !== 'Next' ? back : null;
+  const endIcon = label !== 'Next' ? null : next;
 
   return (
-    <Button size="small" {...rest}>
-      {icon}
+    <Button size="small" {...rest} startIcon={startIcon} endIcon={endIcon}>
+      {label}
     </Button>
   );
 };

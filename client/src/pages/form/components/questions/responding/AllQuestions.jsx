@@ -11,90 +11,109 @@ import RespondingHeaderSection from '../../header/responding/RespondingHeaderSec
 import { useFormById } from '../../responding';
 import BasicSectionBox from '../../basic/BasicSectionBox';
 import ResponseService from '../../../services/ResponseService';
+import BasicFormSkeleton from '../../basic/BasicFormSkeleton';
+import useMobileStepper from '../../../../../hooks/useMobileStepper';
 
 const AllQuestions = ({ setIsSubmitted }) => {
+  const [loading, setLoading] = useState(true);
   const { formId } = useParams();
   const formData = useFormById(formId);
   const [sectionData, setSectionData] = useState([]);
-  const [pendingRes, setPendingRes] = useState();
 
+  const { activeStep, BasicStepper, maxSteps } = useMobileStepper(
+    formData?.sections
+  );
+
+  const [pendingRes, setPendingRes] = useState();
   const fetchPendingResponse = async () => {
     const pRes = await ResponseService.getPendingResponse();
     setPendingRes(pRes);
+    setLoading(false);
   };
-
   useEffect(() => {
     fetchPendingResponse();
     return () => {
       setPendingRes();
     };
-  }, []);
+  }, [activeStep]);
 
   return (
     <Grid sx={{ width: '100%' }}>
-      {formData?.sections?.map((section) => (
-        <Paper key={section?._id} sx={{ mb: 10 }}>
-          <UserRespondingContext.Provider
-            value={{
-              section,
-              formData,
-              sectionData,
-              setSectionData,
-              pendingRes,
-            }}
-          >
-            <BasicSectionBox section={section} sections={formData?.sections}>
-              <Paper
-                sx={{
-                  width: '100%',
-                }}
-                elevation={0}
-              >
-                <RespondingHeaderSection
-                  sx={{
-                    mb: 4,
-                  }}
-                  name={section?.name}
-                  description={section?.description}
-                />
-              </Paper>
-            </BasicSectionBox>
-            <Grid
-              sx={{
-                width: '100%',
+      {loading ? (
+        <BasicFormSkeleton />
+      ) : (
+        formData?.sections && (
+          <Paper key={formData?.sections[activeStep]?._id}>
+            <UserRespondingContext.Provider
+              value={{
+                section: formData?.sections[activeStep],
+                formData,
+                sectionData,
+                setSectionData,
+                pendingRes,
+                activeStep,
               }}
             >
-              {section?.questions?.map((ques, i) => (
+              <BasicSectionBox
+                section={formData?.sections[activeStep]}
+                sections={formData?.sections}
+              >
                 <Paper
-                  key={`user-res-${ques._id}`}
                   sx={{
-                    my: 5,
-                    px: 1,
+                    width: '100%',
+                    display: 'flex',
                   }}
                   elevation={0}
                 >
-                  <FlexStartBox>
-                    <Typography
-                      component="div"
-                      variant="question"
-                      sx={{ mx: 1 }}
-                    >
-                      {i + 1}. {ques.text}
-                    </Typography>
-                    <QuestionImageView question={ques} />
-                    <AllOptions question={ques} questionIndex={i} />
-                  </FlexStartBox>
+                  <RespondingHeaderSection
+                    sx={{
+                      mb: 4,
+                    }}
+                    name={formData?.sections[activeStep]?.name}
+                    description={formData?.sections[activeStep]?.description}
+                  />
                 </Paper>
-              ))}
-            </Grid>
-          </UserRespondingContext.Provider>
-        </Paper>
-      ))}
-      <SubmitResponse
-        formData={formData}
-        setIsSubmitted={setIsSubmitted}
-        sectionData={sectionData}
-      />
+              </BasicSectionBox>
+              <Grid
+                sx={{
+                  width: '100%',
+                }}
+              >
+                {formData?.sections[activeStep]?.questions?.map((ques, i) => (
+                  <Paper
+                    key={`user-res-${ques._id}`}
+                    sx={{
+                      my: 5,
+                      px: 1,
+                    }}
+                    elevation={0}
+                  >
+                    <FlexStartBox>
+                      <Typography
+                        component="div"
+                        variant="question"
+                        sx={{ mx: 1 }}
+                      >
+                        {i + 1}. {ques.text}
+                      </Typography>
+                      <QuestionImageView question={ques} />
+                      <AllOptions question={ques} questionIndex={i} />
+                    </FlexStartBox>
+                  </Paper>
+                ))}
+              </Grid>
+            </UserRespondingContext.Provider>
+          </Paper>
+        )
+      )}
+      {BasicStepper}
+      {activeStep === maxSteps - 1 ? (
+        <SubmitResponse
+          formData={formData}
+          setIsSubmitted={setIsSubmitted}
+          sectionData={sectionData}
+        />
+      ) : null}
     </Grid>
   );
 };

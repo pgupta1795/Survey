@@ -7,3 +7,5 @@ export const UserFormContext = createContext(null);
 export const QuestionsContext = createContext(null);
 
 export const UserRespondingContext = createContext(null);
+
+export const ReportContext = createContext(null);

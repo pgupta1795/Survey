@@ -11,7 +11,7 @@ const FlexStartBox = ({ children, ...rest }) => (
       marginLeft: '3px',
       paddingTop: '15px',
       paddingBottom: '15px',
-      gap: 1,
+      gap: 1.5,
       width: '100%',
     }}
     {...rest}

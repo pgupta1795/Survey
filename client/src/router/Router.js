@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GenerateToken from '../pages/generateToken/GenerateToken';
+import Report from '../pages/report/Report';
 import ResetPassword from '../pages/resetPassword/ResetPassword';
 import {
   RoutePaths,
@@ -34,8 +35,9 @@ const Router = () => (
             <Route path={RoutePaths.FORM} element={<CreateForm />} />
             <Route path={RoutePaths.DASHBAORD} element={<Dashboard />} />
           </Route>
+          <Route path={RoutePaths.SUBMIT_FORM} element={<UserResponseForm />} />
+          <Route path={RoutePaths.REPORT} element={<Report />} />
         </Route>
-        <Route path={RoutePaths.SUBMIT_FORM} element={<UserResponseForm />} />
         <Route path={RoutePaths.ERROR} element={<Error />} />
       </Routes>
     </Suspense>

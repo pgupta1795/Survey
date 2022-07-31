@@ -46,6 +46,11 @@ const getBackground = () => ({
       },
     },
   },
+  MuiButtonBase: {
+    defaultProps: {
+      disableRipple: true,
+    },
+  },
 });
 
 export const lightTheme = createTheme({

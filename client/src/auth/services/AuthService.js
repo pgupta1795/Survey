@@ -18,7 +18,7 @@ export const getCurrentUser = () => {
 };
 
 export const setUserTicket = (token) => {
-  localStorage.setItem('userTicket', JSON.stringify(token));
+  localStorage.setItem('userTicket', token);
 };
 
 export const refresh = async () => {
@@ -76,4 +76,13 @@ export const getReDirectPath = async () => {
   }
   const normalUserPath = await getNormalUserPath();
   return normalUserPath;
+};
+
+export const getAuthHeader = () => {
+  const auth = localStorage.getItem('userTicket');
+  return {
+    headers: {
+      Authorization: `Bearer ${auth}`,
+    },
+  };
 };

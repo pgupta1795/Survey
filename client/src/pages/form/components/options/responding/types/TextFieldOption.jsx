@@ -21,7 +21,7 @@ const TexFieldOption = ({ question, questionIndex }) => {
         }}
         value={values && values.length > 0 ? values[0] : ''}
         variant="standard"
-        onChange={(e) => {
+        onInput={(e) => {
           handleChange(e.target.value, questionIndex);
         }}
       />

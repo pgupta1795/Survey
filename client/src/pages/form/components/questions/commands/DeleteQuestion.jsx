@@ -18,6 +18,7 @@ const DeleteQuestion = ({ questionIndex }) => {
 
   return (
     <IconButton
+      disableRipple
       aria-label="delete"
       onClick={() => {
         deleteQuestion();

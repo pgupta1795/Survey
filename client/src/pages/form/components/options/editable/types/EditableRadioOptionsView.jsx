@@ -20,7 +20,7 @@ const EditableRadioOptionsView = ({ question, questionIndex, onChange }) => {
       <FullTextField
         sx={{ mt: 1 }}
         value={question.options[j].text}
-        onChange={(e) => onChange(e.target.value, questionIndex, j)}
+        onInput={(e) => onChange(e.target.value, questionIndex, j)}
       />
     </BasicOption>
   ));
@@ -46,4 +46,4 @@ EditableRadioOptionsView.propTypes = {
   questionIndex: PropTypes.number.isRequired,
   onChange: PropTypes.func,
 };
-export default EditableRadioOptionsView;
+export default React.memo(EditableRadioOptionsView);

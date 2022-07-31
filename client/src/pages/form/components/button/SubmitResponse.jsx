@@ -1,7 +1,8 @@
-import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import toast from '../../../../app/toast';
+import { SubmitButton } from '../../../login/components/form';
 import FormUtils from '../../utils/FormUtils';
 import { submitResponse } from '../../utils/ResponseUtils';
 import { Constants } from '../tab';
@@ -31,15 +32,9 @@ const SubmitResponse = ({ formData, setIsSubmitted, sectionData }) => {
   }, [formData, sectionData]);
 
   return (
-    <Button
-      fullWidth
-      disabled={disabled}
-      variant="contained"
-      color="primary"
-      onClick={submit}
-    >
-      Submit
-    </Button>
+    <SubmitButton disabled={disabled} color="primary" onClick={submit}>
+      <Typography variant="button">Submit</Typography>
+    </SubmitButton>
   );
 };
 

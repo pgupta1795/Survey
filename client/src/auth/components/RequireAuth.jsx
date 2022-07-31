@@ -5,9 +5,8 @@ import { isAuthenticated } from '../services/AuthService';
 
 const RequireAuth = () => {
   const location = useLocation();
-  const isLoggedIn = isAuthenticated();
 
-  return isLoggedIn ? (
+  return isAuthenticated() ? (
     <Outlet />
   ) : (
     <Navigate to={RoutePaths.LOGIN} state={{ path: location.pathname }} />

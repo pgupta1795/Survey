@@ -34,6 +34,7 @@ const CopyQuestion = ({ questionIndex }) => {
 
   return (
     <IconButton
+      disableRipple
       aria-label="Copy"
       onClick={() => {
         copyQuestion();

@@ -80,6 +80,10 @@ export default {
     const data = new FormData();
     data.append('myfile', image);
     const response = await axios.post('/image', data, {});
+    if (response.status !== 200) {
+      console.error(response);
+      throw new Error(response);
+    }
     return response.data;
   },
 
@@ -91,6 +95,10 @@ export default {
       return console.error(Constants.ERROR_NO_USER);
     }
     const response = await axios.delete(`/form/deleteform/${formId}/${id}`);
+    if (response.status !== 200) {
+      toast.error(response.data);
+      return console.error(response.data);
+    }
     console.log(response.data);
     return response?.data;
   },
@@ -98,6 +106,10 @@ export default {
   getForms: async (formType) => {
     const response = await axios.get(`/form/allforms/${formType}`);
     console.log(response.data);
+    if (response.status !== 200) {
+      toast.error(response.data);
+      return console.error(response.data);
+    }
     return response?.data;
   },
 };

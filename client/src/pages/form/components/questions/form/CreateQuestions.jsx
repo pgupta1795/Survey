@@ -1,13 +1,12 @@
 import React, { useContext } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import { Box, Divider, Accordion } from '@mui/material';
+import { Divider, Accordion, Grid } from '@mui/material';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionActions from '@mui/material/AccordionActions';
 import {
   DragIcon,
   DeleteQuestion,
-  MoreToolbar,
   CopyQuestion,
   PreviewQuestions,
   QuestionsContext,
@@ -36,7 +35,7 @@ const CreateQuestions = () => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <Box sx={{ mb: '15px' }}>
+            <Grid key={ques._id} sx={{ mb: '15px' }}>
               <DragIcon />
               <Accordion
                 onChange={() => handleExpand(i)}
@@ -61,10 +60,9 @@ const CreateQuestions = () => {
                   <CopyQuestion questionIndex={i} />
                   <Divider orientation="vertical" flexItem />
                   <DeleteQuestion questionIndex={i} />
-                  <MoreToolbar commands={[1, 2]} />
                 </AccordionActions>
               </Accordion>
-            </Box>
+            </Grid>
           </div>
         )}
       </Draggable>
@@ -72,4 +70,4 @@ const CreateQuestions = () => {
   );
 };
 
-export default CreateQuestions;
+export default React.memo(CreateQuestions);

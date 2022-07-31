@@ -27,7 +27,7 @@ const EditableQuestionsView = ({ questionIndex, question }) => {
           placeholder="Question Text"
           sx={{ mb: 2 }}
           value={question.text}
-          onChange={(e) => {
+          onInput={(e) => {
             handleQuestionValue(e.target.value, questionIndex);
           }}
         />

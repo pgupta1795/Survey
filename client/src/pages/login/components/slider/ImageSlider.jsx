@@ -1,15 +1,12 @@
 import { Box, Grid, useTheme } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import MobileStepper from '@mui/material/MobileStepper';
-import StepperButton from '../../../../common/components/button/StepperButton';
+import useMobileStepper from '../../../../hooks/useMobileStepper';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-function importAll(r) {
-  return r.keys().map(r);
-}
+const importAll = (r) => r.keys().map(r);
 
 const importedImages = importAll(
   require.context(
@@ -21,20 +18,8 @@ const importedImages = importAll(
 
 const ImageSlider = () => {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = importedImages.length;
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
+  const { activeStep, BasicStepper, handleStepChange } =
+    useMobileStepper(importedImages);
 
   return (
     <Grid sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -60,25 +45,7 @@ const ImageSlider = () => {
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        nextButton={
-          <StepperButton
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-            label="Next"
-          />
-        }
-        backButton={
-          <StepperButton
-            onClick={handleBack}
-            disabled={activeStep === 0}
-            label="Back"
-          />
-        }
-      />
+      {BasicStepper}
     </Grid>
   );
 };

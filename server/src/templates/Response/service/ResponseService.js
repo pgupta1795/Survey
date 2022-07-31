@@ -1,15 +1,18 @@
 const ResponseModel = require('../model/Response');
 const Constants = require('../../../helper/Constants');
 const {
+  getResponseByFormId,
   getIncompleteResponse,
   updateIncompleteResponse,
+  getResponseByFormIdAndOrganization,
 } = require('../utils/ResponseUtils');
+const { getOrganization } = require('../../User/utils/UserUtils');
 
 const getResponse = async (req, res) => {
   try {
     const formId = req.params.formId;
     console.log('FORM : ', formId);
-    const responses = await ResponseModel.find({ formId: formId });
+    const responses = await getResponseByFormId(formId);
     res.status(200).json(responses);
   } catch (error) {
     console.error(error);
@@ -72,9 +75,27 @@ const getPendingResponse = async (req, res) => {
   }
 };
 
+const getResponseByCompany = async (req, res) => {
+  try {
+    const { formId, userId } = req.params;
+    console.log(`Getting Responses for user ${userId} for form ${formId}`);
+    const organization = await getOrganization(userId);
+    const result = await getResponseByFormIdAndOrganization(
+      formId,
+      organization
+    );
+    console.log(`Responses fetched based on Company ${organization}`);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   getResponse,
   allResponses,
   submitResponse,
   getPendingResponse,
+  getResponseByCompany,
 };

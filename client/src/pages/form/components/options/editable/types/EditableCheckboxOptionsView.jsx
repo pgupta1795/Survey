@@ -19,7 +19,7 @@ const EditableCheckboxOptionsView = ({ question, questionIndex, onChange }) => {
       <FullTextField
         sx={{ mt: 1 }}
         value={question.options[j].text}
-        onChange={(e) => onChange(e.target.value, questionIndex, j)}
+        onInput={(e) => onChange(e.target.value, questionIndex, j)}
       />
     </BasicOption>
   ));

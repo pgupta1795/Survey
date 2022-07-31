@@ -18,7 +18,7 @@ const EditableTextField = ({ question, questionIndex, onChange }) => {
         placeholder="Add Text"
         sx={{ mb: 2, px: 3 }}
         value={question.options[j].text}
-        onChange={(e) => {
+        onInput={(e) => {
           onChange(e.target.value, questionIndex, j);
         }}
       />
