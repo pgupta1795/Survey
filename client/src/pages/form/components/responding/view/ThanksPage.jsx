@@ -11,7 +11,7 @@ const ThanksPage = () => {
   const { formId } = useParams();
   const navigate = useNavigate();
   const url = ReportService.getUrl(formId);
-  const { savePDF, Report } = useCreatePDF('pdf-content', true);
+  const { savePDF, Report } = useCreatePDF(true);
 
   return (
     <FlexStartBox>
@@ -28,7 +28,6 @@ const ThanksPage = () => {
       >
         View Report
       </Button>
-      {Report}
       <Button
         variant="outlined"
         title="Download Report"
@@ -37,6 +36,7 @@ const ThanksPage = () => {
       >
         Download Report
       </Button>
+      {Report}
     </FlexStartBox>
   );
 };

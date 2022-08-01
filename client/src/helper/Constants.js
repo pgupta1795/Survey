@@ -44,6 +44,7 @@ const Constants = Object.freeze({
   COPIED: 'Copied To Clipboard',
   SENDING: 'Sending...',
   MAIL_SENT: 'Email Sent',
+  PDF_CREATED: 'PDF created for email/download',
 
   /** WARNING */
   WARNING_INCORRECT_URL: 'Unable to access url',

@@ -7,10 +7,6 @@ export default (options, fn) => {
   const context = useContext(ReportContext);
   const [state, setState] = useState({
     ...options,
-    theme: {
-      mode: theme.palette.mode,
-      palette: 'palette7',
-    },
   });
   const executeFunction = fn.bind(this);
 
@@ -20,6 +16,19 @@ export default (options, fn) => {
       ...state,
       series,
       options: {
+        grid: {
+          show: true,
+          xaxis: {
+            lines: {
+              show: false,
+            },
+          },
+          yaxis: {
+            lines: {
+              show: false,
+            },
+          },
+        },
         theme: {
           mode: theme.palette.mode,
           palette: 'palette7',

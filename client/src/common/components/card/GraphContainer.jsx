@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import GradientBox from '../../styles/StyledBox';
 
-const GraphContainer = ({ colors, children, height }) => (
+const GraphContainer = ({ colors, children, height, ...props }) => (
   <GradientBox
     colors={colors}
     sx={{
@@ -10,6 +10,7 @@ const GraphContainer = ({ colors, children, height }) => (
       minHeight: height,
       mb: 1,
     }}
+    {...props}
   >
     {children}
   </GradientBox>

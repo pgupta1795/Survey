@@ -4,7 +4,7 @@ import Colors from '../../../../helper/Colors';
 import useChartSeries from '../../../../hooks/useChartSeries';
 import ChartUtils from '../../utils/ChartUtils';
 
-const MaturityChart = () => {
+const MaturityChart = ({ ...props }) => {
   const options = {
     series: [],
     options: {
@@ -69,7 +69,7 @@ const MaturityChart = () => {
   const state = useChartSeries(options, ChartUtils.getMaturitySeries);
 
   return (
-    <div className="apex-chart">
+    <div className="apex-chart" {...props}>
       <Chart
         options={state.options}
         series={state.series}

@@ -1,5 +1,8 @@
 import toast from '../../../app/toast';
 import ArrayUtils from '../../../common/utils/ArrayUtils';
+import Settings from '../../../Settings.json';
+
+const validChartNames = Settings.CHART_SCORES_NAME;
 
 /**
  * return {
@@ -62,22 +65,16 @@ export default {
           data: [],
         },
       ];
+      const labels = [];
       const { formData, responseData } = data;
       const formattedRes = formatAnswersBySection(responseData, formData);
-      const labels = Object.keys(formattedRes)?.map((sectionName) => {
+      Object.keys(formattedRes)?.forEach((sectionName) => {
+        if (!validChartNames.includes(sectionName)) return;
         const usersSecAvg = getSectionAvgByUser(formattedRes, sectionName);
         series[0].data.push(ArrayUtils.getAverage(usersSecAvg));
-        return sectionName;
+        labels.push(sectionName);
       });
-      // labels = [
-      //   // ...labels,
-      //   'Strategy and Policy',
-      //   'Management and Control',
-      //   'Organization and Process',
-      //   'People and Culture',
-      //   'Information and Technoloy',
-      // ];
-      console.log({ series, labels });
+      console.log('ScoresSeries : ', { series, labels });
       return { series, labels };
     } catch (error) {
       console.error(error);
@@ -96,20 +93,8 @@ export default {
       ];
       const { formData, responseData } = data;
       console.log({ formData, responseData });
-      // const formattedRes = formatAnswersBySection(responseData, formData);
-      // let labels = Object.keys(formattedRes)?.map((sectionName) => {
-      //   const usersSecAvg = getSectionAvgByUser(formattedRes, sectionName);
-      //   series[0].data.push(ArrayUtils.getAverage(usersSecAvg));
-      //   return sectionName;
-      // });
-      const labels = [
-        // ...labels,
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-      ];
+
+      const labels = ['1', '2', '3', '4', '5'];
       console.log({ series, labels });
       return { series, labels };
     } catch (error) {

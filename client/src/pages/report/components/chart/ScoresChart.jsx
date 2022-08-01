@@ -4,7 +4,7 @@ import Colors from '../../../../helper/Colors';
 import useChartSeries from '../../../../hooks/useChartSeries';
 import ChartUtils from '../../utils/ChartUtils';
 
-const ScoresChart = () => {
+const ScoresChart = ({ ...props }) => {
   const options = {
     series: [],
     options: {
@@ -13,19 +13,6 @@ const ScoresChart = () => {
       },
       fill: {
         type: 'gradient',
-      },
-      grid: {
-        show: true,
-        xaxis: {
-          lines: {
-            show: false,
-          },
-        },
-        yaxis: {
-          lines: {
-            show: false,
-          },
-        },
       },
       yaxis: {
         show: false,
@@ -55,21 +42,19 @@ const ScoresChart = () => {
       title: {
         text: 'SCORES',
       },
+      tooltip: {
+        enabled: true,
+        fillSeriesColor: true,
+      },
       legend: {
         show: false,
-      },
-      dataLabels: {
-        background: {
-          enabled: false,
-          foreColor: '#00000',
-        },
       },
     },
   };
   const state = useChartSeries(options, ChartUtils.getScoresSeries);
 
   return (
-    <div className="apex-chart">
+    <div className="apex-chart" {...props}>
       <Chart
         options={state.options}
         series={state.series}
