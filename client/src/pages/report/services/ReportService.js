@@ -1,3 +1,7 @@
+import { getCurrentUser } from '../../../auth/services/AuthService';
+
 export default {
-  getUrl: (id) => `/report/${id}`,
+  getUrl: (formId) => `/report/${formId}/${getCurrentUser()?.id}`,
+
+  getUrlByUser: (formId, userId) => `/report/${formId}/${userId}`,
 };

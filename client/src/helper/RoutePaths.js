@@ -7,7 +7,8 @@ const RoutePaths = Object.freeze({
   DASHBAORD: '/dashboard',
   FORM: '/createform/:formId',
   SUBMIT_FORM: '/s/:formId',
-  REPORT: '/report/:formId',
+  THANKS: '/s/:formId/:userId',
+  REPORT: '/report/:formId/:userId',
 });
 
 export default RoutePaths;

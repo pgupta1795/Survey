@@ -9,7 +9,7 @@ import {
   LoginFooter,
   LoginHeader,
   FormContext,
-  LoginService,
+  UserService,
   SubmitButton,
   Constants,
 } from './index';
@@ -39,7 +39,7 @@ const LoginForm = () => {
       let data = new FormData(event.target);
       if (!data) return;
       data = Object.fromEntries(data);
-      const response = await LoginService.login(data);
+      const response = await UserService.login(data);
       if (response) redirectTo(response);
       setLoading(false);
     } catch (error) {

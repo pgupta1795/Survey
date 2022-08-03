@@ -1,8 +1,9 @@
 import toast from '../../../app/toast';
 import ArrayUtils from '../../../common/utils/ArrayUtils';
+import FieldTypes, { getKey } from '../../../helper/FieldTypes';
 import Settings from '../../../Settings.json';
 
-const validChartNames = Settings.CHART_SCORES_NAME;
+const validChartNames = Settings.SECTIONS.map(({ name }) => name);
 
 /**
  * return {
@@ -27,9 +28,10 @@ const formatAnswersBySection = (responseData, formData) => {
       const sectionName = formData.sections.find(
         (sec) => sec._id === section._id
       )?.name;
-      const allAnswers = section.response.map(
-        (question) => question.options[0].optionText
-      );
+      const allAnswers = section.response.map((question) => ({
+        questionId: question.questionId,
+        optionText: question.options[0].optionText,
+      }));
       const existingVal = myRes[sectionName];
       myRes[sectionName] = existingVal
         ? [...existingVal, { [userId]: allAnswers }]
@@ -49,7 +51,8 @@ const formatAnswersBySection = (responseData, formData) => {
 const getSectionAvgByUser = (formattedResponse, sectionName) => {
   const userResponses = formattedResponse[sectionName];
   const usersSecAvg = userResponses?.map((userResponse) => {
-    const answers = userResponse[Object.keys(userResponse)[0]];
+    const quesAnswers = userResponse[Object.keys(userResponse)[0]];
+    const answers = quesAnswers.map((quesAns) => quesAns.optionText);
     if (!ArrayUtils.isNumberArray(answers)) return null;
     return ArrayUtils.getAverage(answers);
   });
@@ -66,6 +69,8 @@ export default {
         },
       ];
       const labels = [];
+      if (!data || !data?.formData || !data?.responseData)
+        return { series, labels };
       const { formData, responseData } = data;
       const formattedRes = formatAnswersBySection(responseData, formData);
       Object.keys(formattedRes)?.forEach((sectionName) => {
@@ -91,16 +96,55 @@ export default {
           data: [1.2, 1.3, 1.4, 1.5, 1.9],
         },
       ];
+      const labels = ['1', '2', '3', '4', '5'];
+      if (!data || !data?.formData || !data?.responseData)
+        return { series, labels };
+
       const { formData, responseData } = data;
       console.log({ formData, responseData });
-
-      const labels = ['1', '2', '3', '4', '5'];
-      console.log({ series, labels });
       return { series, labels };
     } catch (error) {
       console.error(error);
       toast.error(error);
       throw error;
     }
+  },
+
+  getQuestionAnswerSeries: (data) => {
+    console.log({ data });
+    const series = [
+      {
+        name: 'Answers',
+        data: [],
+      },
+    ];
+    const labels = [];
+    if (!data || !data?.formData || !data?.responseData)
+      return { series, labels };
+    const { formData, responseData, activeQuestion, activeSection } = data;
+    const formattedRes = formatAnswersBySection(responseData, formData);
+    const answers = formattedRes[activeSection?.name]?.map((userRes) => {
+      const quesAnswers = userRes[Object.keys(userRes)[0]];
+      return quesAnswers.find(
+        (quesAns) => quesAns.questionId === activeQuestion._id
+      )?.optionText;
+    });
+
+    if (activeQuestion.type === getKey(FieldTypes, FieldTypes.TEXT_FIELD)) {
+      answers?.forEach((ans) => {
+        const count = ArrayUtils.getElementCount(answers, ans);
+        series[0].data.push(count);
+        labels.push(ans);
+      });
+      return { series, labels };
+    }
+
+    activeQuestion.options.forEach(({ text }) => {
+      const count = ArrayUtils.getElementCount(answers, text);
+      series[0].data.push(count);
+      labels.push(text);
+    });
+    console.log(`For Question ${activeQuestion._id} : `, { series, labels });
+    return { series, labels };
   },
 };

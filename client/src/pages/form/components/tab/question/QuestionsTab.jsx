@@ -8,9 +8,9 @@ import {
   CenteredGridBox,
   CreateHeaders,
   useFormNameAndActions,
-} from './index';
-import BasicFormSkeleton from '../basic/BasicFormSkeleton';
-import useMobileStepper from '../../../../hooks/useMobileStepper';
+} from '../index';
+import BasicFormSkeleton from '../../basic/BasicFormSkeleton';
+import useMobileStepper from '../../../../../hooks/useMobileStepper';
 
 const QuestionsTab = () => {
   const [loading, setLoading] = useState(true);

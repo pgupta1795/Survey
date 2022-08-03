@@ -1,9 +1,25 @@
 {
-  "CHART_SCORES_NAME": [
-    "Strategy & Policy",
-    "Management & Control",
-    "Organization & Processes",
-    "People & Culture",
-    "Information & Technology"
+  "TITLE": "PLM Maturity Report",
+  "SECTIONS": [
+    {
+      "name": "Strategy & Policy",
+      "description": "A PLM strategy is described and aligned with your organization strategy. The strategy is translated in an action plan and is adapted where needed"
+    },
+    {
+      "name": "Management & Control",
+      "description": "Clear monitoring of time to market. Status of lifecycles of products is known and where metrics and processes for product quality are defined"
+    },
+    {
+      "name": "Organization & Processes",
+      "description": "Procedures and processes are defined and standardised within the organization"
+    },
+    {
+      "name": "People & Culture",
+      "description": "Task and job descriptions contain references to processes and procedures of the product lifecycle. Employees can raise suggestions for product lifecycle decisions"
+    },
+    {
+      "name": "Information & Technology",
+      "description": "Software is implemented that supports the product lifecycle and is integrated with other information systems"
+    }
   ]
 }

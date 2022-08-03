@@ -1,7 +1,6 @@
 import { AppBar, Box, Toolbar } from '@mui/material';
 import React from 'react';
-// import ExperienceMatters from '../../../assets/images/logo/Experience_Matters.png';
-import Brand from '../../../helper/Brand';
+import Logo from '../other/Logo';
 import SocialAccount from '../other/SocialAccount';
 
 const Footer = () => (
@@ -13,11 +12,7 @@ const Footer = () => (
     }}
   >
     <Toolbar variant="dense">
-      <div className="logo_brand">
-        <a href={Brand.URL}>
-          <img src={Brand.LOGO} alt="TECHNIA" />
-        </a>
-      </div>
+      <Logo className="logo_brand" />
       <Box sx={{ flexGrow: 1 }} />
       <SocialAccount />
     </Toolbar>

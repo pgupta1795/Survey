@@ -4,7 +4,6 @@ import {
   getAuthHeader,
   getCurrentUser,
 } from '../../../auth/services/AuthService';
-import { Constants } from '../../signup';
 
 export default {
   getViewFormUrl: (id) => `/s/${id}`,
@@ -52,14 +51,8 @@ export default {
     return response.data;
   },
 
-  getResponseByCompany: async (formId) => {
+  getResponseByCompany: async (formId, id) => {
     try {
-      const user = getCurrentUser();
-      const id = user?.id;
-      if (!user) {
-        toast.error(Constants.ERROR_NO_USER);
-        return console.error(Constants.ERROR_NO_USER);
-      }
       const response = await axios.get(
         `/response/getResponseByCompany/${formId}/${id}`,
         getAuthHeader()

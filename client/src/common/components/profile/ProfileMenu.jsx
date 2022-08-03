@@ -7,9 +7,10 @@ import Divider from '@mui/material/Divider';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
-import LoginService from '../../../pages/login/services/LoginService';
+import UserService from '../../../pages/login/services/UserService';
 import RoutePaths from '../../../helper/RoutePaths';
 import { getCurrentUser } from '../../../auth/services/AuthService';
+import ThemeSwitch from '../switch/ThemeSwitch';
 
 const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
   const openAchor = Boolean(anchorEl);
@@ -60,9 +61,16 @@ const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
         </MenuItem>
       ) : null}
       {user?.admin ? <Divider /> : null}
+      <MenuItem>
+        Theme
+        <ListItemIcon>
+          <ThemeSwitch />
+        </ListItemIcon>
+      </MenuItem>
+      <Divider />
       <MenuItem
         onClick={() => {
-          LoginService.logout();
+          UserService.logout();
           navigate(RoutePaths.LOGIN);
         }}
       >

@@ -1,17 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import { useTheme } from '@mui/material/styles';
-import { ReportContext } from './contexts';
+import { useEffect, useState } from 'react';
 
-export default (options, fn) => {
-  const theme = useTheme();
-  const context = useContext(ReportContext);
+export default (data, options, fn, extraData, theme) => {
   const [state, setState] = useState({
     ...options,
   });
   const executeFunction = fn.bind(this);
 
   useEffect(() => {
-    const { series, labels } = executeFunction(context);
+    const { series, labels } = executeFunction({ ...data, ...extraData });
     setState({
       ...state,
       series,
@@ -30,13 +26,13 @@ export default (options, fn) => {
           },
         },
         theme: {
-          mode: theme.palette.mode,
+          mode: theme || 'dark',
           palette: 'palette7',
         },
         labels,
       },
     });
-  }, [context, theme]);
+  }, [data]);
 
   return state;
 };

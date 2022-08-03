@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
+import { useSelector } from 'react-redux';
 import Colors from '../../../../helper/Colors';
 import useChartSeries from '../../../../hooks/useChartSeries';
 import ChartUtils from '../../utils/ChartUtils';
@@ -51,7 +52,10 @@ const ScoresChart = ({ ...props }) => {
       },
     },
   };
-  const state = useChartSeries(options, ChartUtils.getScoresSeries);
+
+  const data = useSelector((state) => state?.response?.value);
+
+  const state = useChartSeries(data, options, ChartUtils.getScoresSeries);
 
   return (
     <div className="apex-chart" {...props}>

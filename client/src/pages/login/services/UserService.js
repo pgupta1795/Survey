@@ -1,6 +1,7 @@
 import axios from 'axios';
 import toast from '../../../app/toast';
 import {
+  getAuthHeader,
   getCurrentUser,
   setUserTicket,
 } from '../../../auth/services/AuthService';
@@ -41,5 +42,19 @@ export default {
 
   logout() {
     localStorage.removeItem('userTicket');
+  },
+
+  getOrganizations: async () => {
+    try {
+      const response = await axios.get('/user/organizations', getAuthHeader());
+      if (response.status !== 200) {
+        toast.error(response.data);
+        return console.error(response.data);
+      }
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   },
 };

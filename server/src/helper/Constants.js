@@ -14,6 +14,7 @@ const Constants = Object.freeze({
   ERROR_LOGIN_FAILED: 'Invalid Credentials',
   ERROR_NO_USER: 'Username or Password not found',
   ERROR_USER_EXISTS: 'User already exists',
+  ERROR_NO_USERS: 'Users not found',
   ERROR_NO_FORM: 'Form not found',
   ERROR_FORM_NOT_FOUND: 'Form not found or already deleted',
   ERROR_FORM_AUTH_ERROR: 'You are not the owner of this Form',

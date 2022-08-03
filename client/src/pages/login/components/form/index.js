@@ -5,7 +5,7 @@ export { default as Organization } from '../fields/Organization';
 export { default as LoginFooter } from '../other/LoginFooter';
 export { default as LoginHeader } from '../other/LoginHeader';
 export { default as Constants } from '../../../../helper/Constants';
-export { default as LoginService } from '../../services/LoginService';
+export { default as UserService } from '../../services/UserService';
 export { default as RoutePaths } from '../../../../helper/RoutePaths';
 export { FormContext } from '../../../../hooks/contexts';
 export { default as SubmitButton } from '../../../../common/components/button/SubmitButton';

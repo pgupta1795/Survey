@@ -1,14 +1,20 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import toast from '../../../app/toast';
-import { getCurrentUser } from '../../../auth/services/AuthService';
+import {
+  getAuthHeader,
+  getCurrentUser,
+} from '../../../auth/services/AuthService';
 import { Constants } from '../../login';
 
 export default {
   getFormUrl: (id) => `/createform/${id}`,
 
   getFormByUser: async (userId) => {
-    const response = await axios.get(`/form/getuserforms/${userId}`);
+    const response = await axios.get(
+      `/form/getuserforms/${userId}`,
+      getAuthHeader()
+    );
     if (response?.status !== 200) {
       toast.error(Constants.ERROR_GET_FORM);
       return console.error(Constants.ERROR_GET_FORM);
@@ -45,7 +51,11 @@ export default {
         createdBy: id,
         _id: uuidv4(),
       };
-      const response = await axios.post(`/form/create/${id}`, data);
+      const response = await axios.post(
+        `/form/create/${id}`,
+        data,
+        getAuthHeader()
+      );
       if (response?.status !== 200) {
         toast.error(Constants.ERROR_CREATE_FORM);
         return console.error(Constants.ERROR_CREATE_FORM);
@@ -59,7 +69,7 @@ export default {
   },
 
   getFormById: async (formId) => {
-    const response = await axios.get(`/form/${formId}`);
+    const response = await axios.get(`/form/${formId}`, getAuthHeader());
     if (response?.status !== 200) {
       toast.error(Constants.ERROR_GET_FORM);
       return console.error(Constants.ERROR_GET_FORM);
@@ -68,7 +78,7 @@ export default {
   },
 
   autoSave: async (data) => {
-    const response = await axios.put('/form/editform/', data);
+    const response = await axios.put('/form/editform/', data, getAuthHeader());
     if (response?.status !== 200) {
       toast.error(Constants.ERROR_SAVE_CREATEFORM);
       return console.error(Constants.ERROR_SAVE_CREATEFORM);
@@ -94,7 +104,10 @@ export default {
       toast.error(Constants.ERROR_NO_USER);
       return console.error(Constants.ERROR_NO_USER);
     }
-    const response = await axios.delete(`/form/deleteform/${formId}/${id}`);
+    const response = await axios.delete(
+      `/form/deleteform/${formId}/${id}`,
+      getAuthHeader()
+    );
     if (response.status !== 200) {
       toast.error(response.data);
       return console.error(response.data);
@@ -104,7 +117,10 @@ export default {
   },
 
   getForms: async (formType) => {
-    const response = await axios.get(`/form/allforms/${formType}`);
+    const response = await axios.get(
+      `/form/allforms/${formType}`,
+      getAuthHeader()
+    );
     console.log(response.data);
     if (response.status !== 200) {
       toast.error(response.data);

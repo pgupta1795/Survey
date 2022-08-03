@@ -4,10 +4,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionActions from '@mui/material/AccordionActions';
 import Visibility from '@mui/icons-material/Visibility';
-import { HeaderSection } from '../responding';
 import EditableHeaderSection from './editable/EditableHeaderSection';
 import AddQuestions from '../button/AddQuestions';
 import BasicSectionBox from '../basic/BasicSectionBox';
+import HeaderSection from './noneditable/HeaderSection';
 import { QuestionsContext } from '../tab';
 
 const CreateHeaders = () => {

@@ -33,6 +33,13 @@ const typography = {
   italic: {
     fontWeight: 'italic',
   },
+  small: {
+    fontSize: '0.5em',
+  },
+  tableHeader: {
+    fontWeight: '900',
+    color: Colors.THEME_MAIN,
+  },
 };
 
 const getBackground = () => ({
@@ -49,6 +56,13 @@ const getBackground = () => ({
   MuiButtonBase: {
     defaultProps: {
       disableRipple: true,
+    },
+  },
+  MuiExpansionPanel: {
+    root: {
+      '&:before': {
+        display: 'none',
+      },
     },
   },
 });

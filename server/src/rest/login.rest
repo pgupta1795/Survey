@@ -1,6 +1,10 @@
 GET http://localhost:5000/
 
 ###
+GET http://localhost:5000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDJmYTkzM2E4MzY3MmQ5NDRiNDM3YSIsIm5hbWUiOiJQYWxsYXYgR3VwdGEiLCJlbWFpbCI6InBhbGxhdi5ndXB0YUB0ZWNobmlhLmNvbSIsImFkbWluIjp0cnVlLCJvcmdhbml6YXRpb24iOiJURUNITklBIiwiY3JlYXRlZEZvcm1zIjpbIjhiODc0YWQyLTA3M2MtNDc2ZC04OWY2LWYxNDc5OWQxMDQ3NCJdLCJpYXQiOjE2NTkyNTY4NDN9.NFaI7WT_Xjss5iX6b69goJBO181A1mglZie5osvqMYg
+
+###
 POST http://localhost:5000/user/signup
 Content-Type: application/json
 

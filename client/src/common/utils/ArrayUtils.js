@@ -6,4 +6,13 @@ export default {
     const avg = sum / arr.length || 0;
     return Math.round((avg + Number.EPSILON) * 10) / 10;
   },
+
+  /**
+   * returns count of the element in the array
+   * @param {*} arr
+   * @param {*} val
+   * @returns
+   */
+  getElementCount: (arr, val) =>
+    arr.reduce((a, v) => (v === val ? a + 1 : a), 0),
 };

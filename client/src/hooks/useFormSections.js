@@ -29,7 +29,7 @@ const useFormSections = (setLoading) => {
   });
 
   useEffect(() => {
-    if (!formData.sections) return;
+    if (!formData?.sections) return;
     if (formData.sections.length !== 0) setSections(formData.sections);
     setLoading(false);
   }, [formData]);

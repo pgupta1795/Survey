@@ -20,6 +20,10 @@ const Colors = Object.freeze({
   GRAPH_COLOR_4: '#92A5BD',
 
   GRAPH_COLOR_5: '#126084',
+
+  SECTION_CARD_BG: '#58595B',
+
+  ALICE_BLUE: '#f0f8ff',
 });
 
 export default Colors;

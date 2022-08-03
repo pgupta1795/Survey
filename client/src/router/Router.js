@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ThanksPage from '../pages/thanks/ThanksPage';
 import GenerateToken from '../pages/generateToken/GenerateToken';
 import Report from '../pages/report/Report';
 import ResetPassword from '../pages/resetPassword/ResetPassword';
@@ -36,6 +37,7 @@ const Router = () => (
             <Route path={RoutePaths.DASHBAORD} element={<Dashboard />} />
           </Route>
           <Route path={RoutePaths.SUBMIT_FORM} element={<UserResponseForm />} />
+          <Route path={RoutePaths.THANKS} element={<ThanksPage />} />
           <Route path={RoutePaths.REPORT} element={<Report />} />
         </Route>
         <Route path={RoutePaths.ERROR} element={<Error />} />

@@ -12,9 +12,9 @@ const CustomList = ({ text, icon }) => (
         color: 'rgba(255,255,255,1)',
         px: 1,
         pt: 3,
-        '&:hover': {
-          backgroundColor: 'primary.dark',
-        },
+        // '&:hover': {
+        //   backgroundColor: 'primary.dark',
+        // },
       }}
     >
       <ListItemIcon>{icon}</ListItemIcon>

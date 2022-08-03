@@ -1,5 +1,10 @@
 const router = require('express').Router();
+const { authenticateToken } = require('../../../config/middleware');
 const UserService = require('../service/UserService');
+
+router
+  .route('/organizations')
+  .get(authenticateToken, UserService.getOrganizations);
 
 router.route('/signup').post(UserService.signup);
 

@@ -7,7 +7,7 @@ import Username from '../../../login/components/fields/Username';
 import Organization from '../../../login/components/fields/Organization';
 import LoginFooter from '../../../login/components/other/LoginFooter';
 import LoginHeader from '../../../login/components/other/LoginHeader';
-import LoginService from '../../../login/services/LoginService';
+import UserService from '../../../login/services/UserService';
 import { FormContext } from '../../../../hooks/contexts';
 import SubmitButton from '../../../../common/components/button/SubmitButton';
 import { getReDirectPath } from '../../../../auth/services/AuthService';
@@ -40,7 +40,7 @@ const SingupForm = () => {
       let data = new FormData(event.target);
       if (!data) return;
       data = Object.fromEntries(data);
-      const response = await LoginService.signup(data);
+      const response = await UserService.signup(data);
       if (response) redirectTo(response);
       setLoading(false);
     } catch (error) {

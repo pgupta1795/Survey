@@ -93,7 +93,61 @@ const addNewPassword = async (userId, password) => {
   );
 };
 
+/**
+ * returns list of users containing email,name and organization
+ * FORMAT : 
+ * {
+  "users": [
+    {
+      "TECHNIA": [
+        {
+          "name": "Pallav Gupta",
+          "email": "pallav.gupta@technia.com",
+          "_id": "62d2fa933a83672d944b437a"
+        }
+      ]
+    },
+    {
+      "GMAIL": [
+        {
+          "name": "pgupta1795@gmail.com",
+          "email": "pgupta1795@gmail.com",
+          "_id": "62d2ff1b3a83672d944b438a"
+        },
+        {
+          "name": "admin",
+          "email": "plmmaturitysurvey@gmail.com",
+          "_id": "62e9021a4cfae1e63c1843ea"
+        }
+      ]
+    }
+  ]
+}
+ * @returns
+ */
+const findOrganizations = async () => {
+  return await UserModel.aggregate([
+    {
+      $group: {
+        _id: '$organization',
+        obj: { $push: { name: '$name', email: '$email', _id: '$_id' } },
+      },
+    },
+    {
+      $replaceRoot: {
+        newRoot: {
+          $let: {
+            vars: { obj: [{ k: { $substr: ['$_id', 0, -1] }, v: '$obj' }] },
+            in: { $arrayToObject: '$$obj' },
+          },
+        },
+      },
+    },
+  ]);
+};
+
 module.exports = {
+  findOrganizations,
   createAdminUser,
   createUser,
   findUser,

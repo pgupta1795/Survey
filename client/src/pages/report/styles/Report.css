@@ -1,0 +1,14 @@
+.report_logo_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.report_logo {
+  transform: scale(0.7);
+}
+
+@media (max-width: 600px) {
+  .report_logo {
+    transform: scale(0.4);
+  }
+}

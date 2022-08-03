@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Typography } from '@mui/material';
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { UserRespondingContext } from '../../../../../hooks/contexts';
 import QuestionImageView from '../noneditable/QuestionImageView';
@@ -8,13 +7,13 @@ import AllOptions from '../../options/responding/AllOptions';
 import FlexStartBox from '../../../../../common/components/card/FlexStartBox';
 import SubmitResponse from '../../button/SubmitResponse';
 import RespondingHeaderSection from '../../header/responding/RespondingHeaderSection';
-import { useFormById } from '../../responding';
 import BasicSectionBox from '../../basic/BasicSectionBox';
 import ResponseService from '../../../services/ResponseService';
 import BasicFormSkeleton from '../../basic/BasicFormSkeleton';
 import useMobileStepper from '../../../../../hooks/useMobileStepper';
+import useFormById from '../../../../../hooks/useFormById';
 
-const AllQuestions = ({ setIsSubmitted }) => {
+const AllQuestions = () => {
   const [loading, setLoading] = useState(true);
   const { formId } = useParams();
   const formData = useFormById(formId);
@@ -108,17 +107,10 @@ const AllQuestions = ({ setIsSubmitted }) => {
       )}
       {BasicStepper}
       {activeStep === maxSteps - 1 ? (
-        <SubmitResponse
-          formData={formData}
-          setIsSubmitted={setIsSubmitted}
-          sectionData={sectionData}
-        />
+        <SubmitResponse formData={formData} sectionData={sectionData} />
       ) : null}
     </Grid>
   );
 };
 
-AllQuestions.propTypes = {
-  setIsSubmitted: PropTypes.func.isRequired,
-};
 export default AllQuestions;

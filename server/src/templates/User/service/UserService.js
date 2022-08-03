@@ -108,10 +108,31 @@ const resetPassword = async (req, res) => {
   }
 };
 
+/**
+ * Returns list of all organizations, containing their users
+ * @param {*} req
+ * @param {*} res
+ * @returns
+ */
+const getOrganizations = async (req, res) => {
+  try {
+    const organizations = await UserUtils.findOrganizations();
+    if (!organizations || organizations === null)
+      return res.status(400).send(Constants.ERROR_NO_USERS);
+    res.status(200).json({
+      organizations,
+    });
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+};
+
 module.exports = {
   generateTokenForUser,
   signup,
   login,
   refresh,
   resetPassword,
+  getOrganizations,
 };

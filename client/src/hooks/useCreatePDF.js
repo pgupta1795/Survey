@@ -10,9 +10,10 @@ const TYPE = 'PNG';
 const PROC = 'FAST';
 const UN = undefined;
 
-const useCreatePDF = (sendEmail = false) => {
+const useCreatePDF = (sendEmail, pUserId = null) => {
   const toastId = useRef(null);
   const [reportSent, setReportSent] = useState(false);
+  const [view, setView] = useState();
 
   const getImage = async (id, scale = 3) => {
     const data = await html2canvas(document.querySelector(id), {
@@ -25,29 +26,29 @@ const useCreatePDF = (sendEmail = false) => {
     return img;
   };
 
-  const getDimension = (pdf, image) => {
-    const imageProps = pdf.getImageProperties(image);
+  const getDimension = (pdf) => {
+    // const imageProps = pdf.getImageProperties(image);
     const width = pdf.internal.pageSize.getWidth();
-    const height = (imageProps.height * width) / imageProps.width;
+    // const height = (imageProps.height * width) / imageProps.width;
+    const height = pdf.internal.pageSize.getHeight();
+    console.log(width, height);
     return [width, height];
   };
 
   const createPDF = async () => {
-    const pdf = new JSPdf('p', 'mm', 'a4', true);
+    const pdf = new JSPdf({
+      orientation: 'p',
+      unit: 'mm',
+      format: 'a4',
+      putOnlyUsedFonts: true,
+    });
     // 1st page
     pdf.text('TECHNIA', 100, 100);
     // 2nd page
-    const header = await getImage('#report-header');
-    const chart1 = await getImage('#report-chart-1', 4);
-    const chart2 = await getImage('#report-chart-2', 4);
-    const footer = await getImage('#report-footer');
+    const header = await getImage('#report');
     const [wh, hh] = getDimension(pdf, header);
-    const [wf, hf] = getDimension(pdf, footer);
     pdf.addPage();
     pdf.addImage(header, TYPE, 0, 0, wh, hh, UN, PROC);
-    pdf.addImage(chart1, TYPE, 0, hh, wh / 2 - 5, hh + 10, UN, PROC);
-    pdf.addImage(chart2, TYPE, wh / 2, hh, wh / 2 - 5, hh + 10, UN, PROC);
-    pdf.addImage(footer, TYPE, 0, hh + hh + 10, wf, hf, UN, PROC);
     // 3rd page
     pdf.addPage();
     pdf.text('THANK YOU', 100, 100);
@@ -87,6 +88,14 @@ const useCreatePDF = (sendEmail = false) => {
   };
 
   useEffect(() => {
+    setView(
+      <div id="generate-report">
+        <Report pUserId={pUserId} display="none" />
+      </div>
+    );
+  }, [pUserId]);
+
+  useEffect(() => {
     if (!reportSent && sendEmail) {
       const send = () => {
         setTimeout(() => {
@@ -95,17 +104,13 @@ const useCreatePDF = (sendEmail = false) => {
       };
       document
         .getElementById('generate-report')
-        .addEventListener('load', send());
+        ?.addEventListener('load', send());
     }
   }, []);
 
   return {
     savePDF,
-    Report: (
-      <div id="generate-report">
-        <Report display="none" />
-      </div>
-    ),
+    Report: view,
     sendPDF,
   };
 };

@@ -6,8 +6,10 @@ import SpaceBetweenBox from '../../common/components/card/SpaceBetweenBox';
 import BasicUserForm from '../../common/components/form/BasicUserForm';
 import './styles/Form.css';
 
-const QuestionsTab = lazy(() => import('./components/tab/QuestionsTab'));
-const ResponseTab = lazy(() => import('./components/tab/ResponseTab'));
+const QuestionsTab = lazy(() =>
+  import('./components/tab/question/QuestionsTab')
+);
+const ResponseTab = lazy(() => import('./components/tab/response/ResponseTab'));
 
 const CreateForm = () => {
   const [tab, setTab] = useState(0);

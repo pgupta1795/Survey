@@ -1,31 +1,31 @@
 import { CircularProgress } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import CenteredGridBox from '../../common/components/card/CenteredGridBox';
 import useFormById from '../../hooks/useFormById';
 import useResponseByCompany from '../../hooks/useResponseByCompany';
-import { BasicUserForm } from '../form/components/responding';
 import ReportView from './components/views/ReportView';
+import BasicUserForm from '../../common/components/form/BasicUserForm';
+import './styles/Report.css';
+import { data } from '../../features/response';
 
-const Report = ({ display }) => {
-  const { formId } = useParams();
-  const formData = useFormById(formId);
-  const responseData = useResponseByCompany(formId);
+const Report = ({ display, pUserId }) => {
+  const { formId, userId } = useParams();
+  const cFormData = useFormById(formId);
+  const resData = useResponseByCompany(formId, pUserId || userId);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(data({ responseData: resData, formData: cFormData }));
+  }, [cFormData, resData]);
 
   return (
-    <BasicUserForm
-      sx={{
-        mt: 5,
-      }}
-    >
+    <BasicUserForm>
       <CenteredGridBox key={formId}>
-        {formData && responseData ? (
-          <ReportView
-            formData={formData}
-            responseData={responseData}
-            display={display}
-          />
+        {cFormData && resData ? (
+          <ReportView display={display} />
         ) : (
           <CircularProgress />
         )}
@@ -34,10 +34,12 @@ const Report = ({ display }) => {
   );
 };
 Report.defaultProps = {
+  pUserId: null,
   display: 'block',
 };
 
 Report.propTypes = {
+  pUserId: PropTypes.string,
   display: PropTypes.string,
 };
 export default Report;
