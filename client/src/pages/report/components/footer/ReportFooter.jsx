@@ -5,7 +5,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
 import Colors from '../../../../helper/Colors';
 
@@ -29,53 +28,51 @@ const rows = [
 const ReportFooter = ({ ...props }) => {
   console.log('');
   return (
-    <Grid sx={{ width: '100%', px: 1 }} {...props}>
-      <TableContainer>
-        <Table sx={{ minWidth: 650 }} size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <Typography variant="tableHeader">Dimension</Typography>
+    <TableContainer {...props}>
+      <Table sx={{ minWidth: 650 }} size="small" padding="none">
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <Typography variant="tableHeader">Dimension</Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography variant="tableHeader">R&D + EPD</Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography variant="tableHeader">
+                Supply chain & Fabriek
+              </Typography>
+            </TableCell>
+            <TableCell align="right">
+              <Typography variant="tableHeader">
+                Manufacturing Engineering & Quality
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{
+                '&:last-child td, &:last-child th': {
+                  borderTop: `2px solid ${Colors.THEME_MAIN}`,
+                  color: `${Colors.THEME_MAIN}`,
+                  fontWeight: '600',
+                },
+              }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
               </TableCell>
-              <TableCell align="right">
-                <Typography variant="tableHeader">R&D + EPD</Typography>
-              </TableCell>
-              <TableCell align="right">
-                <Typography variant="tableHeader">
-                  Supply chain & Fabriek
-                </Typography>
-              </TableCell>
-              <TableCell align="right">
-                <Typography variant="tableHeader">
-                  Manufacturing Engineering & Quality
-                </Typography>
-              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{
-                  '&:last-child td, &:last-child th': {
-                    borderTop: `2px solid ${Colors.THEME_MAIN}`,
-                    color: `${Colors.THEME_MAIN}`,
-                    fontWeight: '600',
-                  },
-                }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Grid>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

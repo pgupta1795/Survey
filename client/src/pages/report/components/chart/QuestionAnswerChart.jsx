@@ -67,7 +67,13 @@ const QuestionAnswerChart = ({ activeQuestion, activeSection, ...props }) => {
 
   return (
     <div className="question-response-chart">
-      <Typography variant="question">{activeQuestion.text}</Typography>
+      <Typography
+        sx={{
+          typography: { xs: 'smallQuestion', sm: 'body2', md: 'question' },
+        }}
+      >
+        {activeQuestion.text}
+      </Typography>
       <div className="apex-chart" {...props}>
         <Chart
           options={state.options}

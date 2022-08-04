@@ -26,11 +26,11 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
     return img;
   };
 
-  const getDimension = (pdf) => {
-    // const imageProps = pdf.getImageProperties(image);
+  const getDimension = (pdf, image) => {
+    const imageProps = pdf.getImageProperties(image);
     const width = pdf.internal.pageSize.getWidth();
-    // const height = (imageProps.height * width) / imageProps.width;
-    const height = pdf.internal.pageSize.getHeight();
+    const height = (imageProps.height * width) / imageProps.width;
+    // const height = pdf.internal.pageSize.getHeight();
     console.log(width, height);
     return [width, height];
   };
@@ -39,7 +39,7 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
     const pdf = new JSPdf({
       orientation: 'p',
       unit: 'mm',
-      format: 'a4',
+      format: [297, 210],
       putOnlyUsedFonts: true,
     });
     // 1st page

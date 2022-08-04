@@ -1,8 +1,8 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
 import { CenteredGridBox, useOrganizations, BasicUserForm } from '../index';
-import ChangeOrganization from './ChangeOrganization';
-import OrganizationView from './OrganizationView';
+import ChangeOrganization from '../../commands/ChangeOrganization';
+import OrganizationView from './view/OrganizationView';
 
 const ResponseTab = () => {
   const { loading, organizations } = useOrganizations();

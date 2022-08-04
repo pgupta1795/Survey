@@ -26,7 +26,7 @@ export default (data, options, fn, extraData, theme) => {
           },
         },
         theme: {
-          mode: theme || 'dark',
+          mode: theme || 'light',
           palette: 'palette7',
         },
         labels,

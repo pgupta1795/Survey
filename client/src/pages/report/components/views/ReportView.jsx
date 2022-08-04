@@ -3,16 +3,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MaturityChart from '../chart/MaturityChart';
 import ScoresChart from '../chart/ScoresChart';
-import ReportHeader from '../header/ReportHeader';
 import ReportFooter from '../footer/ReportFooter';
 import ReportContainer from '../card/ReportContainer';
+import ReportTitle from '../header/ReportTitle';
+import ReportCard from '../header/ReportCard';
 
 const ReportView = ({ display }) => (
   <ReportContainer display={display}>
+    <ReportTitle
+      display={display}
+      sx={{
+        display: 'grid',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        gridTemplateColumns: '10fr 1fr',
+      }}
+    />
     <Grid item xs={12} sx={{ display: 'flex' }}>
-      <ReportHeader
+      <ReportCard
+        display={display}
         sx={{
-          py: 1,
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignItems: 'flex-start',
+          textAlign: 'center',
         }}
       />
     </Grid>
@@ -24,8 +38,8 @@ const ReportView = ({ display }) => (
         <ScoresChart />
       </Grid>
     </Grid>
-    <Grid item xs={12}>
-      <ReportFooter />
+    <Grid item xs={12} sx={{ display: 'flex' }}>
+      <ReportFooter sx={{ px: 1 }} display={display} />
     </Grid>
   </ReportContainer>
 );

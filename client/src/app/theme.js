@@ -40,6 +40,10 @@ const typography = {
     fontWeight: '900',
     color: Colors.THEME_MAIN,
   },
+  smallQuestion: {
+    fontSize: '0.75em',
+    fontWeight: '700',
+  },
 };
 
 const getBackground = () => ({
