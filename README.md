@@ -14,6 +14,7 @@ You must have Docker Installed in your System !!
 
 #### Development Environment : 
 
+- Create admin user for the application : Add a file users.json under Survey/server/src/data/ and copy contents from example_users.json and change username,password,email accordingly.
 - Copy the content of docker-compose-dev.yml to docker-compose.yml
 - Create .env file under root (Survey) folder and copy .env.example to .env file 
 - Create .env file under Survey/server folder and copy .env.example to .env file
