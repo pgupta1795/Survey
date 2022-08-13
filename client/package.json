@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
-  "proxy": "http://127.0.0.1:5000/",
+  "proxy": "http://server:5000/",
   "overrides": {
     "react": "^18.2.0",
     "@svgr/webpack": "$@svgr/webpack",

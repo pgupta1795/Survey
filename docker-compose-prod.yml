@@ -1,0 +1,88 @@
+version: '3.4'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    image: survey-server-prod
+    container_name: survey-node-server-prod
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongo
+    restart: always
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    image: survey-client-prod
+    container_name: survey-react-client-prod
+    depends_on:
+      - server
+    ports:
+      - '8080:80'
+    networks:
+      - app-network
+  # Mongo
+  mongo:
+    image: mongo
+    command: mongod --port 27019
+    ports:
+      - '27019:27019'
+    networks:
+      - app-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_USER: ${MONGO_USER}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - data-volume:/data/db
+      - ./server/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+  # Mongo Express Service
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    restart: unless-stopped
+    ports:
+      - 8081:8081
+    networks:
+      - app-network
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: ${MONGO_HOST}
+      ME_CONFIG_MONGODB_PORT: ${MONGO_PORT}
+    depends_on:
+      - mongo
+  #portainer
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: always
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  portainer_data:
+  data-volume:
+  node_modules:
+  web-root:
+    driver: local

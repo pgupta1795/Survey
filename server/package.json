@@ -4,8 +4,8 @@
   "description": "Stores survey results and forms",
   "main": "index.js",
   "scripts": {
-    "devStart": "node index.js",
-    "prodStart": "node index.js",
+    "start": "nodemon -L index.js",
+    "build": "node index.js",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint:check": "eslint .",
@@ -33,6 +33,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.7.0"
+    "prettier": "^2.7.0",
+    "nodemon": "^2.0.19"
   }
 }
