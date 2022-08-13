@@ -19,6 +19,12 @@ You must have Docker Installed in your System !!
 - Create .env file under root (Survey) folder and copy .env.example to .env file 
 - Create .env file under Survey/server folder and copy .env.example to .env file
 - Configure ports and database user settings in both the .env files
+- Configure Email Settings in .env file under server folder (can use https://mailtrap.io/ for development purpose or any gmail account)
+- Example : Gmail settings for .env file
+  - EMAIL_HOST = smtp.gmail.com
+  - EMAIL_PORT = 465
+  - EMAIL_ACCOUNT = test@gmail.com
+  - EMAIL_PASSWORD = myGmailPassword
 - Navigate to root folder which contains docker-compose.yml file and run below in CMD
     
 ```bash
@@ -31,11 +37,13 @@ You must have Docker Installed in your System !!
 - Create .env file under root (Survey) folder and copy .env.example to .env file 
 - Create .env file under Survey/server folder and copy .env.example to .env file
 - Configure ports and database user settings in both the .env files
+- Configure Email Settings in .env file under server folder
 - Navigate to root folder which contains docker-compose.yml file and run below in CMD
     
 ```bash
   $ docker-compose up -d
 ```
+
 
 #### Open Portainer on http://localhost:9000/ and create user/Password and login to manage all the services(After login Portainer should look like below)
 ## Features
