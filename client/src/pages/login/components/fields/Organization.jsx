@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React from 'react';
 
-const Organization = () => (
+const Organization = ({ ...props }) => (
   <TextField
     margin="normal"
     required
@@ -9,12 +9,12 @@ const Organization = () => (
     id="organization"
     label="Organization"
     name="organization"
-    // autoComplete="organization"
     inputProps={{
       style: {
         height: '3rem',
       },
     }}
+    {...props}
   />
 );
 

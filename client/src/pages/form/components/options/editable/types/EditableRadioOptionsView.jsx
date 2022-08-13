@@ -46,4 +46,4 @@ EditableRadioOptionsView.propTypes = {
   questionIndex: PropTypes.number.isRequired,
   onChange: PropTypes.func,
 };
-export default React.memo(EditableRadioOptionsView);
+export default EditableRadioOptionsView;

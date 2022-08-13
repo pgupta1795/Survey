@@ -9,7 +9,11 @@ export default {
   getViewFormUrl: (id) => `/s/${id}`,
 
   submitResponse: async (data) => {
-    const response = await axios.post('/response/submitResponse', data);
+    const response = await axios.post(
+      '/response/submitResponse',
+      data,
+      getAuthHeader()
+    );
     if (response.status !== 200) {
       toast.error(response.data);
       return console.error(response.data);

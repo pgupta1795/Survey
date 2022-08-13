@@ -70,4 +70,4 @@ const CreateQuestions = () => {
   );
 };
 
-export default React.memo(CreateQuestions);
+export default CreateQuestions;

@@ -20,6 +20,7 @@ const UserSchema = new Schema(
     admin: { type: Boolean, default: false },
     organization: { type: String },
     createdForms: [],
+    image: { type: String, default: '' },
   },
   { timestamps: true }
 );

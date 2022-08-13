@@ -14,4 +14,6 @@ router.route('/resetPassword').post(UserService.resetPassword);
 
 router.route('/refresh/:userId').get(UserService.refresh);
 
+router.route('/updateDetails').post(UserService.updateDetails);
+
 module.exports = router;

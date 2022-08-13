@@ -1,6 +1,7 @@
 const RoutePaths = Object.freeze({
   ERROR: '*',
   LOGIN: '/',
+  USER: '/user/:userId',
   SIGNUP: '/signup',
   RESET_PASSWORD: '/resetPassword',
   GENERATE_TOKEN: '/generateToken',

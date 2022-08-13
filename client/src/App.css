@@ -1,7 +1,7 @@
 @import '~react-toastify/dist/ReactToastify.css';
 
 :root {
-  --height-toolbar: 48px;
+  --height-toolbar: 64px;
 
   /* Toast colors */
   --toastify-color-success: #1da522;

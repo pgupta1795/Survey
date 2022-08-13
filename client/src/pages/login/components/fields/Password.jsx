@@ -1,13 +1,14 @@
 import { TextField } from '@mui/material';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const Password = () => (
+const Password = ({ label }) => (
   <TextField
     margin="normal"
     required
     fullWidth
     name="password"
-    label="Password"
+    label={label}
     type="password"
     id="password"
     autoComplete="current-password"
@@ -18,5 +19,13 @@ const Password = () => (
     }}
   />
 );
+
+Password.defaultProps = {
+  label: 'Password',
+};
+
+Password.propTypes = {
+  label: PropTypes.string,
+};
 
 export default Password;

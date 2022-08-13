@@ -17,6 +17,7 @@ import {
   Header,
   UserResponseForm,
 } from './index';
+import Profile from '../pages/profile/Profile';
 
 const Router = () => (
   <BrowserRouter>
@@ -36,6 +37,7 @@ const Router = () => (
             <Route path={RoutePaths.FORM} element={<CreateForm />} />
             <Route path={RoutePaths.DASHBAORD} element={<Dashboard />} />
           </Route>
+          <Route path={RoutePaths.USER} element={<Profile />} />
           <Route path={RoutePaths.SUBMIT_FORM} element={<UserResponseForm />} />
           <Route path={RoutePaths.THANKS} element={<ThanksPage />} />
           <Route path={RoutePaths.REPORT} element={<Report />} />

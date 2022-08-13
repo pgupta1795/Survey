@@ -5,6 +5,7 @@ import logo from '../../../assets/images/logo/T.png';
 import Profile from '../profile/Profile';
 import { getCurrentUser } from '../../../auth/services/AuthService';
 import { RoutePaths } from '../../../router';
+import ThemeSwitch from '../switch/ThemeSwitch';
 
 const Header = () => {
   const [user, setUser] = useState(null);
@@ -41,6 +42,7 @@ const Header = () => {
           alignItems="center"
           justifyContent="space-around"
         >
+          <ThemeSwitch />
           {user ? <Profile /> : null}
         </Box>
       </Toolbar>

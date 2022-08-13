@@ -66,6 +66,7 @@ const deleteForm = async (req, res) => {
       { $pull: { createdForms: formId } }
     );
     console.log(`User Updated ${userId}`);
+    console.log(updatedUser);
     res.status(200).send(Constants.FORM_DELETED);
   } catch (error) {
     console.error(error);

@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React from 'react';
 
-const Username = () => (
+const Username = ({ ...props }) => (
   <TextField
     margin="normal"
     required
@@ -16,6 +16,7 @@ const Username = () => (
         height: '3rem',
       },
     }}
+    {...props}
   />
 );
 

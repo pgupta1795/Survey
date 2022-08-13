@@ -89,7 +89,7 @@ export default {
   uploadImage: async (image) => {
     const data = new FormData();
     data.append('myfile', image);
-    const response = await axios.post('/image', data, {});
+    const response = await axios.post('/image', data, getAuthHeader());
     if (response.status !== 200) {
       console.error(response);
       throw new Error(response);

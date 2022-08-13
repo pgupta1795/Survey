@@ -6,7 +6,7 @@ const UserRouter = require('../templates/User/router/UserRouter');
 const FormRouter = require('../templates/Form/router/FormRouter');
 const ImageRouter = require('../templates/Image/router/ImageRouter');
 const ResponseRouter = require('../templates/Response/router/ResponseRouter');
-const EmailRouter = require('../templates/Email/router/EmailRouter');
+const EmailRouter = require('../templates/email/router/EmailRouter');
 
 router.get('/', (req, res) => {
   if (connection) {

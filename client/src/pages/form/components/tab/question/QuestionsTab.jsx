@@ -31,6 +31,29 @@ const QuestionsTab = () => {
     'dots'
   );
 
+  const updateImageLink = (link, context) => {
+    link = link.replace('server', window.location.hostname);
+    console.log(link);
+    const section = JSON.parse(localStorage.getItem('section'));
+    const optionsOfQuestion = [...section.questions];
+    const i = context?.question;
+
+    if (context.option == null) {
+      optionsOfQuestion[i].image = link;
+    } else {
+      const j = context?.option;
+      optionsOfQuestion[i].options[j].image = link;
+    }
+    setSections((prev) =>
+      [...prev].map((sec) => {
+        if (sec._id !== section._id) return sec;
+        sec.questions = optionsOfQuestion;
+        return sec;
+      })
+    );
+    localStorage.removeItem('section');
+  };
+
   if (loading) return <BasicFormSkeleton />;
   return (
     <div>
@@ -53,6 +76,7 @@ const QuestionsTab = () => {
               handleImagePopOpen={openUploadImagePop}
               handleImagePopClose={() => setOpenUploadImagePop(false)}
               contextData={imageContextData}
+              updateImageLink={updateImageLink}
             />
             <DroppableSection />
             {formActions}

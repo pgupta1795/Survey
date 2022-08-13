@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { Dialog } from '@mui/material';
 import DialogActions from '@mui/material/DialogActions';
@@ -8,17 +8,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormService from '../../services/FormService';
 import useImage from '../../../../hooks/useImage';
-import { QuestionsContext } from '../tab';
 import toast from '../../../../app/toast';
 
 const ImageUploadModal = ({
   handleImagePopOpen,
   handleImagePopClose,
   contextData,
+  updateImageLink,
 }) => {
   const [image, field] = useImage();
   const [imageWarning, setImageWarning] = useState('');
-  const { setSections } = useContext(QuestionsContext);
 
   useEffect(() => {
     setImageWarning('');
@@ -26,27 +25,6 @@ const ImageUploadModal = ({
       setImageWarning('');
     };
   }, [image]);
-
-  const updateImageLink = (link, context) => {
-    const section = JSON.parse(localStorage.getItem('section'));
-    const optionsOfQuestion = [...section.questions];
-    const i = context?.question;
-
-    if (context.option == null) {
-      optionsOfQuestion[i].image = link;
-    } else {
-      const j = context?.option;
-      optionsOfQuestion[i].options[j].image = link;
-    }
-    setSections((prev) =>
-      [...prev].map((sec) => {
-        if (sec._id !== section._id) return sec;
-        sec.questions = optionsOfQuestion;
-        return sec;
-      })
-    );
-    localStorage.removeItem('section');
-  };
 
   const upload = async () => {
     if (image?.size === 0) return;
@@ -102,5 +80,6 @@ ImageUploadModal.propTypes = {
   handleImagePopOpen: PropTypes.bool.isRequired,
   handleImagePopClose: PropTypes.func.isRequired,
   contextData: PropTypes.any.isRequired,
+  updateImageLink: PropTypes.func.isRequired,
 };
 export default ImageUploadModal;

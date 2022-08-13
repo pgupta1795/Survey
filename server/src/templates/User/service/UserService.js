@@ -4,7 +4,15 @@ const { compareHashes } = require('../../../helper/Common');
 const { findTokenByUserId } = require('../../Token/utils/TokenUtils');
 
 const generateTokenForUser = (user) => {
-  const { _id: id, name, email, admin, organization, createdForms } = user;
+  const {
+    _id: id,
+    name,
+    email,
+    admin,
+    organization,
+    createdForms,
+    image,
+  } = user;
   const accessToken = UserUtils.getAccessToken({
     id,
     name,
@@ -12,6 +20,7 @@ const generateTokenForUser = (user) => {
     admin,
     organization,
     createdForms,
+    image,
   });
   return accessToken;
 };
@@ -128,6 +137,24 @@ const getOrganizations = async (req, res) => {
   }
 };
 
+const updateDetails = async (req, res) => {
+  try {
+    const { userId, ...details } = req.body;
+    let user = await UserUtils.findUserById(userId);
+    if (!user) return res.status(400).send(Constants.ERROR_USER_NOT_EXIST);
+    const updation = UserUtils.update(userId, details);
+    console.log({ updation });
+    let updatedUser = await UserUtils.findUserById(userId);
+    const accessToken = generateTokenForUser(updatedUser);
+    res.status(200).json({
+      accessToken,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};
+
 module.exports = {
   generateTokenForUser,
   signup,
@@ -135,4 +162,5 @@ module.exports = {
   refresh,
   resetPassword,
   getOrganizations,
+  updateDetails,
 };

@@ -70,7 +70,7 @@ const ResetForm = () => {
           sx={{ mt: 1, mb: 1 }}
         >
           <Token />
-          <Password />
+          <Password label="New Password" />
           <SubmitButton>
             <Typography noWrap variant="button">
               {form.name}

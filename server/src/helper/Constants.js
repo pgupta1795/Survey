@@ -12,6 +12,7 @@ const Constants = Object.freeze({
 
   //ERRORS
   ERROR_LOGIN_FAILED: 'Invalid Credentials',
+  ERROR_USER_NOT_EXIST: 'User does not exist',
   ERROR_NO_USER: 'Username or Password not found',
   ERROR_USER_EXISTS: 'User already exists',
   ERROR_NO_USERS: 'Users not found',

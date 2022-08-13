@@ -44,4 +44,4 @@ const DroppableSection = () => {
   );
 };
 
-export default React.memo(DroppableSection);
+export default DroppableSection;

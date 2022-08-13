@@ -4,6 +4,10 @@ const UserModel = require('../model/User');
 const Constants = require('../../../helper/Constants');
 const { hashedPassword, compareHashes } = require('../../../helper/Common');
 
+const update = async (userId, details) => {
+  return await UserModel.updateOne({ _id: userId }, { $set: { ...details } });
+};
+
 const findUserById = async (userId) => {
   return await UserModel.findOne({ _id: userId }).lean();
 };
@@ -147,6 +151,7 @@ const findOrganizations = async () => {
 };
 
 module.exports = {
+  update,
   findOrganizations,
   createAdminUser,
   createUser,

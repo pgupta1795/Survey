@@ -8,6 +8,11 @@ import {
 import { Constants } from '../../signup';
 
 export default {
+  getUserUrl: () => {
+    const { id } = getCurrentUser();
+    return `/user/${id}`;
+  },
+
   async login(formData) {
     try {
       const response = await axios.post('/user/login', formData);
@@ -51,6 +56,27 @@ export default {
         toast.error(response.data);
         return console.error(response.data);
       }
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+
+  updateDetails: async (formData) => {
+    try {
+      const user = getCurrentUser();
+      const userId = user?.id;
+      const response = await axios.post(
+        '/user/updateDetails',
+        { ...formData, userId },
+        getAuthHeader()
+      );
+      if (response.status !== 200) {
+        console.error(response.data);
+        throw response?.data;
+      }
+      setUserTicket(response.data?.accessToken);
       return response.data;
     } catch (error) {
       console.error(error);

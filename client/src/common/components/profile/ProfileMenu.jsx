@@ -10,7 +10,6 @@ import Logout from '@mui/icons-material/Logout';
 import UserService from '../../../pages/login/services/UserService';
 import RoutePaths from '../../../helper/RoutePaths';
 import { getCurrentUser } from '../../../auth/services/AuthService';
-import ThemeSwitch from '../switch/ThemeSwitch';
 
 const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
   const openAchor = Boolean(anchorEl);
@@ -55,19 +54,16 @@ const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
       {user?.admin ? (
-        <MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate(UserService.getUserUrl());
+          }}
+        >
           <Avatar sx={{ bgcolor: 'primary.main', width: 16, height: 16 }} />
           {user?.name}
         </MenuItem>
       ) : null}
       {user?.admin ? <Divider /> : null}
-      <MenuItem>
-        Theme
-        <ListItemIcon>
-          <ThemeSwitch />
-        </ListItemIcon>
-      </MenuItem>
-      <Divider />
       <MenuItem
         onClick={() => {
           UserService.logout();

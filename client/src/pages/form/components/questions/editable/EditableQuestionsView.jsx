@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { QuestionsContext } from '../../../../../hooks/contexts';
 import UploadImage from '../commands/UploadImage';
@@ -9,6 +9,7 @@ import MultilineTextField from '../../../../../common/components/field/Multiline
 
 const EditableQuestionsView = ({ questionIndex, question }) => {
   const { section, setSections } = useContext(QuestionsContext);
+  const [render, setRender] = useState(false);
 
   const handleQuestionValue = (text, i) =>
     setSections((prev) =>
@@ -18,6 +19,12 @@ const EditableQuestionsView = ({ questionIndex, question }) => {
         return sec;
       })
     );
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRender(true);
+    }, 0);
+  }, [section, render]);
 
   return (
     <>
