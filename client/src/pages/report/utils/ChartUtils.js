@@ -3,6 +3,8 @@ import ArrayUtils from '../../../common/utils/ArrayUtils';
 import FieldTypes, { getKey } from '../../../helper/FieldTypes';
 import Settings from '../../../Settings.json';
 
+const VALID_YEAR = new Date().getFullYear();
+
 const validChartNames = Settings.SECTIONS.map(({ name }) => name);
 
 /**
@@ -23,21 +25,23 @@ const validChartNames = Settings.SECTIONS.map(({ name }) => name);
  */
 const formatAnswersBySection = (responseData, formData) => {
   const myRes = {};
-  responseData?.forEach(({ userId, sections }) => {
-    sections?.forEach((section) => {
-      const sectionName = formData.sections.find(
-        (sec) => sec._id === section._id
-      )?.name;
-      const allAnswers = section.response.map((question) => ({
-        questionId: question.questionId,
-        optionText: question.options[0].optionText,
-      }));
-      const existingVal = myRes[sectionName];
-      myRes[sectionName] = existingVal
-        ? [...existingVal, { [userId]: allAnswers }]
-        : [{ [userId]: allAnswers }];
+  responseData
+    ?.filter((res) => new Date(res.updatedAt).getFullYear() === VALID_YEAR)
+    ?.forEach(({ userId, sections }) => {
+      sections?.forEach((section) => {
+        const sectionName = formData.sections.find(
+          (sec) => sec._id === section._id
+        )?.name;
+        const allAnswers = section.response.map((question) => ({
+          questionId: question.questionId,
+          optionText: question.options[0].optionText,
+        }));
+        const existingVal = myRes[sectionName];
+        myRes[sectionName] = existingVal
+          ? [...existingVal, { [userId]: allAnswers }]
+          : [{ [userId]: allAnswers }];
+      });
     });
-  });
   console.log('Formatted Answers By Section : ', myRes);
   return myRes;
 };
