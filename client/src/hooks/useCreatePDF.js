@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import { jsPDF as JSPdf } from 'jspdf';
+import React, { useEffect, useRef, useState } from 'react';
 import toast, { SUCCESS } from '../app/toast';
+import Constants from '../helper/Constants';
 import EmailService from '../pages/form/services/EmailService';
 import Report from '../pages/report/Report';
-import Constants from '../helper/Constants';
 
 const TYPE = 'PNG';
 const PROC = 'FAST';
-const UN = undefined;
 
 const useCreatePDF = (sendEmail, pUserId = null) => {
   const toastId = useRef(null);
@@ -48,7 +47,7 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
     const header = await getImage('#report');
     const [wh, hh] = getDimension(pdf, header);
     pdf.addPage();
-    pdf.addImage(header, TYPE, 0, 0, wh, hh, UN, PROC);
+    pdf.addImage(header, TYPE, 0, 0, wh, hh, undefined, PROC);
     // 3rd page
     pdf.addPage();
     pdf.text('THANK YOU', 100, 100);
@@ -106,7 +105,7 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
         .getElementById('generate-report')
         ?.addEventListener('load', send());
     }
-  }, []);
+  }, [view]);
 
   return {
     savePDF,
