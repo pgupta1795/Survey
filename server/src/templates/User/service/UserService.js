@@ -145,6 +145,7 @@ const updateDetails = async (req, res) => {
     const updation = await UserUtils.update(userId, details);
     console.log({ updation });
     let updatedUser = await UserUtils.findUserById(userId);
+    console.log({ updatedUser });
     const accessToken = generateTokenForUser(updatedUser);
     res.status(200).json({
       accessToken,

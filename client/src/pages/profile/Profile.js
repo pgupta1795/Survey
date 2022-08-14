@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 import toast from '../../app/toast';
 import { getCurrentUser } from '../../auth/services/AuthService';
 import SubmitButton from '../../common/components/button/SubmitButton';
-import { ImageUploadModal } from '../form/components/tab';
+import { Constants, ImageUploadModal } from '../form/components/tab';
 import Email from '../login/components/fields/Email';
 import Organization from '../login/components/fields/Organization';
 import Username from '../login/components/fields/Username';
@@ -38,6 +38,7 @@ const Profile = () => {
       if (!data) return;
       data = { ...Object.fromEntries(data), image: imageData };
       await UserService.updateDetails(data);
+      toast.success(Constants.SAVED);
       setLoading(false);
     } catch (error) {
       console.error(error);

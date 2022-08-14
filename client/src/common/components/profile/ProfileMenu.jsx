@@ -53,16 +53,14 @@ const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      {user?.admin ? (
-        <MenuItem
-          onClick={() => {
-            navigate(UserService.getUserUrl());
-          }}
-        >
-          <Avatar sx={{ bgcolor: 'primary.main', width: 16, height: 16 }} />
-          {user?.name}
-        </MenuItem>
-      ) : null}
+      <MenuItem
+        onClick={() => {
+          navigate(UserService.getUserUrl());
+        }}
+      >
+        <Avatar sx={{ bgcolor: 'primary.main', width: 16, height: 16 }} />
+        {user?.name}
+      </MenuItem>
       {user?.admin ? <Divider /> : null}
       <MenuItem
         onClick={() => {
