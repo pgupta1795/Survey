@@ -1,4 +1,6 @@
-import { AppBar, Box, Toolbar } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 import React from 'react';
 import Logo from '../other/Logo';
 import SocialAccount from '../other/SocialAccount';

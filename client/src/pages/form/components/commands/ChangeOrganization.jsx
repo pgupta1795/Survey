@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import Done from '@mui/icons-material/Done';
+import Settings from '@mui/icons-material/Settings';
 import Button from '@mui/material/Button';
-import { Done, Settings } from '@mui/icons-material';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { topScroll } from '../../../../common/components/layout/ScrollToTop';
 
 const ChangeOrganization = ({
   organizations,
@@ -35,7 +37,10 @@ const ChangeOrganization = ({
             </Button>
           }
           tooltipTitle={name}
-          onClick={() => setOrganization(company)}
+          onClick={() => {
+            setOrganization(company);
+            topScroll();
+          }}
         />
       );
     })}

@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { Divider, Accordion, IconButton } from '@mui/material';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionActions from '@mui/material/AccordionActions';
 import Visibility from '@mui/icons-material/Visibility';
-import EditableHeaderSection from './editable/EditableHeaderSection';
-import AddQuestions from '../button/AddQuestions';
+import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import React, { useContext, useState } from 'react';
 import BasicSectionBox from '../basic/BasicSectionBox';
-import HeaderSection from './noneditable/HeaderSection';
+import AddQuestions from '../button/AddQuestions';
 import { QuestionsContext } from '../tab';
+import EditableHeaderSection from './editable/EditableHeaderSection';
+import HeaderSection from './noneditable/HeaderSection';
 
 const CreateHeaders = () => {
   const [open, setOpen] = useState(true);

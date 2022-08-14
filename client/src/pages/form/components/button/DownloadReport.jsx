@@ -1,5 +1,5 @@
 import Download from '@mui/icons-material/Download';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 

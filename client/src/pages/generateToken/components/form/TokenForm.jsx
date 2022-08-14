@@ -1,16 +1,18 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from '../../../../app/toast';
 import {
+  Constants,
+  Email,
+  FormContext,
   LoginFooter,
   LoginHeader,
-  FormContext,
-  SubmitButton,
-  Email,
-  TokenService,
   RoutePaths,
-  Constants,
+  SubmitButton,
+  TokenService,
 } from './index';
 
 const TokenForm = () => {

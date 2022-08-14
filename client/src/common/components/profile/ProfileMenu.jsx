@@ -1,15 +1,15 @@
-import * as React from 'react';
+import Logout from '@mui/icons-material/Logout';
 import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logout from '@mui/icons-material/Logout';
-import UserService from '../../../pages/login/services/UserService';
-import RoutePaths from '../../../helper/RoutePaths';
 import { getCurrentUser } from '../../../auth/services/AuthService';
+import RoutePaths from '../../../helper/RoutePaths';
+import UserService from '../../../pages/login/services/UserService';
 
 const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
   const openAchor = Boolean(anchorEl);

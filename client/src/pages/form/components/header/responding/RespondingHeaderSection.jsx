@@ -1,6 +1,7 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const RespondingHeaderSection = ({ name, description, ...props }) => (
   <Box sx={{ width: '100%' }} className="edit-form-header">

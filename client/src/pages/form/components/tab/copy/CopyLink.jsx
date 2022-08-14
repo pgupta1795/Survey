@@ -1,10 +1,13 @@
-import { Box, IconButton, Stack, Typography } from '@mui/material';
-import React from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import FullTextField from '../../../../../common/components/field/FullTextField';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import React from 'react';
 import toast from '../../../../../app/toast';
-import { Constants } from '../../../../signup';
+import FullTextField from '../../../../../common/components/field/FullTextField';
 import useViewFormUrl from '../../../../../hooks/useViewFormUrl';
+import { Constants } from '../../../../signup';
 
 const CopyLink = () => {
   const fullURL = useViewFormUrl();

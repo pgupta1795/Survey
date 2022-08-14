@@ -1,10 +1,14 @@
-import { AppBar, Box, Link, Toolbar, Typography } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/images/logo/T.png';
-import Profile from '../profile/Profile';
 import { getCurrentUser } from '../../../auth/services/AuthService';
 import { RoutePaths } from '../../../router';
+import Profile from '../profile/Profile';
 import ThemeSwitch from '../switch/ThemeSwitch';
 
 const Header = () => {

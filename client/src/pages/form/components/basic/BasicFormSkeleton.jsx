@@ -1,4 +1,5 @@
-import { Divider, Skeleton } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import Skeleton from '@mui/material/Skeleton';
 import React from 'react';
 
 const BasicFormSkeleton = () => (

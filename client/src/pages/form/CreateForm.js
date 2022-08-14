@@ -1,9 +1,11 @@
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import React, { lazy, Suspense, useState } from 'react';
-import { Box, Tab, Tabs } from '@mui/material';
-import FormToolbar from './components/toolbar/FormToolbar';
-import TabPanel from './components/tab/TabPanel';
 import SpaceBetweenBox from '../../common/components/card/SpaceBetweenBox';
 import BasicUserForm from '../../common/components/form/BasicUserForm';
+import TabPanel from './components/tab/TabPanel';
+import FormToolbar from './components/toolbar/FormToolbar';
 import './styles/Form.css';
 
 const QuestionsTab = lazy(() =>

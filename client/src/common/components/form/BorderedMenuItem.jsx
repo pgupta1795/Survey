@@ -1,6 +1,7 @@
-import React from 'react';
+import { useTheme } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
 import PropTypes from 'prop-types';
-import { MenuItem, useTheme } from '@mui/material';
+import React from 'react';
 
 const BorderedMenuItem = ({ children, ...rest }) => {
   const theme = useTheme();

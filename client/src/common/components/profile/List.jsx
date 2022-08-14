@@ -1,6 +1,8 @@
-import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import PropTypes from 'prop-types';
+import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const CustomList = ({ text, icon }) => (

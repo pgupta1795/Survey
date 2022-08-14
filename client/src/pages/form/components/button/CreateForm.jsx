@@ -1,5 +1,5 @@
-import { Add } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
+import Add from '@mui/icons-material/Add';
+import IconButton from '@mui/material/IconButton';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from '../../../../app/toast';

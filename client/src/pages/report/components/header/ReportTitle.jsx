@@ -1,6 +1,7 @@
-import { Grid, Typography } from '@mui/material';
-import React from 'react';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+import React from 'react';
 import Settings from '../../../../Settings.json';
 import ReportLogo from './ReportLogo';
 

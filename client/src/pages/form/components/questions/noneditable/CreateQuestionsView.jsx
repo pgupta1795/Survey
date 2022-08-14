@@ -1,9 +1,9 @@
-import { Typography } from '@mui/material';
-import React from 'react';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import QuestionImageView from './QuestionImageView';
+import React from 'react';
 import FlexStartBox from '../../../../../common/components/card/FlexStartBox';
 import CreateAllOptions from '../../options/noneditable/CreateAllOptions';
+import QuestionImageView from './QuestionImageView';
 
 const CreateQuestionsView = ({ question, questionIndex }) => (
   <FlexStartBox>

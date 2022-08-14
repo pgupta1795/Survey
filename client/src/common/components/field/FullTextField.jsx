@@ -1,5 +1,5 @@
-import { useTheme } from '@emotion/react';
-import { TextField } from '@mui/material';
+import { useTheme } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import React from 'react';
 
 const FullTextField = (props) => (

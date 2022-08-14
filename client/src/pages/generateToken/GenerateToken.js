@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { LoginLayout, Constants, TokenForm } from './index';
+import React from 'react';
 import { FormContext } from '../../hooks/contexts';
+import { Constants, LoginLayout, TokenForm } from './index';
 
 const GenerateToken = () => (
   <LoginLayout>

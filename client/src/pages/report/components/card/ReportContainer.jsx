@@ -1,6 +1,6 @@
-import { Grid } from '@mui/material';
-import React from 'react';
+import Grid from '@mui/material/Grid';
 import PropTypes from 'prop-types';
+import React from 'react';
 import Colors from '../../../../helper/Colors';
 
 const ReportContainer = ({ children, display }) => (

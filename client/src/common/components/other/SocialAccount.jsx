@@ -1,6 +1,8 @@
-import React from 'react';
-import { LinkedIn, Twitter, YouTube } from '@mui/icons-material';
+import LinkedIn from '@mui/icons-material/LinkedIn';
+import Twitter from '@mui/icons-material/Twitter';
+import YouTube from '@mui/icons-material/YouTube';
 import { Stack } from '@mui/material';
+import React from 'react';
 import Brand from '../../../helper/Brand';
 
 const SocialAccount = () => (

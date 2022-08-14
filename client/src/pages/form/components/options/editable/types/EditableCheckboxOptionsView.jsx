@@ -1,9 +1,11 @@
-import React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import PropTypes from 'prop-types';
-import { Checkbox, FormControlLabel } from '@mui/material';
-import BasicOption from '../../../basic/BasicOption';
-import FieldTypes, { getKey } from '../../../../../../helper/FieldTypes';
+import React from 'react';
+
 import FullTextField from '../../../../../../common/components/field/FullTextField';
+import FieldTypes, { getKey } from '../../../../../../helper/FieldTypes';
+import BasicOption from '../../../basic/BasicOption';
 import AddOption from '../../../questions/commands/AddOption';
 
 const EditableCheckboxOptionsView = ({ question, questionIndex, onChange }) => {

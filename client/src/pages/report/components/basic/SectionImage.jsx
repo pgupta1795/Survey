@@ -1,6 +1,7 @@
-import { CardMedia, Typography } from '@mui/material';
-import React from 'react';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+import React from 'react';
 import useSectionImage from '../../../../hooks/useSectionImage';
 
 const SectionImage = ({ name }) => {

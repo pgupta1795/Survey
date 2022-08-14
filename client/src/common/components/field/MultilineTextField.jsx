@@ -1,4 +1,5 @@
-import { TextField, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import React from 'react';
 
 const MultilineTextField = ({ ...props }) => (

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { LoginForm, Constants, FormContext, RoutePaths } from './index';
+import React from 'react';
 import LoginLayout from '../../common/components/layout/LoginLayout';
+import { Constants, FormContext, LoginForm, RoutePaths } from './index';
 
 const Login = () => (
   <LoginLayout>

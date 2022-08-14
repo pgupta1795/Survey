@@ -1,6 +1,7 @@
-import { Stack, Typography } from '@mui/material';
-import React, { useRef } from 'react';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+import React, { useRef } from 'react';
 import { Constants } from '..';
 import toast, { SUCCESS } from '../../../../../app/toast';
 import useValidateFormField from '../../../../../hooks/useValidateFormField';

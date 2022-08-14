@@ -1,16 +1,16 @@
+import Grid from '@mui/material/Grid';
 import React, { useState } from 'react';
-import { Grid } from '@mui/material';
+import useMobileStepper from '../../../../../hooks/useMobileStepper';
+import BasicFormSkeleton from '../../basic/BasicFormSkeleton';
 import {
-  ImageUploadModal,
-  QuestionsContext,
-  DroppableSection,
-  useFormSections,
   CenteredGridBox,
   CreateHeaders,
+  DroppableSection,
+  ImageUploadModal,
+  QuestionsContext,
   useFormNameAndActions,
+  useFormSections,
 } from '../index';
-import BasicFormSkeleton from '../../basic/BasicFormSkeleton';
-import useMobileStepper from '../../../../../hooks/useMobileStepper';
 
 const QuestionsTab = () => {
   const [loading, setLoading] = useState(true);
@@ -28,7 +28,7 @@ const QuestionsTab = () => {
 
   const { activeStep, BasicStepper, handleBack } = useMobileStepper(
     sections,
-    'dots'
+    'text'
   );
 
   const updateImageLink = (link, context) => {

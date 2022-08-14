@@ -1,9 +1,9 @@
-import React from 'react';
+import FormControl from '@mui/material/FormControl';
 import PropTypes from 'prop-types';
-import { FormControl } from '@mui/material';
-import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
+import React from 'react';
 import MultilineTextField from '../../../../../../common/components/field/MultilineTextField';
 import FieldTypes from '../../../../../../helper/FieldTypes';
+import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
 
 const TexFieldOption = ({ question, questionIndex }) => {
   const { values, handleChange } = useHandleResponseChange(

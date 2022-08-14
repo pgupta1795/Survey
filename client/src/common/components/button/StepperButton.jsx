@@ -1,8 +1,9 @@
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import { Button, useTheme } from '@mui/material';
-import React from 'react';
+import { useTheme } from '@mui/material';
+import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const StepperButton = ({ label, ...rest }) => {
   const theme = useTheme();

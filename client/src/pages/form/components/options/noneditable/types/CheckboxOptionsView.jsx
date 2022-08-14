@@ -1,12 +1,10 @@
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  Typography,
-} from '@mui/material';
-import React from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+import React from 'react';
 import OptionsImageView from '../../../questions/noneditable/OptionsImageView';
 
 const CheckboxOptionsView = ({ question, values, ...rest }) => (

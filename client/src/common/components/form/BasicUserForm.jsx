@@ -1,9 +1,10 @@
-import React, { Suspense } from 'react';
-import { CircularProgress, Container } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Container from '@mui/material/Container';
 import PropTypes from 'prop-types';
+import React, { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import useFormById from '../../../hooks/useFormById';
 import { UserFormContext } from '../../../hooks/contexts';
+import useFormById from '../../../hooks/useFormById';
 
 const BasicUserForm = ({ children, ...restProps }) => {
   const { formId } = useParams();

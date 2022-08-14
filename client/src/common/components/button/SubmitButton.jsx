@@ -1,6 +1,6 @@
-import React from 'react';
+import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
-import { Button } from '@mui/material';
+import React from 'react';
 
 const SubmitButton = ({ children, ...rest }) => (
   <Button

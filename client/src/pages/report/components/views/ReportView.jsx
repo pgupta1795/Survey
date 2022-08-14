@@ -1,12 +1,12 @@
-import { Grid } from '@mui/material';
-import React from 'react';
+import Grid from '@mui/material/Grid';
 import PropTypes from 'prop-types';
+import React from 'react';
+import ReportContainer from '../card/ReportContainer';
 import MaturityChart from '../chart/MaturityChart';
 import ScoresChart from '../chart/ScoresChart';
 import ReportFooter from '../footer/ReportFooter';
-import ReportContainer from '../card/ReportContainer';
-import ReportTitle from '../header/ReportTitle';
 import ReportCard from '../header/ReportCard';
+import ReportTitle from '../header/ReportTitle';
 
 const ReportView = ({ display }) => (
   <ReportContainer display={display}>

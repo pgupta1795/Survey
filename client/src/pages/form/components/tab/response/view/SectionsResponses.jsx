@@ -1,4 +1,7 @@
-import { Grid, Paper, Skeleton, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import useMobileStepper from '../../../../../../hooks/useMobileStepper';
@@ -25,6 +28,7 @@ const SectionsResponses = ({ data }) => {
             sx={{
               mb: 5,
               typography: { xs: 'body2', sm: 'body2', md: 'question' },
+              color: 'primary.main',
             }}
           >
             Responses for the Section -

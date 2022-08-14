@@ -1,6 +1,6 @@
+import Visibility from '@mui/icons-material/Visibility';
+import IconButton from '@mui/material/IconButton';
 import React from 'react';
-import { Visibility } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import ResponseService from '../../services/ResponseService';
 

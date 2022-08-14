@@ -1,9 +1,11 @@
-import { Button, Tooltip, Avatar } from '@mui/material';
-import { ArrowRight } from '@mui/icons-material';
+import ArrowRight from '@mui/icons-material/ArrowRight';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 import React from 'react';
+import { getCurrentUser } from '../../../auth/services/AuthService';
 import { stringAvatar } from '../../utils/CommonUtils';
 import ProfileMenu from './ProfileMenu';
-import { getCurrentUser } from '../../../auth/services/AuthService';
 
 const Profile = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);

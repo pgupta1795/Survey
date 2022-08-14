@@ -130,7 +130,7 @@ const getFormById = async (req, res) => {
     console.log(`Form Fetched : ${formId}`);
     res.status(200).json(form);
   } catch (error) {
-    console.eror(error);
+    console.error(error);
     res.status(500).send(error);
   }
 };

@@ -1,13 +1,20 @@
-import { MobileStepper } from '@mui/material';
+import MobileStepper from '@mui/material/MobileStepper';
 import React, { useEffect, useState } from 'react';
 import StepperButton from '../common/components/button/StepperButton';
+import { topScroll } from '../common/components/layout/ScrollToTop';
 import Colors from '../helper/Colors';
 
 const useMobileStepper = (dataArray, variant = 'progress') => {
   const [maxSteps, setMaxSteps] = useState(0);
   const [activeStep, setActiveStep] = React.useState(0);
-  const handleNext = () => setActiveStep((prev) => prev + 1);
-  const handleBack = () => setActiveStep((prev) => prev - 1);
+  const handleNext = () => {
+    topScroll();
+    setActiveStep((prev) => prev + 1);
+  };
+  const handleBack = () => {
+    topScroll();
+    setActiveStep((prev) => prev - 1);
+  };
   const handleStepChange = (step) => setActiveStep(step);
 
   useEffect(() => {

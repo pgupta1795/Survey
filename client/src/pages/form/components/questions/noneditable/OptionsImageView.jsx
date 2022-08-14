@@ -1,6 +1,6 @@
-import React from 'react';
+import Container from '@mui/material/Container';
 import PropTypes from 'prop-types';
-import { Container } from '@mui/material';
+import React from 'react';
 
 const OptionsImageView = ({ option }) => {
   const imgView = (

@@ -1,10 +1,10 @@
-import { Add } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
-import { v4 as uuidv4 } from 'uuid';
+import Add from '@mui/icons-material/Add';
+import IconButton from '@mui/material/IconButton';
 import React, { useContext } from 'react';
-import { Constants, QuestionsContext } from '../tab';
+import { v4 as uuidv4 } from 'uuid';
 import FieldTypes, { fieldIcons } from '../../../../helper/FieldTypes';
 import useAddQuestionsDropDown from '../../../../hooks/useAddQuestionsDropDown';
+import { Constants, QuestionsContext } from '../tab';
 
 const AddQuestions = () => {
   const { section, setSections } = useContext(QuestionsContext);

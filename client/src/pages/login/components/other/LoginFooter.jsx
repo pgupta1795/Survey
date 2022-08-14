@@ -1,4 +1,5 @@
-import { Grid, Link } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import React, { useContext } from 'react';
 import Constants from '../../../../helper/Constants';
 import RoutePaths from '../../../../helper/RoutePaths';

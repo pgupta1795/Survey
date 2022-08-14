@@ -1,13 +1,14 @@
-import { Button, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import FlexStartBox from '../../common/components/card/FlexStartBox';
-import PreviewReport from '../form/components/button/PreviewReport';
-import useCreatePDF from '../../hooks/useCreatePDF';
-import ReportService from '../report/services/ReportService';
 import BasicUserForm from '../../common/components/form/BasicUserForm';
+import useCreatePDF from '../../hooks/useCreatePDF';
 import DownloadReport from '../form/components/button/DownloadReport';
+import PreviewReport from '../form/components/button/PreviewReport';
 import ResponseService from '../form/services/ResponseService';
+import ReportService from '../report/services/ReportService';
 
 const ThanksPage = () => {
   const { formId } = useParams();

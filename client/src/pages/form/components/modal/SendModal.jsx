@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import DialogTitle from '@mui/material/DialogTitle';
-import Dialog from '@mui/material/Dialog';
 import CloseIcon from '@mui/icons-material/Close';
-import {
-  Box,
-  DialogContent,
-  Grid,
-  IconButton,
-  Tab,
-  Tabs,
-  Typography,
-} from '@mui/material';
 import LinkIcon from '@mui/icons-material/Link';
 import MailIcon from '@mui/icons-material/Mail';
-import TabPanel from '../tab/TabPanel';
+import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import GrowTransition from '../../../../common/components/refs/GrowTransition';
-import SendEmailForm from '../tab/email/SendEmailForm';
 import CopyLink from '../tab/copy/CopyLink';
+import SendEmailForm from '../tab/email/SendEmailForm';
+import TabPanel from '../tab/TabPanel';
 
 const SendModal = ({ onClose, open }) => {
   const [tab, setTab] = useState(0);

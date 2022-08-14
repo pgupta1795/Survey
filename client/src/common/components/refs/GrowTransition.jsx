@@ -1,4 +1,4 @@
-import { Grow } from '@mui/material';
+import Grow from '@mui/material/Grow';
 import React, { forwardRef } from 'react';
 
 const GrowTransition = forwardRef((props, ref) => (

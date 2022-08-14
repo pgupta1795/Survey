@@ -1,24 +1,22 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Container,
-  Paper,
-} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CircularProgress from '@mui/material/CircularProgress';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 import React, { useState } from 'react';
 import toast from '../../app/toast';
+import { getCurrentUser } from '../../auth/services/AuthService';
+import SubmitButton from '../../common/components/button/SubmitButton';
 import { ImageUploadModal } from '../form/components/tab';
-import Username from '../login/components/fields/Username';
 import Email from '../login/components/fields/Email';
 import Organization from '../login/components/fields/Organization';
-import SubmitButton from '../../common/components/button/SubmitButton';
+import Username from '../login/components/fields/Username';
 import UserService from '../login/services/UserService';
-import { getCurrentUser } from '../../auth/services/AuthService';
 
 const Profile = () => {
   const user = getCurrentUser();

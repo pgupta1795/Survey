@@ -1,20 +1,18 @@
-import React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import {
-  Avatar,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  Paper,
-  Typography,
-} from '@mui/material';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import PreviewReport from '../../../button/PreviewReport';
+import useCreatePDF from '../../../../../../hooks/useCreatePDF';
 import ReportService from '../../../../../report/services/ReportService';
 import DownloadReport from '../../../button/DownloadReport';
-import useCreatePDF from '../../../../../../hooks/useCreatePDF';
+import PreviewReport from '../../../button/PreviewReport';
 import SectionsResponses from './SectionsResponses';
 
 const OrganizationView = ({ organization }) => {
@@ -46,7 +44,7 @@ const OrganizationView = ({ organization }) => {
         <List sx={{ wordBreak: 'break-word' }}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
-              <Avatar alt="Users" />
+              <Avatar alt="Users" sx={{ bgcolor: 'primary.main' }} />
             </ListItemAvatar>
             <Grid container direction="column" spacing="2" component="p">
               <Typography
@@ -57,13 +55,14 @@ const OrganizationView = ({ organization }) => {
                     sm: 'smallQuestion',
                     md: 'question',
                   },
+                  color: 'primary.main',
                 }}
               >
                 Who has Responded ?
               </Typography>
               {Object.values(organization)[0].map(({ email }) => (
                 <Typography component="span" key={email} variant="body2">
-                  {email}
+                  <strong>•</strong> {email}
                 </Typography>
               ))}
             </Grid>
@@ -80,7 +79,9 @@ const OrganizationView = ({ organization }) => {
         }}
       >
         <Grid container direction="column" spacing="5" justifyContent="center">
-          <Typography variant="question">{`PLM Maturity Report for ${company}`}</Typography>
+          <Typography variant="question">
+            <strong>{`PLM Maturity Report for ${company}`}</strong>
+          </Typography>
           <PreviewReport url={url} variant="text" />
           <DownloadReport savePDF={savePDF} variant="text" />
           {Report}

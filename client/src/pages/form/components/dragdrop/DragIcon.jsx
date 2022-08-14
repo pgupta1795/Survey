@@ -1,6 +1,6 @@
-import React from 'react';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
+import React from 'react';
 
 const DragIcon = () => (
   <Container sx={{ display: 'flex', justifyContent: 'center' }}>

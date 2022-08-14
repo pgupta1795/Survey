@@ -1,5 +1,5 @@
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import React, { useContext } from 'react';
 import toast from '../../../../app/toast';
 import { Constants, QuestionsContext } from '../tab';

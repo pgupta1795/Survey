@@ -1,6 +1,8 @@
-import { Avatar, Stack, Typography } from '@mui/material';
-import React, { useContext } from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import React, { useContext } from 'react';
 import { FormContext } from '../../../../hooks/contexts';
 
 const LoginHeader = () => {

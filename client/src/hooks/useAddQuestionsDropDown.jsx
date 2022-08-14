@@ -1,4 +1,6 @@
-import { FormControl, MenuItem, Select } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import React, { useState } from 'react';
 import BorderedMenuItem from '../common/components/form/BorderedMenuItem';
 

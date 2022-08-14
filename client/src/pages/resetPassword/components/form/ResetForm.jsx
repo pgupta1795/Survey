@@ -1,18 +1,20 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from '../../../../app/toast';
+import { getReDirectPath } from '../../../../auth/services/AuthService';
+import ResetService from '../../services/ResetService';
 import {
-  Password,
+  Constants,
+  FormContext,
   LoginFooter,
   LoginHeader,
-  FormContext,
+  Password,
   SubmitButton,
   Token,
-  Constants,
 } from './index';
-import ResetService from '../../services/ResetService';
-import { getReDirectPath } from '../../../../auth/services/AuthService';
-import toast from '../../../../app/toast';
 
 const ResetForm = () => {
   const [loading, setLoading] = useState(false);

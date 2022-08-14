@@ -1,6 +1,6 @@
+import Send from '@mui/icons-material/Send';
+import IconButton from '@mui/material/IconButton';
 import React from 'react';
-import { Send } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
 import SendModal from '../modal/SendModal';
 
 const SendCommand = () => {

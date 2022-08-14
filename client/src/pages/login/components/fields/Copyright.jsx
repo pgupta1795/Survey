@@ -1,4 +1,5 @@
-import { Link, Typography } from '@mui/material';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import React from 'react';
 import Brand from '../../../../helper/Brand';
 import Constants from '../../../../helper/Constants';

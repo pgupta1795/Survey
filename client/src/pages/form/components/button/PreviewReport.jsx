@@ -1,5 +1,5 @@
 import Assessment from '@mui/icons-material/Assessment';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
