@@ -142,7 +142,7 @@ const updateDetails = async (req, res) => {
     const { userId, ...details } = req.body;
     let user = await UserUtils.findUserById(userId);
     if (!user) return res.status(400).send(Constants.ERROR_USER_NOT_EXIST);
-    const updation = UserUtils.update(userId, details);
+    const updation = await UserUtils.update(userId, details);
     console.log({ updation });
     let updatedUser = await UserUtils.findUserById(userId);
     const accessToken = generateTokenForUser(updatedUser);

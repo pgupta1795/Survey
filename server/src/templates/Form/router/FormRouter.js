@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { authenticateToken } = require('../../../config/middleware');
 const {
   createForm,
   getForms,
@@ -8,11 +9,13 @@ const {
   getFormsByUser,
 } = require('../service/FormService');
 
-router.route('/create/:userId').post(createForm);
-router.route('/allforms/:type').get(getForms);
-router.route('/:formId').get(getFormById);
-router.route('/deleteform/:formId/:userId').delete(deleteForm);
-router.route('/editform').put(editForm);
-router.route('/getuserforms/:userId').get(getFormsByUser);
+router.route('/create/:userId').post(authenticateToken, createForm);
+router.route('/allforms/:type').get(authenticateToken, getForms);
+router.route('/:formId').get(authenticateToken, getFormById);
+router
+  .route('/deleteform/:formId/:userId')
+  .delete(authenticateToken, deleteForm);
+router.route('/editform').put(authenticateToken, editForm);
+router.route('/getuserforms/:userId').get(authenticateToken, getFormsByUser);
 
 module.exports = router;

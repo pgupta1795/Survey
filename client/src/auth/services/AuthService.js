@@ -6,6 +6,15 @@ import FormService from '../../pages/form/services/FormService';
 import ResponseService from '../../pages/form/services/ResponseService';
 import { RoutePaths } from '../../router';
 
+export const getAuthHeader = () => {
+  const auth = localStorage.getItem('userTicket');
+  return {
+    headers: {
+      Authorization: `Bearer ${auth}`,
+    },
+  };
+};
+
 export const getUserByTicket = (ticket) => {
   if (!ticket) return null;
   const user = jwtDecode(ticket);
@@ -29,7 +38,10 @@ export const refresh = async () => {
       toast.error(Constants.ERROR_NO_USER);
       return;
     }
-    const response = await axios.get(`/user/refresh/${userId}`);
+    const response = await axios.get(
+      `/user/refresh/${userId}`,
+      getAuthHeader()
+    );
     console.log(response.data);
     if (!response.data || !response.data?.accessToken) {
       return;
@@ -76,13 +88,4 @@ export const getReDirectPath = async () => {
   }
   const normalUserPath = await getNormalUserPath();
   return normalUserPath;
-};
-
-export const getAuthHeader = () => {
-  const auth = localStorage.getItem('userTicket');
-  return {
-    headers: {
-      Authorization: `Bearer ${auth}`,
-    },
-  };
 };

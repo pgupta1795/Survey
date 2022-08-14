@@ -12,8 +12,10 @@ router.route('/login').post(UserService.login);
 
 router.route('/resetPassword').post(UserService.resetPassword);
 
-router.route('/refresh/:userId').get(UserService.refresh);
+router.route('/refresh/:userId').get(authenticateToken, UserService.refresh);
 
-router.route('/updateDetails').post(UserService.updateDetails);
+router
+  .route('/updateDetails')
+  .post(authenticateToken, UserService.updateDetails);
 
 module.exports = router;

@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const Constants = require('../helper/Constants');
-// const authenticateToken = require('./middleware');
 const connection = require('./connection');
 const UserRouter = require('../templates/User/router/UserRouter');
 const FormRouter = require('../templates/Form/router/FormRouter');
@@ -16,7 +15,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/user', UserRouter);
-// router.use(authenticateToken());
 router.use('/form', FormRouter);
 router.use('/image', ImageRouter);
 router.use('/response', ResponseRouter);
