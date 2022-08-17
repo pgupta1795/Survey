@@ -7,12 +7,14 @@ import {
 } from '../../../auth/services/AuthService';
 import { Constants } from '../../login';
 
+const BASE_URL = '/api/form';
+
 export default {
   getFormUrl: (id) => `/createform/${id}`,
 
   getFormByUser: async (userId) => {
     const response = await axios.get(
-      `/form/getuserforms/${userId}`,
+      `${BASE_URL}/getuserforms/${userId}`,
       getAuthHeader()
     );
     if (response?.status !== 200) {
@@ -52,7 +54,7 @@ export default {
         _id: uuidv4(),
       };
       const response = await axios.post(
-        `/form/create/${id}`,
+        `${BASE_URL}/create/${id}`,
         data,
         getAuthHeader()
       );
@@ -69,7 +71,7 @@ export default {
   },
 
   getFormById: async (formId) => {
-    const response = await axios.get(`/form/${formId}`, getAuthHeader());
+    const response = await axios.get(`${BASE_URL}/${formId}`, getAuthHeader());
     if (response?.status !== 200) {
       toast.error(Constants.ERROR_GET_FORM);
       return console.error(Constants.ERROR_GET_FORM);
@@ -78,7 +80,11 @@ export default {
   },
 
   autoSave: async (data) => {
-    const response = await axios.put('/form/editform/', data, getAuthHeader());
+    const response = await axios.put(
+      `${BASE_URL}/editform/`,
+      data,
+      getAuthHeader()
+    );
     if (response?.status !== 200) {
       toast.error(Constants.ERROR_SAVE_CREATEFORM);
       return console.error(Constants.ERROR_SAVE_CREATEFORM);
@@ -89,7 +95,7 @@ export default {
   uploadImage: async (image) => {
     const data = new FormData();
     data.append('myfile', image);
-    const response = await axios.post('/image', data, getAuthHeader());
+    const response = await axios.post('/api/image', data, getAuthHeader());
     if (response.status !== 200) {
       console.error(response);
       throw new Error(response);
@@ -105,7 +111,7 @@ export default {
       return console.error(Constants.ERROR_NO_USER);
     }
     const response = await axios.delete(
-      `/form/deleteform/${formId}/${id}`,
+      `${BASE_URL}/deleteform/${formId}/${id}`,
       getAuthHeader()
     );
     if (response.status !== 200) {
@@ -118,7 +124,7 @@ export default {
 
   getForms: async (formType) => {
     const response = await axios.get(
-      `/form/allforms/${formType}`,
+      `${BASE_URL}/allforms/${formType}`,
       getAuthHeader()
     );
     console.log(response.data);

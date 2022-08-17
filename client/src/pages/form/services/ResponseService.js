@@ -5,12 +5,14 @@ import {
   getCurrentUser,
 } from '../../../auth/services/AuthService';
 
+const BASE_URL = '/api/response';
+
 export default {
   getViewFormUrl: (id) => `/s/${id}`,
 
   submitResponse: async (data) => {
     const response = await axios.post(
-      '/response/submitResponse',
+      `${BASE_URL}/submitResponse`,
       data,
       getAuthHeader()
     );
@@ -23,7 +25,7 @@ export default {
 
   getResponse: async (formId) => {
     const response = await axios.get(
-      `/response/getresponse/${formId}`,
+      `${BASE_URL}/getresponse/${formId}`,
       getAuthHeader()
     );
     if (response.status !== 200) {
@@ -34,7 +36,7 @@ export default {
   },
 
   getAllResponses: async () => {
-    const response = await axios.get(`/response/responses`, getAuthHeader());
+    const response = await axios.get(`${BASE_URL}/responses`, getAuthHeader());
     if (response.status !== 200) {
       toast.error(response.data);
       return console.error(response.data);
@@ -45,7 +47,7 @@ export default {
   getPendingResponse: async () => {
     const userId = getCurrentUser()?.id;
     const response = await axios.get(
-      `/response/getPendingResponse/${userId}`,
+      `${BASE_URL}/getPendingResponse/${userId}`,
       getAuthHeader()
     );
     if (response.status !== 200) {
@@ -58,7 +60,7 @@ export default {
   getResponseByCompany: async (formId, id) => {
     try {
       const response = await axios.get(
-        `/response/getResponseByCompany/${formId}/${id}`,
+        `${BASE_URL}/getResponseByCompany/${formId}/${id}`,
         getAuthHeader()
       );
       if (response.status !== 200) {

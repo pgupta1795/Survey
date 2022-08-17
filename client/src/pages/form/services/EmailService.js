@@ -5,11 +5,13 @@ import {
   getCurrentUser,
 } from '../../../auth/services/AuthService';
 
+const BASE_URL = '/api/email';
+
 export default {
   sendForm: async (data) => {
     const userId = getCurrentUser()?.id;
     const response = await axios.post(
-      '/email/sendForm',
+      `${BASE_URL}/sendForm`,
       { ...data, userId },
       getAuthHeader()
     );
@@ -25,7 +27,7 @@ export default {
     const out = pdf.output('datauristring');
     const userId = getCurrentUser()?.id;
     const response = await axios.post(
-      `/email/sendReport/${userId}`,
+      `${BASE_URL}/sendReport/${userId}`,
       {
         pdf: out.split('base64,')[1],
       },

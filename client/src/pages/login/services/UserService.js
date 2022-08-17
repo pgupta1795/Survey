@@ -7,15 +7,17 @@ import {
 } from '../../../auth/services/AuthService';
 import { Constants } from '../../signup';
 
+const BASE_URL = '/api/user';
+
 export default {
   getUserUrl: () => {
     const { id } = getCurrentUser();
-    return `/user/${id}`;
+    return `user/${id}`;
   },
 
   async login(formData) {
     try {
-      const response = await axios.post('/user/login', formData);
+      const response = await axios.post(`${BASE_URL}/login`, formData);
       console.log(response.data);
       if (!response.data || !response.data?.accessToken) {
         throw new Error(Constants.ERROR_AUTH_USER);
@@ -31,7 +33,7 @@ export default {
 
   async signup(formData) {
     try {
-      const response = await axios.post('/user/signup', formData);
+      const response = await axios.post(`${BASE_URL}/signup`, formData);
       console.log(response.data);
       if (!response.data?.accessToken) {
         throw new Error(Constants.ERROR_AUTH_USER);
@@ -51,7 +53,10 @@ export default {
 
   getOrganizations: async () => {
     try {
-      const response = await axios.get('/user/organizations', getAuthHeader());
+      const response = await axios.get(
+        `${BASE_URL}/organizations`,
+        getAuthHeader()
+      );
       if (response.status !== 200) {
         toast.error(response.data);
         return console.error(response.data);
@@ -68,7 +73,7 @@ export default {
       const user = getCurrentUser();
       const userId = user?.id;
       const response = await axios.post(
-        '/user/updateDetails',
+        `${BASE_URL}/updateDetails`,
         { ...formData, userId },
         getAuthHeader()
       );

@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
   }
 });
 
-router.use('/user', UserRouter);
-router.use('/form', FormRouter);
-router.use('/image', ImageRouter);
-router.use('/response', ResponseRouter);
-router.use('/email', EmailRouter);
+router.use('/api/user', UserRouter);
+router.use('/api/form', FormRouter);
+router.use('/api/image', ImageRouter);
+router.use('/api/response', ResponseRouter);
+router.use('/api/email', EmailRouter);
 
 module.exports = router;

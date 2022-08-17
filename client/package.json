@@ -2,7 +2,6 @@
   "name": "survey",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
   "proxy": "http://server:5000/",
   "overrides": {
     "react": "^18.2.0",
@@ -41,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format:check": "prettier --check .",

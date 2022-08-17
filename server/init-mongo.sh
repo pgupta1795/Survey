@@ -1,4 +1,4 @@
-mongo -- "$MONGO_INITDB_DATABASE" <<EOF
+mongo -- "$MONGO_INITDB_DATABASE" <<-EOF
     const rootUser = '$MONGO_INITDB_ROOT_USERNAME';
     const rootPassword = '$MONGO_INITDB_ROOT_PASSWORD';
 	const database = '$MONGO_INITDB_DATABASE';
@@ -18,4 +18,4 @@ mongo -- "$MONGO_INITDB_DATABASE" <<EOF
 		},
         "readWrite"
 	]});
-EOF
+	EOF
