@@ -19,4 +19,9 @@ export default {
     }
     return hasIncompleteQues;
   },
+
+  findQuestionById: (formData, questionId, sectionName) =>
+    formData.sections
+      ?.find((section) => section.name === sectionName)
+      ?.questions?.find((ques) => ques._id === questionId),
 };

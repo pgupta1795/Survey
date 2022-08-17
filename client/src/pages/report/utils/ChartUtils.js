@@ -2,20 +2,37 @@ import toast from '../../../app/toast';
 import ArrayUtils from '../../../common/utils/ArrayUtils';
 import FieldTypes, { getKey } from '../../../helper/FieldTypes';
 import Settings from '../../../Settings.json';
+import FormUtils from '../../form/utils/FormUtils';
 
 const VALID_YEAR = new Date().getFullYear();
 
-const validChartNames = Settings.SECTIONS.map(({ name }) => name);
+export const validChartNames = Settings.SECTIONS.map(({ name }) => name);
 
 /**
  * return {
  * SCOPE : [
- *    {USER1: [1,2,3]},
- *    {USER2: [1,2,3]},
+ *    {USER1: [
+ *        {questionId: id_1, optionText: 'text'},
+ *        {questionId: id_2, optionText: 'text2'},
+ *        {questionId: id_3, optionText: 'text3'}
+ *    ]},
+ *    {USER2: [
+ *        {questionId: id_1, optionText: 'text'},
+ *        {questionId: id_2, optionText: 'text2'},
+ *        {questionId: id_3, optionText: 'text3'}
+ *    ]},
  * ],
  * Information : [
- *    {USER1: [1,2,3]},
- *    {USER2: [1,2,3]},
+ *    {USER1: [
+ *        {questionId: id_1, optionText: 'text'},
+ *        {questionId: id_2, optionText: 'text2'},
+ *        {questionId: id_3, optionText: 'text3'}
+ *    ]},
+ *    {USER2: [
+ *        {questionId: id_1, optionText: 'text'},
+ *        {questionId: id_2, optionText: 'text2'},
+ *        {questionId: id_3, optionText: 'text3'}
+ *    ]},
  * ]
  * }
  * formtting all the user responses by section name
@@ -23,16 +40,16 @@ const validChartNames = Settings.SECTIONS.map(({ name }) => name);
  * @param {formData} formData
  * @return
  */
-const formatAnswersBySection = (responseData, formData) => {
+export const formatAnswersBySection = (responseData, formData) => {
   const myRes = {};
   responseData
     ?.filter((res) => new Date(res.updatedAt).getFullYear() === VALID_YEAR)
     ?.forEach(({ userId, sections }) => {
       sections?.forEach((section) => {
-        const sectionName = formData.sections.find(
+        const sectionName = formData?.sections?.find(
           (sec) => sec._id === section._id
         )?.name;
-        const allAnswers = section.response.map((question) => ({
+        const allAnswers = section?.response?.map((question) => ({
           questionId: question.questionId,
           optionText: question.options[0].optionText,
         }));
@@ -42,7 +59,8 @@ const formatAnswersBySection = (responseData, formData) => {
           : [{ [userId]: allAnswers }];
       });
     });
-  console.log('Formatted Answers By Section : ', myRes);
+  console.log('Formatted Answers By Section : ');
+  console.table(myRes);
   return myRes;
 };
 
@@ -52,7 +70,7 @@ const formatAnswersBySection = (responseData, formData) => {
  * @param {Name of section} sectionName
  * @returns
  */
-const getSectionAvgByUser = (formattedResponse, sectionName) => {
+export const getSectionAvgByUser = (formattedResponse, sectionName) => {
   const userResponses = formattedResponse[sectionName];
   const usersSecAvg = userResponses?.map((userResponse) => {
     const quesAnswers = userResponse[Object.keys(userResponse)[0]];
@@ -61,6 +79,37 @@ const getSectionAvgByUser = (formattedResponse, sectionName) => {
     return ArrayUtils.getAverage(answers);
   });
   return usersSecAvg;
+};
+
+export const getSectionAvgByCategory = (
+  formattedResponse,
+  sectionName,
+  formData
+) => {
+  if (!formData) return null;
+  const userResponses = formattedResponse[sectionName];
+  const categoriesAverageByUser = userResponses?.map((userResponse) => {
+    const quesAnswers = userResponse[Object.keys(userResponse)[0]];
+    const arrForSectionByCategory = [sectionName];
+    Settings.CATEGORY.forEach((category) => {
+      const categoryAns = quesAnswers.map(({ questionId, optionText }) => {
+        const question = FormUtils.findQuestionById(
+          formData,
+          questionId,
+          sectionName
+        );
+        if (question && question.category === category) {
+          return optionText;
+        }
+        return null;
+      });
+      if (!ArrayUtils.isNumberArray(categoryAns)) return;
+      const avg = ArrayUtils.getAverage(categoryAns);
+      arrForSectionByCategory.push(avg);
+    });
+    return arrForSectionByCategory;
+  });
+  return categoriesAverageByUser;
 };
 
 export default {

@@ -1,17 +1,18 @@
+import { Accordion, Divider, Grid } from '@mui/material';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
 import React, { useContext } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
-import { Divider, Accordion, Grid } from '@mui/material';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionActions from '@mui/material/AccordionActions';
+import AddCategory from '../commands/AddCategory';
 import {
-  DragIcon,
-  DeleteQuestion,
   CopyQuestion,
+  CreateQuestionsView,
+  DeleteQuestion,
+  DragIcon,
+  EditableQuestionsView,
   PreviewQuestions,
   QuestionsContext,
-  EditableQuestionsView,
-  CreateQuestionsView,
 } from './index';
 
 const CreateQuestions = () => {
@@ -56,6 +57,7 @@ const CreateQuestions = () => {
                 </AccordionDetails>
                 <Divider />
                 <AccordionActions>
+                  <AddCategory questionIndex={i} />
                   <PreviewQuestions questionIndex={i} />
                   <CopyQuestion questionIndex={i} />
                   <Divider orientation="vertical" flexItem />

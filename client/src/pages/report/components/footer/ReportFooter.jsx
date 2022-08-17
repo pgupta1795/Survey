@@ -5,29 +5,51 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import ArrayUtils from '../../../../common/utils/ArrayUtils';
 import Colors from '../../../../helper/Colors';
+import Settings from '../../../../Settings.json';
+import {
+  formatAnswersBySection,
+  getSectionAvgByCategory,
+  validChartNames,
+} from '../../utils/ChartUtils';
 
-const createData = (name, calories, fat, carbs, protein) => ({
-  name,
-  calories,
-  fat,
-  carbs,
-  protein,
-});
-
-const rows = [
-  createData('Strategy & Policy', 1.3, 1.0, 2.0, 4.0),
-  createData('Management & Control', 1.2, 1.4, 1.3, 4.3),
-  createData('Organization & Processes', 1.4, 1.0, 1.4, 1.0),
-  createData('People & Culture', 1.4, 1.7, 1.5, 1.3),
-  createData('Information & Technology', 1.2, 1.0, 4.0, 1.9),
-  createData('Average', 1.3, 1.2, 1.5, 1.9),
-];
+const getRows = (responseData, formData) => {
+  const rows = [];
+  const formattedRes = formatAnswersBySection(responseData, formData);
+  Object.keys(formattedRes)?.forEach((sectionName) => {
+    if (!validChartNames.includes(sectionName)) return;
+    const avg = getSectionAvgByCategory(formattedRes, sectionName, formData);
+    const data = ArrayUtils.averageOfArrays(avg);
+    rows.push({ ...data });
+  });
+  if (rows.length < 1) return rows;
+  const allAverage = ArrayUtils.averageOfObjectArrays(rows);
+  if (!allAverage || allAverage.length < 1) return rows;
+  allAverage.splice(0, 1, 'Average');
+  rows.push(allAverage);
+  return rows;
+};
 
 const ReportFooter = ({ ...props }) => {
-  console.log('');
-  return (
+  const { responseData, formData } = useSelector(
+    (state) => state?.response?.value
+  );
+
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    const fetchedRows = getRows(responseData, formData);
+    console.table(fetchedRows);
+    setRows(fetchedRows);
+    return () => {
+      setRows([]);
+    };
+  }, [responseData, formData]);
+
+  return responseData && formData ? (
     <TableContainer {...props}>
       <Table sx={{ minWidth: 650 }} size="small" padding="none">
         <TableHead>
@@ -35,25 +57,17 @@ const ReportFooter = ({ ...props }) => {
             <TableCell>
               <Typography variant="tableHeader">Dimension</Typography>
             </TableCell>
-            <TableCell align="right">
-              <Typography variant="tableHeader">R&D + EPD</Typography>
-            </TableCell>
-            <TableCell align="right">
-              <Typography variant="tableHeader">
-                Supply chain & Fabriek
-              </Typography>
-            </TableCell>
-            <TableCell align="right">
-              <Typography variant="tableHeader">
-                Manufacturing Engineering & Quality
-              </Typography>
-            </TableCell>
+            {Settings.CATEGORY.map((category) => (
+              <TableCell align="right" key={category}>
+                <Typography variant="tableHeader">{category}</Typography>
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows?.map((row) => (
             <TableRow
-              key={row.name}
+              key={row[0]}
               sx={{
                 '&:last-child td, &:last-child th': {
                   borderTop: `2px solid ${Colors.THEME_MAIN}`,
@@ -62,18 +76,22 @@ const ReportFooter = ({ ...props }) => {
                 },
               }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
+              {Object.keys(row)?.map((key, index) => (
+                <TableCell
+                  align="center"
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={`${row[key]}${index}`}
+                  component="th"
+                >
+                  {row[key]}
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  ) : null;
 };
 
 export default ReportFooter;

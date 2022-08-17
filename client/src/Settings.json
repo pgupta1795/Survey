@@ -21,5 +21,10 @@
       "name": "Information & Technology",
       "description": "Software is implemented that supports the product lifecycle and is integrated with other information systems"
     }
+  ],
+  "CATEGORY": [
+    "R&D + EPD",
+    "Supply chain & Fabriek",
+    "Manufacturing Engineering & Quality"
   ]
 }

@@ -11,6 +11,7 @@ const questions = [
     image: { type: String, default: '' },
     options,
     type: { type: String, default: Constants.RADIO },
+    category: String,
   },
 ];
 

@@ -54,7 +54,6 @@ const ScoresChart = ({ ...props }) => {
   };
 
   const data = useSelector((state) => state?.response?.value);
-
   const state = useChartSeries(data, options, ChartUtils.getScoresSeries);
 
   return (

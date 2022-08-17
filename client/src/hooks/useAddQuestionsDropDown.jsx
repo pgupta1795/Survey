@@ -16,12 +16,12 @@ const useAddQuestionsDropDown = (values, icons) => {
           {Object.keys(values).map((key, index) =>
             index % 2 === 0 ? (
               <MenuItem value={key} key={key}>
-                {icons[key]}
+                {icons ? icons[key] : null}
                 {values[key]}
               </MenuItem>
             ) : (
               <BorderedMenuItem value={key} key={key}>
-                {icons[key]}
+                {icons ? icons[key] : null}
                 {values[key]}
               </BorderedMenuItem>
             )
