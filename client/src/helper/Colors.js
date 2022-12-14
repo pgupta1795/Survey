@@ -24,6 +24,12 @@ const Colors = Object.freeze({
   SECTION_CARD_BG: '#58595B',
 
   ALICE_BLUE: '#f0f8ff',
+
+  MATURITY_COLOR_1: '#65DA65',
+
+  MATURITY_COLOR_2: '#FFBC40',
+
+  MATURITY_COLOR_3: '#4CD2FF',
 });
 
 export default Colors;

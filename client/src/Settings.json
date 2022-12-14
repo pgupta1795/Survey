@@ -26,5 +26,7 @@
     "R&D + EPD",
     "Supply chain & Fabriek",
     "Manufacturing Engineering & Quality"
-  ]
+  ],
+  "MATURITY_DESCRIPTION": "The PLM Maturity of your organisation gives insight in the maturity and extent in which PLM is embedded within your organisation. The maturity is measured over 5 dimensions. Each line represents a department within your organization",
+  "SCORES_DESCRIPTION": "The maturity scores of each dimension. A balanced maturity level is optimal. Utilizing a progressive scheme, low scores can be optimized for organizational maturity allignment."
 }

@@ -12,3 +12,9 @@
     transform: scale(0.4);
   }
 }
+
+.chart-with-subtitle {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}

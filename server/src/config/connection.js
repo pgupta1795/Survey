@@ -3,8 +3,6 @@ const Constants = require('../helper/Constants');
 const startup = require('../data/CreateAdminUsers');
 
 const env = process.env;
-
-console.log({ env });
 const host = env.MONGO_HOST;
 const port = env.MONGO_PORT;
 const user = env.MONGO_USER;
