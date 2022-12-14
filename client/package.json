@@ -2,7 +2,7 @@
   "name": "survey",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://server:5000/",
+  "proxy": "https://survey-78np.onrender.com/",
   "overrides": {
     "react": "^18.2.0",
     "@svgr/webpack": "$@svgr/webpack",
