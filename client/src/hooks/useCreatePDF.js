@@ -2,6 +2,8 @@ import html2canvas from 'html2canvas';
 import { jsPDF as JSPdf } from 'jspdf';
 import React, { useEffect, useRef, useState } from 'react';
 import toast, { SUCCESS } from '../app/toast';
+import Back from '../assets/images/report/BACK.jpg';
+import Front from '../assets/images/report/FRONT.jpg';
 import Constants from '../helper/Constants';
 import EmailService from '../pages/form/services/EmailService';
 import Report from '../pages/report/Report';
@@ -42,15 +44,16 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
       putOnlyUsedFonts: true,
     });
     // 1st page
-    pdf.text('TECHNIA', 100, 100);
+
     // 2nd page
     const header = await getImage('#report');
     const [wh, hh] = getDimension(pdf, header);
+    pdf.addImage(Front, TYPE, 0, 0, wh, hh, undefined, PROC);
     pdf.addPage();
     pdf.addImage(header, TYPE, 0, 0, wh, hh, undefined, PROC);
     // 3rd page
     pdf.addPage();
-    pdf.text('THANK YOU', 100, 100);
+    pdf.addImage(Back, TYPE, 0, 0, wh, hh, undefined, PROC);
     console.log(Constants.PDF_CREATED);
     return pdf;
   };

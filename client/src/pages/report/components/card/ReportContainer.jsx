@@ -9,9 +9,9 @@ const ReportContainer = ({ children, display }) => {
   const matches = useMediaQuery(
     theme.breakpoints.up('sm') && theme.breakpoints.down('md')
   );
-
-  const area1 = '17.5%';
-  const area2 = matches ? '40%' : '50%';
+  const area1 = '15%';
+  let area2 = matches ? '41%' : '46%';
+  if (display === 'none') area2 = '44%';
 
   return (
     <Grid
@@ -22,7 +22,6 @@ const ReportContainer = ({ children, display }) => {
         top: `${display === 'none' ? '-2000px' : 'inherit'}`,
       }}
       sx={{
-        mt: 2,
         mx: 1,
         width: `${display === 'none' ? '210mm' : 'min(100%, 85vw)'}`,
         height: `${display === 'none' ? '297mm' : 'auto'}`,

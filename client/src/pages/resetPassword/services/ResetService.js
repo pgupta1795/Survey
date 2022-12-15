@@ -9,7 +9,7 @@ import { Constants } from '../../signup';
 const ResetService = {
   resetPassword: async (formData) => {
     const email = localStorage.getItem('email');
-    const response = await axios.post('/user/resetPassword', {
+    const response = await axios.post('/api/user/resetPassword', {
       ...formData,
       email,
     });

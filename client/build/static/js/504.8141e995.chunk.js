@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksurvey=self.webpackChunksurvey||[]).push([[504],{78504:function(e,s,a){e.exports=a.p+"static/media/Management & Control.f6011d6297aaefcecf88.svg"}}]);

@@ -59,8 +59,6 @@ export const formatAnswersBySection = (responseData, formData) => {
           : [{ [userId]: allAnswers }];
       });
     });
-  console.log('Formatted Answers By Section : ');
-  console.table(myRes);
   return myRes;
 };
 
@@ -112,6 +110,18 @@ export const getSectionAvgByCategory = (
   return categoriesAverageByUser;
 };
 
+export const getRows = (responseData, formData) => {
+  const rows = [];
+  const formattedRes = formatAnswersBySection(responseData, formData);
+  Object.keys(formattedRes)?.forEach((sectionName) => {
+    if (!validChartNames.includes(sectionName)) return;
+    const avg = getSectionAvgByCategory(formattedRes, sectionName, formData);
+    const data = ArrayUtils.averageOfArrays(avg);
+    rows.push({ ...data });
+  });
+  return rows;
+};
+
 export default {
   getScoresSeries: (data) => {
     try {
@@ -132,7 +142,12 @@ export default {
         series[0].data.push(ArrayUtils.getAverage(usersSecAvg));
         labels.push(sectionName);
       });
-      console.log('ScoresSeries : ', { series, labels });
+      console.log(
+        '%c Scores Chart ',
+        'background:red;color:black;font-size:20px'
+      );
+      console.table(series);
+      console.table(labels);
       return { series, labels };
     } catch (error) {
       console.error(error);
@@ -143,18 +158,37 @@ export default {
 
   getMaturitySeries: (data) => {
     try {
-      const series = [
-        {
-          name: 'Average Score',
-          data: [1.2, 1.3, 1.4, 1.5, 1.9],
-        },
-      ];
-      const labels = ['1', '2', '3', '4', '5'];
+      const series = [];
+      const labels = Array.from(
+        { length: validChartNames.length },
+        (v, i) => i + 1
+      );
       if (!data || !data?.formData || !data?.responseData)
         return { series, labels };
 
       const { formData, responseData } = data;
-      console.log({ formData, responseData });
+      const rows = getRows(responseData, formData);
+      if (rows.length < 1) return { series, labels };
+      const categories = Settings.CATEGORY;
+
+      for (let i = 0; i < categories.length; i += 1) {
+        const serie = {
+          name: categories[i],
+          data: [],
+        };
+
+        rows.forEach((row) => {
+          serie.data.push(row[i + 1]);
+        });
+        series.push(serie);
+      }
+
+      console.log(
+        '%c Maturity Chart ',
+        'background:red;color:black;font-size:20px'
+      );
+      console.table(series);
+      console.table(labels);
       return { series, labels };
     } catch (error) {
       console.error(error);

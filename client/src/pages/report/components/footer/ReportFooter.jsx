@@ -10,21 +10,10 @@ import { useSelector } from 'react-redux';
 import ArrayUtils from '../../../../common/utils/ArrayUtils';
 import Colors from '../../../../helper/Colors';
 import Settings from '../../../../Settings.json';
-import {
-  formatAnswersBySection,
-  getSectionAvgByCategory,
-  validChartNames,
-} from '../../utils/ChartUtils';
+import { getRows } from '../../utils/ChartUtils';
 
-const getRows = (responseData, formData) => {
-  const rows = [];
-  const formattedRes = formatAnswersBySection(responseData, formData);
-  Object.keys(formattedRes)?.forEach((sectionName) => {
-    if (!validChartNames.includes(sectionName)) return;
-    const avg = getSectionAvgByCategory(formattedRes, sectionName, formData);
-    const data = ArrayUtils.averageOfArrays(avg);
-    rows.push({ ...data });
-  });
+const getTableRows = (responseData, formData) => {
+  const rows = getRows(responseData, formData);
   if (rows.length < 1) return rows;
   const allAverage = ArrayUtils.averageOfObjectArrays(rows);
   if (!allAverage || allAverage.length < 1) return rows;
@@ -41,7 +30,11 @@ const ReportFooter = ({ ...props }) => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    const fetchedRows = getRows(responseData, formData);
+    const fetchedRows = getTableRows(responseData, formData);
+    console.log(
+      '%c Rows for Response By  Questions Category ',
+      'background:red;color:black;font-size:20px'
+    );
     console.table(fetchedRows);
     setRows(fetchedRows);
     return () => {
@@ -49,23 +42,39 @@ const ReportFooter = ({ ...props }) => {
     };
   }, [responseData, formData]);
 
+  const colors = [
+    Colors.MATURITY_COLOR_1,
+    Colors.MATURITY_COLOR_2,
+    Colors.MATURITY_COLOR_3,
+  ];
+
   return responseData && formData ? (
     <TableContainer {...props}>
       <Table sx={{ minWidth: 650 }} size="small" padding="none">
         <TableHead>
           <TableRow>
-            <TableCell>
+            <TableCell
+              sx={{
+                backgroundColor: 'divider',
+              }}
+            >
               <Typography variant="tableHeader">Dimension</Typography>
             </TableCell>
-            {Settings.CATEGORY.map((category) => (
-              <TableCell align="right" key={category}>
+            {Settings.CATEGORY.map((category, index) => (
+              <TableCell
+                align="center"
+                key={category}
+                sx={{
+                  backgroundColor: `${colors[index]}`,
+                }}
+              >
                 <Typography variant="tableHeader">{category}</Typography>
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows?.map((row) => (
+          {rows?.map((row, pIndex) => (
             <TableRow
               key={row[0]}
               sx={{
@@ -78,12 +87,14 @@ const ReportFooter = ({ ...props }) => {
             >
               {Object.keys(row)?.map((key, index) => (
                 <TableCell
-                  align="center"
+                  align={index === 0 ? 'left' : 'center'}
                   // eslint-disable-next-line react/no-array-index-key
                   key={`${row[key]}${index}`}
                   component="th"
                 >
-                  {row[key]}
+                  {index === 0 && pIndex < rows.length - 1
+                    ? `${pIndex + 1}. ${row[key]}`
+                    : row[key]}
                 </TableCell>
               ))}
             </TableRow>

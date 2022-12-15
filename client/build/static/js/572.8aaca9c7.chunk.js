@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksurvey=self.webpackChunksurvey||[]).push([[572],{52572:function(e,s,a){e.exports=a.p+"static/media/Information & Technology.7a8a391bad2d35f06103.svg"}}]);

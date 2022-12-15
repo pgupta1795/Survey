@@ -1,8 +1,7 @@
 {
   "name": "survey",
   "version": "0.1.0",
-  "private": true,
-  "proxy": "http://server:5000/",
+  "proxy": "https://survey-78np.onrender.com/",
   "overrides": {
     "react": "^18.2.0",
     "@svgr/webpack": "$@svgr/webpack",
@@ -15,9 +14,6 @@
     "@mui/material": "^5.8.7",
     "@reduxjs/toolkit": "^1.8.3",
     "@svgr/webpack": "^6.2.1",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
     "apexcharts": "^3.35.3",
     "axios": "^0.27.2",
     "html2canvas": "^1.4.1",
@@ -40,7 +36,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format:check": "prettier --check .",

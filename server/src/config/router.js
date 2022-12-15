@@ -7,7 +7,7 @@ const ImageRouter = require('../templates/Image/router/ImageRouter');
 const ResponseRouter = require('../templates/Response/router/ResponseRouter');
 const EmailRouter = require('../templates/email/router/EmailRouter');
 
-router.get('/', (req, res) => {
+router.get('/api', (req, res) => {
   if (connection) {
     console.log(connection);
     res.send(Constants.ROUTER_OK);
