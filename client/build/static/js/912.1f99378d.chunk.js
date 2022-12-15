@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksurvey=self.webpackChunksurvey||[]).push([[912],{49912:function(s,e,a){s.exports=a.p+"static/media/Organization & Processes.29d255a625a7adb7daea.svg"}}]);

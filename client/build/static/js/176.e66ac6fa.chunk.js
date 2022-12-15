@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksurvey=self.webpackChunksurvey||[]).push([[176],{62176:function(e,s,t){e.exports=t.p+"static/media/Strategy & Policy.3e914ba77fa04be6def7.svg"}}]);
