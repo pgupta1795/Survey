@@ -8,7 +8,7 @@ const TokenService = {
     const { email } = formData;
     localStorage.setItem('email', email);
     const response = await axios.get(
-      `/email/sendResetToken/${email}`,
+      `/api/email/sendResetToken/${email}`,
       getAuthHeader()
     );
     console.log(response.data);

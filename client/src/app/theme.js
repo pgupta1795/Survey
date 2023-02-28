@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
-import Colors from '../helper/Colors';
 import X from '../assets/images/blue-x.png';
+import Colors from '../helper/Colors';
 
 const primary = {
   light: Colors.THEME_LIGHT,
@@ -38,7 +38,6 @@ const typography = {
   },
   tableHeader: {
     fontWeight: '900',
-    color: Colors.THEME_MAIN,
   },
   smallQuestion: {
     fontSize: '0.75em',

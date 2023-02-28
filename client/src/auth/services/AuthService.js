@@ -39,7 +39,7 @@ export const refresh = async () => {
       return;
     }
     const response = await axios.get(
-      `/user/refresh/${userId}`,
+      `/api/user/refresh/${userId}`,
       getAuthHeader()
     );
     console.log(response.data);

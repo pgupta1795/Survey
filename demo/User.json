@@ -1,0 +1,88 @@
+[{
+  "_id": {
+    "$oid": "62d2fa933a83672d944b437a"
+  },
+  "name": "Pallav Gupta",
+  "password": "$2b$10$hLa6hay.kljZdZVlbRkZJeAAe8cSb1F7SbOQ7E6scQg4Vs5szcgpO",
+  "email": "pallav.gupta@technia.com",
+  "admin": true,
+  "organization": "TECHNIA",
+  "createdForms": [
+    "8b874ad2-073c-476d-89f6-f14799d10474"
+  ],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657993875927"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660313148368"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62d2ff1b3a83672d944b438a"
+  },
+  "name": "pgupta1795@gmail.com",
+  "password": "$2b$10$cHol6EJlN.kIpGkbRDa6y.SdMCjcNJ9c.rtP8ZkdhIL0T2wfhSSy2",
+  "email": "pgupta1795@gmail.com",
+  "admin": false,
+  "organization": "GMAIL",
+  "createdForms": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1657995035504"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659517525899"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e9021a4cfae1e63c1843ea"
+  },
+  "name": "admin",
+  "password": "$2b$10$c.crH30VySWXuT7ZUE2mJu.EyZK2mjBOMNdEZSQ1MIZPWl6lbpYem",
+  "email": "plmmaturitysurvey@gmail.com",
+  "admin": false,
+  "organization": "GMAIL",
+  "createdForms": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1659437594818"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659437594818"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62f65deae65cf4ab869a605f"
+  },
+  "name": "Technia TEST",
+  "password": "$2b$10$oJaoN0syjuQm9vMBuJWyVu.Xc1konJt3DeFy6TKIK9XJHPMoPX1dS",
+  "email": "techniatest@technia.com",
+  "admin": false,
+  "organization": "TECHNIA",
+  "createdForms": [],
+  "image": "",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1660313066453"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1660313066453"
+    }
+  },
+  "__v": 0
+}]

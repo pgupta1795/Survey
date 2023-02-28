@@ -21,7 +21,7 @@ const ReportCard = ({ display, ...props }) => {
           sx={{
             background: `inherit`,
             color: 'white',
-            p: 1,
+            py: 0,
             width: '100%',
             height: 'auto',
           }}

@@ -1,0 +1,1404 @@
+[{
+  "_id": "8b874ad2-073c-476d-89f6-f14799d10474",
+  "name": "Gartner for Supply Chain Leaders Tools : Assess Your PLM Discipline Maturity",
+  "createdBy": {
+    "$oid": "62d2fa933a83672d944b437a"
+  },
+  "sections": [
+    {
+      "_id": "bbdc07e8-f8b7-46d9-b13c-6700aa22b72c",
+      "name": "General",
+      "description": "Starting Questions",
+      "questions": [
+        {
+          "_id": "821c3442-0f8b-4cca-bf48-7b1e641fca19",
+          "open": false,
+          "text": "Who is your reference at TECHNIA ?",
+          "image": "",
+          "options": [
+            {
+              "_id": "a17774cf-829b-4273-882f-2759cdc82098",
+              "text": "Option 1",
+              "image": ""
+            }
+          ],
+          "type": "TEXT_FIELD"
+        },
+        {
+          "_id": "fabd642f-6d91-40c1-adc8-952955dd497a",
+          "open": false,
+          "text": "Which department do you work in ?",
+          "image": "",
+          "options": [
+            {
+              "_id": "a619385f-08f7-427d-a201-2897216a673c",
+              "text": "Engineering",
+              "image": ""
+            },
+            {
+              "_id": "f49a2279-6593-4621-a71e-37565caab580",
+              "text": "Project Management",
+              "image": ""
+            },
+            {
+              "_id": "67f81f3e-acc0-45bd-9709-12b23017862c",
+              "text": "Product Development",
+              "image": ""
+            },
+            {
+              "_id": "b6e13829-b318-4ee7-8160-be32f0db1584",
+              "text": "Executive Board",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "35358b98-e490-44d8-bfca-7aba5cd06a17",
+          "open": false,
+          "text": "What is your position within your organization ?",
+          "image": "",
+          "options": [
+            {
+              "_id": "feb01162-7dc5-4916-8e24-15eab3c47d64",
+              "text": "Employee",
+              "image": ""
+            },
+            {
+              "_id": "a942efb8-3754-484d-837c-7fff4e2a89e4",
+              "text": "Management",
+              "image": ""
+            },
+            {
+              "_id": "823f2f01-06b9-4310-b4ae-c47696040459",
+              "text": "Executive Board",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "038531c3-f78a-4fac-9015-d172f480bfda",
+          "open": false,
+          "text": "Which industry is your organization involved with ?",
+          "image": "",
+          "options": [
+            {
+              "_id": "970b063f-690f-430d-a495-a291a9a0beab",
+              "text": "Machinery",
+              "image": ""
+            },
+            {
+              "_id": "a464f634-28ba-4e25-85fe-2eced920254d",
+              "text": "Transport & Mobility",
+              "image": ""
+            },
+            {
+              "_id": "90db7aaa-e7c3-4025-ba79-d69264ef76fa",
+              "text": "High Tech",
+              "image": ""
+            },
+            {
+              "_id": "309bb440-61ad-4ca8-92a2-188c6389f595",
+              "text": "Aerospace or Offshore",
+              "image": ""
+            },
+            {
+              "_id": "a433872d-a5bb-43cf-8cc0-407361f13bd5",
+              "text": "Consumer Products",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "5da8c49b-4136-4bb9-9518-5f828542137a",
+          "open": false,
+          "text": "How many people does your organization employ ?",
+          "image": "",
+          "options": [
+            {
+              "_id": "005b7c28-9216-4a02-b15e-b6a5a711e0b2",
+              "text": "0-100",
+              "image": ""
+            },
+            {
+              "_id": "f062b7a2-ac70-4a5b-a660-d4db92cc941f",
+              "text": "100-250",
+              "image": ""
+            },
+            {
+              "_id": "b6a8c5a2-8ed3-49dc-b49e-bd67e2381fb1",
+              "text": "250-500",
+              "image": ""
+            },
+            {
+              "_id": "87d49f66-715b-4068-829c-f00a99747619",
+              "text": "500-1000",
+              "image": ""
+            },
+            {
+              "_id": "c5614683-7892-4201-9bce-ee0cac568f05",
+              "text": "1000+",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        }
+      ]
+    },
+    {
+      "_id": "9b8b27fd-7abc-49e4-b124-d02c6f8eda77",
+      "name": "Strategy & Policy",
+      "description": "To let the implementation of PLM contribute to the total profit of the organisation and to the optimum value for the customer, this must be an explicit part of strategy and policy.\n\nWith the following questions we examine the extent to which this is already the case in your organization.\n\n1/ yes, on a situational basis.\n2/ yes, on a departmental level\n3/ yes, on an organizational level\n4/ yes, on an organizational level and beyond (e.g. suppliers and customers etc.)",
+      "questions": [
+        {
+          "_id": "41df9c0e-6dc3-4173-bf46-3a0a52c10374",
+          "open": false,
+          "text": "Has your organization defined a PLM strategy? (a strategy for the management of product information during the product lifecycle)",
+          "image": "",
+          "options": [
+            {
+              "_id": "19aaeae5-bbff-4597-82b4-26539098a80a",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "039017e0-b1a4-447d-aced-f4e862af2961",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "e70e2e99-9b42-424d-a11d-e53077a8321f",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "c27be52a-f296-407f-a53c-8872039a76f5",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "DROPDOWN"
+        },
+        {
+          "_id": "e60402cd-b70c-41fc-b57a-4cbc0d02630e",
+          "open": false,
+          "text": "Does active communication on the PLM strategy and changes take place within your organization",
+          "image": "",
+          "options": [
+            {
+              "_id": "88c660b9-2b67-4bf3-b42c-86c082a65c58",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "ace9d6e3-4d40-4198-90fb-8e36f374060e",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "94c69402-a89e-4692-bc1e-604abd23d87c",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "ccb96130-676b-4d7d-b84d-e745092bff7b",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "aba3a32a-fb0d-4386-ad10-501f806d8483",
+          "open": false,
+          "text": "Is the PLM strategy actively evaluated within your organisation? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "95f71082-09ea-4ea1-b99a-3c377154383f",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "1af92fc2-8b0f-4770-afc1-d52259fab1be",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "355f89aa-6b09-4e23-aaca-e30cfe5c09db",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "1e02035c-73f6-4d44-bed3-335e32f27ba8",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "b61830ab-b216-49b0-8d7a-8c8aaa1cc585",
+          "open": false,
+          "text": "Has the PLM strategy been elaborated into a specific action plan?",
+          "image": "",
+          "options": [
+            {
+              "_id": "6cd2fe91-74f6-456f-90b5-f425c713843c",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "4db90ed2-a60f-48ed-b039-e93023a02d54",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "7de443ef-edec-49fd-a48e-88928c0df169",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "e88b5220-b50f-4e92-8a71-850152923ef1",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "bd26fd8a-82ae-4f0e-9f6b-6a2944c3a981",
+          "open": false,
+          "text": "Is document management included in the PLM strategy of your organization ? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "4c25a977-2cc1-490d-a947-7b2b053ff826",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "cf3f1d4d-b8cf-4acf-abfe-ec0379df7da2",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "e844d016-00e4-4716-afa6-65db3e6b76d9",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "77406870-7a81-4337-91ad-03aa85313345",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "2f0e7b75-6588-4580-8ebd-56827b9776ca",
+          "open": false,
+          "text": "Have the most important PLM processes in the strategy of your organisation been described?",
+          "image": "",
+          "options": [
+            {
+              "_id": "88fe30ff-43eb-4611-b894-d4bd4c2ba192",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "970b32bc-a7df-4e22-88d9-7494e172946e",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "58d1b070-8272-4a4a-9abc-b83a2b37e33a",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "805d4a5c-b8d3-46ab-9c0c-e0dbcd034be2",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "04f72681-33d2-4b6f-8218-04dde34afe5c",
+          "open": false,
+          "text": "Is the PLM strategy of your organization adapted when this is necessary?",
+          "image": "",
+          "options": [
+            {
+              "_id": "f2530353-0653-40d3-8bfd-d3ce12cd0970",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "c9eef578-6150-4cad-b12f-caadb1b8bdf6",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "b2741919-de9f-42ab-a2a0-1e3d1d253263",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "1e4c0407-7e8e-436b-b5f0-cf1115e950fe",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "572e84c5-ea0b-4887-bd27-215f28df1f57",
+          "open": false,
+          "text": "Is the PLM strategy attuned to the general strategy of your organization? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "12fa88d6-117b-42b7-8b92-f755e8233e70",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "a60e9070-4661-4177-82de-46b8865c3226",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "fe909bbe-71d3-437b-9416-6e738f0bd874",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "3aea2ebc-484d-4238-8b88-527e839b5ede",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        }
+      ]
+    },
+    {
+      "_id": "6a5f9a84-38ad-486e-b5e2-f3ca7b30a557",
+      "name": "Management & Control",
+      "description": "In order to be able to carry out the PLM policy of the organization, it is important to be able to measure and control previously established processes at the right times.\n\nThe following questions relate to the way this is facilitated in your organization.\n\n1/ yes, on a situational basis.\n2/ yes, on a departmental level\n3/ yes, on an organizational level\n4/ yes, on an organizational level and beyond (e.g. suppliers and customers etc.)",
+      "questions": [
+        {
+          "_id": "72130af9-0a5a-45f5-9474-627eaa98836e",
+          "open": false,
+          "text": "Have the roles and associated responsibilities for on time delivery of the final product been defined and established?",
+          "image": "",
+          "options": [
+            {
+              "_id": "e8278f83-cc47-43b5-a097-829e6325fe0d",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "eae2b63a-20b3-4eac-9368-ffd3b690396a",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "11e0acbd-1e7f-4b29-8062-accf45207c7f",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "76145372-c78d-49ad-8327-c5777b4913c6",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "db9119fb-36dd-42d8-bdc0-234963ac2bfb",
+          "open": false,
+          "text": "Is the ‘time to market’ of final products (the time between thinking up the product and market launch) actively measured?",
+          "image": "",
+          "options": [
+            {
+              "_id": "3e9267c5-2c75-4391-abc4-456783d9fce0",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "1a3e29ed-e908-400f-9666-9fe36303344d",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "260eae6f-55f3-4d48-81ff-4358c423d7f6",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "b8a6ce4e-0dfc-49bd-a73a-302f60e75a09",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "7633ac26-8a00-4b65-95ad-e4fa578860c0",
+          "open": false,
+          "text": "Have the rules on allocation of costs during product development been defined and established?",
+          "image": "",
+          "options": [
+            {
+              "_id": "73317428-6ba6-429f-b461-8fc01d9418ff",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "a92a579b-e513-41ff-92e5-50dacf373b8c",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "0ed8edd6-3f4a-4c93-9e02-e496c75072c9",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "a37a80c4-c8ab-4713-b19d-06838e52782e",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "768fc1c8-c1ef-4609-a80e-6d21690af499",
+          "open": false,
+          "text": "Have processes for quality management within your organisation been explicitly defined and established?",
+          "image": "",
+          "options": [
+            {
+              "_id": "8af89e76-b9c2-4264-918b-7a495c580d7f",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "5597bc50-1212-4a17-9ae4-3c2b71996392",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "b2bc036e-cb84-4345-a639-ac959a95f1d0",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "709e5dab-6381-48c0-a1f8-a3c1dd3532e1",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "c93dafef-29d7-4a75-8184-225af3f68df1",
+          "open": false,
+          "text": "Have methods and expected results to measure product quality been defined and established?",
+          "image": "",
+          "options": [
+            {
+              "_id": "12d2f56b-7327-4db9-9c1f-047a3ff00578",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "90987f5e-98c0-4e35-ad9a-ba6e8c3b92dd",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "c67637e1-8772-4ba7-85a6-38ef3d9b71ea",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "81e3e3f8-8f28-420c-953e-6435c4eaf1b7",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "a72faca4-601d-4761-b994-92216ec352d2",
+          "open": false,
+          "text": "Is product quality actively monitored after market introduction? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "70cb31b5-3843-43de-a85c-32403f6c4202",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "c5e6f59a-1132-4516-a664-90f4a8895a2f",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "a03d6657-3fed-4a5d-8bbd-60a591db8670",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "238c3c3d-e0bf-4744-ab1f-2283a003a47c",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "11ea3d0d-f7b7-45d8-9a18-6a793f492da9",
+          "open": false,
+          "text": "Is the status of the product lifecycle of your products transparent at all times?",
+          "image": "",
+          "options": [
+            {
+              "_id": "8a12cad5-413d-482a-898f-074f8c5b2000",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "f35b33e5-f988-4a0b-93e9-97a886e03af5",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "28c54175-3323-4f32-ac9d-436738c85d49",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "3f77b107-7128-4d2b-9941-f54e5158d800",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "5c673f24-1f59-456e-bc92-c6e8a4548bb1",
+          "open": false,
+          "text": "Is a method of project management used within your organization during the lifecycle of a product?",
+          "image": "",
+          "options": [
+            {
+              "_id": "a4a94d72-e80e-408f-9fc6-cc177d0084e3",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "1cc13a5f-9424-4681-b094-db79b9209138",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "7aaa397e-bd62-41cc-93b0-03aedaa211e2",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "6285f74c-e877-4f8c-8c3f-47ccf66c6f93",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        }
+      ]
+    },
+    {
+      "_id": "e8c82765-e58f-4065-80fc-31047fe85f01",
+      "name": "Organization & Processes",
+      "description": "PLM can add optimal value if processes in the lifecycle of products are known and established and if the organization is focused on being able to work according to these processes.\n\nIs your organization ready for the implementation of PLM?\n\n1/ yes, on a situational basis.\n2/ yes, on a departmental level\n3/ yes, on an organizational level\n4/ yes, on an organizational level and beyond (e.g. suppliers and customers etc.)",
+      "questions": [
+        {
+          "_id": "1b733af8-5eb6-4890-85f7-6b205ad51e7d",
+          "open": false,
+          "text": "Have procedures for supporting PLM been implemented within your organization? (procedures for the management of product information during the product lifecycle)",
+          "image": "",
+          "options": [
+            {
+              "_id": "adef301b-3e3f-425b-b780-2c0d5c25c75a",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "878863e9-4264-4c46-b673-6cfbb48770b5",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "01fbec1d-47b1-48e7-b3d6-075707cabcfb",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "039fe324-3054-4e4e-95c2-f6f9d4b81ac0",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "1fa5934f-ac25-4833-8640-bf1fa34b0738",
+          "open": false,
+          "text": "Are PLM process definitions actively maintained within your organization? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "1f571d96-33c0-4c5f-ad43-01c434cd25b0",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "52446f28-3f89-46d8-a7d7-59885a4c0b7b",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "a315a3fe-c1c9-4b96-8d21-98b0164cb890",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "3e13944a-17a6-478f-baef-a4dbe3eef31e",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "d8e0ce57-2f35-475b-9739-370ed4a1d35f",
+          "open": false,
+          "text": "Have PLM process definitions been standardized within your organization?",
+          "image": "",
+          "options": [
+            {
+              "_id": "24319577-8c12-41ed-8df8-90c56297d8e2",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "1d097424-4473-40e1-95af-cf5ef5ab7fdf",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "e020f5a2-c19a-487b-8c8f-b2badc8ac157",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "07914c4a-2af6-4b94-acad-0c1a09a478c2",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "080f1cf4-adda-4260-9cf2-66cee528d9d3",
+          "open": false,
+          "text": "Have teams been put together within your organization that have to actively concern themselves with the improvement of PLM?",
+          "image": "",
+          "options": [
+            {
+              "_id": "534dd08d-350d-4799-beec-1da57ef3d733",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "98cf26db-97b4-4e49-9d11-0cf49e99cfe9",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "e8a2d17a-3b14-4ab0-9346-bb0c11eb2a57",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "e1ac8f83-f30d-475d-aeb7-8cbb7f39679e",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "09e6d715-b49b-4f64-b6c1-6eac9228e9e6",
+          "open": false,
+          "text": "Have PLM procedures in your organization been formally described? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "a3d4b13e-aa42-4e11-b15c-a4ae575c6cfa",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "f817028e-448c-4b54-b9e6-80cf744237ca",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "0f068614-2f83-4555-a58b-1e086bd11058",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "452427e6-20be-4355-88f7-fc5f6bf8c700",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "382a1613-134c-4cff-99ba-115a53b76e0a",
+          "open": false,
+          "text": "Does PLM in your organization manage the process of product release?",
+          "image": "",
+          "options": [
+            {
+              "_id": "c157b184-aac1-4992-83d8-26550b58fa49",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "661e77ff-67fd-4fc2-a58a-c6b945a3619c",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "22e611ed-32f3-43b8-ab8b-0fd63c605ebc",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "9b46aa1d-0393-48c9-94b3-8c8657cfd340",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "b2270bba-4046-4416-be5a-0abe22e23d19",
+          "open": false,
+          "text": "Does PLM in your organization include a process for document management?",
+          "image": "",
+          "options": [
+            {
+              "_id": "e5ca3780-9109-4079-a08c-723e18478bed",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "28c42f19-c25e-4124-b19e-aa25e9a396de",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "5899cd4e-7fcb-4553-86c6-1e16fdbdcefa",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "e6db0768-7851-4509-b544-ae3462fc483d",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "5674c122-c7d5-46f9-89bc-e7616f0a2e19",
+          "open": false,
+          "text": "Does PLM in your organization include a process for change management? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "c9177e25-8d8a-4a40-9df0-1bcf70718a73",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "83a20021-9652-4548-a365-162b94b456a7",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "fa3b2bfc-8f23-4ff0-bf9e-c028c2a616f0",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "8c4866fe-9a62-4d17-b3e0-ef1bdedbe3d5",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        }
+      ]
+    },
+    {
+      "_id": "99c54933-a9b3-481c-81f5-ea4814dda106",
+      "name": "People & Culture",
+      "description": "Acceptance among the employees of your organisation is a condition for being able to make the implementation of PLM a success.\n\nOptimisation of PLM processes must become part of the day-to-day work for everyone and must be anchored in the culture of the organisation.\n\nAre your people ready for it?\n\n1/ yes, on a situational basis.\n2/ yes, on a departmental level\n3/ yes, on an organizational level\n4/ yes, on an organizational level and beyond (e.g. suppliers and customers etc.)",
+      "questions": [
+        {
+          "_id": "40082d0c-a148-4789-bc97-907bcdf5929f",
+          "open": false,
+          "text": "Do task and job descriptions in your organization contain references to PLM processes and procedures?",
+          "image": "",
+          "options": [
+            {
+              "_id": "89c38364-fbf6-41fb-85a5-231fc32e87a5",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "341d02fb-df83-4d38-9e58-f789d02011c3",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "561add8a-5ef2-440f-8a6d-12f12b890d48",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "e2464c88-9c40-48c8-8623-305653fb509f",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "a7adea44-19c8-4e81-ab51-ff735ac2ccde",
+          "open": false,
+          "text": "Does your organization offer employees the possibility to make suggestions that influence decisions on the lifecycle of products?",
+          "image": "",
+          "options": [
+            {
+              "_id": "8e0e945b-4fbd-4eb2-b43f-cfea4f03010d",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "f514d0ae-3e40-4802-8d86-f5c437afc4fb",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "dfa6b619-49ef-4269-972a-777c12d37dcd",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "0d392435-d005-4b16-a226-6f0dd368a293",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "6b056486-37b8-4948-869d-8670821c3cd9",
+          "open": false,
+          "text": "Are training programs organized for staff that improve the application of PLM so that your organization profits from it?",
+          "image": "",
+          "options": [
+            {
+              "_id": "0af8fb77-bc1a-414c-a9fb-a8230b438b15",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "5d03126f-2ff7-40cc-8ea7-f081b4ce3994",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "f5be10b5-1fd4-4ada-832d-269a5616932e",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "fb011493-7799-4869-80a3-c645b20810bc",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "f64407df-1e03-445b-8781-14ee7dacee0f",
+          "open": false,
+          "text": "Is there a system of bonuses for employees related to the quality and performance of final products?",
+          "image": "",
+          "options": [
+            {
+              "_id": "02d41a03-7b90-42df-a27c-ccccc18ec722",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "1fd9de3c-46ed-4ca4-9061-e0d9597d40c9",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "e183a067-a088-40fc-a2f7-9fedb47756ae",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "5539ed36-08a9-48d0-bc5d-06e059873b8d",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "c9ebd9a7-fab8-49a7-b5ec-e64ae36f31a0",
+          "open": false,
+          "text": "Are employees in your organisation allowed to contribute actively to improving the PLM strategy?",
+          "image": "",
+          "options": [
+            {
+              "_id": "16e409e6-68f4-40b9-b502-f26786b49aaa",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "2bfe1da1-092d-44b8-8d36-41c6560ccb7f",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "b3725ece-8dea-473f-a09f-749e024afaa1",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "bd26411b-c907-439d-a180-fb0dd3db0a87",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "3a2a26a7-e7ff-4963-9927-02c92f8ed146",
+          "open": false,
+          "text": "Do employees in your organisation cooperate on problems that occur during the lifecycle of products?",
+          "image": "",
+          "options": [
+            {
+              "_id": "09f4f51c-20af-4ce8-9a44-6297695291be",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "fbf71509-b3db-4d72-95e7-34c43627e61d",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "c1bd9a3f-4802-4b49-a4a1-90047770892d",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "57bae14d-c69f-48ff-8e52-2ff58c06b32d",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "80590c52-057f-43a7-a0ba-96e16dbaabbc",
+          "open": false,
+          "text": "Are employees actively involved in the implementation of software in order to support PLM?",
+          "image": "",
+          "options": [
+            {
+              "_id": "ec16badd-7385-4c97-8592-edb2f849460c",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "214d7758-5292-49f6-b467-049ac72c7cce",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "eb34b789-122b-401b-98aa-41e0ba76b2f0",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "9a2de585-edba-459a-9e99-00296ea45183",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "5994caed-194b-49a7-94aa-0ea8dfe7c570",
+          "open": false,
+          "text": "Are the concepts and values of PLM well understood within your organization? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "4139c725-a102-408f-9649-dcf1b5c3b94a",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "9093e166-ba7e-4fd3-b7a0-050396a9007e",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "5c1c23c2-84a5-4d88-9b8c-53abdf99fad3",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "e9d9247c-0b8b-465c-bb0e-f89f93815903",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        }
+      ]
+    },
+    {
+      "_id": "ec21ac8c-a86a-4130-9c12-817d46704d8f",
+      "name": "Information & Technology",
+      "description": "PLM can be supported to a large extent by up-to-date information. Supporting IT solutions are probably already deployed at present within your organization.\n\nThink of ERP systems, CRM systems and document management systems.\n\nThe following questions relate to the existing solutions and the degree of support they offer to your PLM processes.\n\n1/ yes, on a situational basis.\n2/ yes, on a departmental level\n3/ yes, on an organizational level\n4/ yes, on an organizational level and beyond (e.g. suppliers and customers etc.)",
+      "questions": [
+        {
+          "_id": "75989bb9-ef19-4169-a810-567c172e4219",
+          "open": false,
+          "text": "Is software already used for the support of PLM within your organisation? (Note: some form of document management may already be contributing to PLM support)",
+          "image": "",
+          "options": [
+            {
+              "_id": "d011ff38-814c-4bba-86b3-9aaef171be61",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "7e827914-afe4-40e8-8f5b-1ced694f577d",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "b4f2b549-33fc-4827-8a10-3fe19e024764",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "3d2f585c-0fab-4f34-8754-40ca7e21cb98",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "a7464409-7a08-415d-b268-0b5837a27427",
+          "open": false,
+          "text": "Has the support of PLM already been integrated within other business management systems? (e.g. ERP)",
+          "image": "",
+          "options": [
+            {
+              "_id": "b9b2d742-4077-431e-8423-acac698c19dc",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "4b04c34c-4302-45b3-aa87-b5691383841c",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "e2d1ded9-1f30-4260-ab85-92c91576e445",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "ae1be96f-4202-4d9b-b6d1-c0934aac9a76",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "3b0c930b-b74d-4cf6-a631-3e5f1228a88b",
+          "open": false,
+          "text": "Does the software that supports your PLM processes contain functionality to manage product configurations?",
+          "image": "",
+          "options": [
+            {
+              "_id": "337065d2-d451-42e7-ac67-f71b8c057e1a",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "d53c16e4-e080-434c-aa50-fe14394605a4",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "cc42ca8d-f48e-4e43-84e3-5504c6be6367",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "6f6ee114-a522-41c9-a394-066f109a0150",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "c8cf9581-5610-4635-97c9-09aa63ee605c",
+          "open": false,
+          "text": "Are the PLM processes within your organization supported by software with workflow management functionality? ",
+          "image": "",
+          "options": [
+            {
+              "_id": "ca9b8596-9ce8-4f00-bea0-ab98fe859e8e",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "19392f74-8a5b-4b13-9e20-35689736b249",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "ce852567-6947-46e4-90a2-c59e04763b84",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "a59729d2-7ed1-4828-a9b8-bda8a31489c4",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "4bf66c90-d340-4127-90ad-545de5750367",
+          "open": false,
+          "text": "Does the software that supports your PLM processes contain functionality to manage design data (for example CAD)?",
+          "image": "",
+          "options": [
+            {
+              "_id": "62da3469-fe3f-496e-98c3-aac8c146e3ed",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "148b4c51-086a-4391-a979-d1f43ad2daea",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "a14d94e9-2ec2-456c-8e45-7f0afd6e978e",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "a734037f-30c2-4d8c-ab2b-443f0a8964ec",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "91459c16-94d7-454b-b572-f5bd7b450363",
+          "open": false,
+          "text": "Has a roadmap been set up in your organization for further expansion of PLM support using software?",
+          "image": "",
+          "options": [
+            {
+              "_id": "cf21032c-e64c-44ff-954c-7f95dc80e21a",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "f8945070-52b0-4c22-8142-e7f6c52ef408",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "0b6aeb78-db78-4df1-991c-a82b3185ec85",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "0b5d7c00-0c4a-4211-b4b7-4ca7f5a1b34c",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "9b3dc1d9-e838-4f3c-a7bc-df9ad98c38f7",
+          "open": false,
+          "text": "Is the PLM support in your organization based on industry best practice and up-to-date available technological standards?",
+          "image": "",
+          "options": [
+            {
+              "_id": "5007d94d-8848-4446-9805-b12724483e1d",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "90481c52-8791-4097-89b4-c980491096f9",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "e61a4367-0e82-4a52-a75b-085ac60641cb",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "ba842ec7-e70f-49be-ae73-af62109ddd28",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        },
+        {
+          "_id": "157c16d7-0523-4177-826a-cb01f71d25d2",
+          "open": true,
+          "text": "Does the software that supports your PLM processes contain functionality to manage product changes on a multidisciplinary basis?",
+          "image": "",
+          "options": [
+            {
+              "_id": "4ed7dfd1-58b0-4f39-ab59-d500ec52aa5e",
+              "text": "1",
+              "image": ""
+            },
+            {
+              "_id": "bf1aa960-201d-4f38-95d4-3b9263b8bff6",
+              "text": "2",
+              "image": ""
+            },
+            {
+              "_id": "76fc1bb6-1dc6-4941-8c9c-5583daa6fd6d",
+              "text": "3",
+              "image": ""
+            },
+            {
+              "_id": "374fa302-bf3b-403c-9e7b-a2bfa0a9e896",
+              "text": "4",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        }
+      ]
+    },
+    {
+      "_id": "acc5d0e3-6c3e-467f-b882-16ce433071eb",
+      "name": "Closing",
+      "description": "Closing Description",
+      "questions": [
+        {
+          "_id": "f50ee4c1-f848-4eb8-a49c-19bed5c19a56",
+          "open": true,
+          "text": "What do you regard as the greatest challenge within your organisation in the field of PLM?",
+          "image": "",
+          "options": [
+            {
+              "_id": "63ce4a7b-1a00-4c26-b949-25709d6bba9c",
+              "text": "Option 1",
+              "image": ""
+            }
+          ],
+          "type": "TEXT_FIELD"
+        },
+        {
+          "_id": "ca5a3f14-32fc-4152-928b-327147fc6c21",
+          "open": true,
+          "text": "Did you find the questionnaire relevant to your industry?",
+          "image": "",
+          "options": [
+            {
+              "_id": "eb1af79a-a242-49f5-9f0f-42440f1d7594",
+              "text": "Yes",
+              "image": ""
+            },
+            {
+              "_id": "e85a88cf-390a-4d30-845c-eb94f9bf00ce",
+              "text": "No",
+              "image": ""
+            },
+            {
+              "_id": "6a2ba90f-5ad0-446a-a40e-a4d73128fc18",
+              "text": "Other",
+              "image": ""
+            }
+          ],
+          "type": "RADIO"
+        }
+      ]
+    }
+  ],
+  "stared": false,
+  "type": "anonymous",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1658005689049"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1659257108375"
+    }
+  },
+  "__v": 0
+}]
