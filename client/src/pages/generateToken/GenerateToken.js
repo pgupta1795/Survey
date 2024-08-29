@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormContext } from '../../hooks/contexts';
+import { RoutePaths } from '../signup';
 import { Constants, LoginLayout, TokenForm } from './index';
 
 const GenerateToken = () => (
@@ -7,6 +8,8 @@ const GenerateToken = () => (
     <FormContext.Provider
       value={{
         name: Constants.GENERATE_TOKEN,
+        alternateUrl: RoutePaths.LOGIN,
+        alternateName: Constants.SIGN_IN,
       }}
     >
       <TokenForm />

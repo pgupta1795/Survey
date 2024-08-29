@@ -11,7 +11,7 @@ import Report from '../pages/report/Report';
 const TYPE = 'PNG';
 const PROC = 'FAST';
 
-const useCreatePDF = (sendEmail, pUserId = null) => {
+const useCreatePDF = (sendEmail) => {
   const toastId = useRef(null);
   const [reportSent, setReportSent] = useState(false);
   const [view, setView] = useState();
@@ -31,7 +31,6 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
     const imageProps = pdf.getImageProperties(image);
     const width = pdf.internal.pageSize.getWidth();
     const height = (imageProps.height * width) / imageProps.width;
-    // const height = pdf.internal.pageSize.getHeight();
     console.log(width, height);
     return [width, height];
   };
@@ -43,16 +42,18 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
       format: [297, 210],
       putOnlyUsedFonts: true,
     });
-    // 1st page
 
-    // 2nd page
+    // 1st page
     const header = await getImage('#report');
     const [wh, hh] = getDimension(pdf, header);
     pdf.addImage(Front, TYPE, 0, 0, wh, hh, undefined, PROC);
     pdf.addPage();
+
+    // 2nd page
     pdf.addImage(header, TYPE, 0, 0, wh, hh, undefined, PROC);
-    // 3rd page
     pdf.addPage();
+
+    // 3rd page
     pdf.addImage(Back, TYPE, 0, 0, wh, hh, undefined, PROC);
     console.log(Constants.PDF_CREATED);
     return pdf;
@@ -92,10 +93,10 @@ const useCreatePDF = (sendEmail, pUserId = null) => {
   useEffect(() => {
     setView(
       <div id="generate-report">
-        <Report pUserId={pUserId} display="none" />
+        <Report display="none" />
       </div>
     );
-  }, [pUserId]);
+  }, []);
 
   useEffect(() => {
     if (!reportSent && sendEmail) {

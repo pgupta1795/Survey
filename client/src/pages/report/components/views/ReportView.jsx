@@ -10,36 +10,24 @@ import ReportTitle from '../header/ReportTitle';
 
 const ReportView = ({ display }) => (
   <ReportContainer display={display}>
-    <ReportTitle
-      display={display}
-      sx={{
-        display: 'grid',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        gridTemplateColumns: '10fr 1fr',
-      }}
-    />
-    <Grid item xs={12} sx={{ display: 'flex' }}>
-      <ReportCard
-        display={display}
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-around',
-          alignItems: 'flex-start',
-          textAlign: 'center',
-        }}
-      />
-    </Grid>
-    <Grid item container xs={12}>
-      <Grid item xs={6}>
+    <ReportTitle display={display} />
+    <ReportCard display={display} />
+    <Grid
+      item
+      container
+      xs={12}
+      sx={{ px: '1rem', py: '2rem' }}
+      className="bg-aliceblue"
+    >
+      <Grid item xs={6} className="text-black">
         <MaturityChart />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={6} className="text-black">
         <ScoresChart />
       </Grid>
     </Grid>
     <Grid item xs={12} sx={{ display: 'flex' }}>
-      <ReportFooter sx={{ px: 1 }} display={display} />
+      <ReportFooter display={display} />
     </Grid>
   </ReportContainer>
 );

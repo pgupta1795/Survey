@@ -1,24 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import FormService from '../pages/form/services/FormService';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { fetchFormById, getFormDataById, getStatus } from '../features/forms';
 
 const useFormById = (formId) => {
-  const [form, setForm] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
-
-  const fetchForm = async () => {
-    const formData = await FormService.getFormById(formId);
-    setForm(formData);
-  };
+  const form = useSelector((state) => getFormDataById(state, formId));
+  const status = useSelector(getStatus);
 
   useEffect(() => {
-    fetchForm();
-    return () => {
-      setForm();
-    };
-  }, [formId, location.pathname]);
+    if (status === 'idle' || !form) {
+      dispatch(fetchFormById({ formId }));
+    }
+  }, [formId, location.pathname, dispatch, status, navigate]);
 
-  return form;
+  return form ? JSON.parse(JSON.stringify(form)) : {};
 };
 
 export default useFormById;

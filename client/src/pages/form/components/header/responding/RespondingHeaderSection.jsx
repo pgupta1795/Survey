@@ -1,15 +1,11 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const RespondingHeaderSection = ({ name, description, ...props }) => (
-  <Box sx={{ width: '100%' }} className="edit-form-header">
-    <Typography variant="h4" {...props}>
-      <strong>{name}</strong>
-    </Typography>
-    <Typography variant="h6">{description}</Typography>
-  </Box>
+const RespondingHeaderSection = ({ name, description }) => (
+  <div className="w-full flex flex-col py-2 mx-4 items-start gap-3">
+    <span className="text-xl">{name}</span>
+    <span className="text-sm font-medium">{description}</span>
+  </div>
 );
 
 RespondingHeaderSection.defaultProps = {

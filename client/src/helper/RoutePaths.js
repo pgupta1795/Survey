@@ -6,9 +6,11 @@ const RoutePaths = Object.freeze({
   RESET_PASSWORD: '/resetPassword',
   GENERATE_TOKEN: '/generateToken',
   DASHBAORD: '/dashboard',
-  FORM: '/createform/:formId',
-  SUBMIT_FORM: '/s/:formId',
-  THANKS: '/s/:formId/:userId',
+  FORM: '/cform',
+  CREATE: 'create/:formId',
+  RESPONSE: 'response/:formId',
+  SUBMIT_FORM: '/s/:type/:formId',
+  THANKS: '/s/:type/:formId/:userId',
   REPORT: '/report/:formId/:userId',
 });
 

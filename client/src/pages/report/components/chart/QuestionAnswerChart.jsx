@@ -1,9 +1,14 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
-import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Chart from 'react-apexcharts';
 import { useSelector } from 'react-redux';
+import { getError, getStatus } from '../../../../features/forms';
+import {
+  getStatus as getResponseError,
+  getError as getResponseStatus,
+} from '../../../../features/userResponse';
 import Colors from '../../../../helper/Colors';
 import useChartSeries from '../../../../hooks/useChartSeries';
 import ChartUtils from '../../utils/ChartUtils';
@@ -19,24 +24,12 @@ const QuestionAnswerChart = ({ activeQuestion, activeSection, ...props }) => {
           show: true,
           offsetX: 0,
           offsetY: 0,
-          tools: {
-            download: true,
-          },
+          tools: { download: true },
         },
       },
-      fill: {
-        type: 'gradient',
-      },
-      yaxis: {
-        labels: {
-          show: true,
-        },
-      },
-      xaxis: {
-        labels: {
-          show: false,
-        },
-      },
+      fill: { type: 'gradient' },
+      yaxis: { labels: { show: true } },
+      xaxis: { labels: { show: false } },
       plotOptions: {
         bar: {
           horizontal: true,
@@ -50,19 +43,29 @@ const QuestionAnswerChart = ({ activeQuestion, activeSection, ...props }) => {
         },
       },
       colors: [Colors.GRAPH_COLOR_1],
-      legend: {
-        show: false,
-      },
+      legend: { show: false },
     },
   };
-  const data = useSelector((state) => state?.response?.value);
+  const status = useSelector(getStatus);
+  const error = useSelector(getError);
+  const responseStatus = useSelector(getResponseStatus);
+  const responseError = useSelector(getResponseError);
+
+  if (status === 'loading' || responseStatus === 'loading')
+    return <div>LOADING...</div>;
+
+  if (status === 'failed') return <div>{error}</div>;
+
+  if (responseStatus === 'failed') return <div>{responseError}</div>;
 
   const state = useChartSeries(
-    data,
     options,
     ChartUtils.getQuestionAnswerSeries,
-    { activeQuestion, activeSection },
-    theme.palette.mode
+    {
+      activeQuestion,
+      activeSection,
+    },
+    theme
   );
 
   return (

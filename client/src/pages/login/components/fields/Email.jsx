@@ -1,20 +1,16 @@
-import TextField from '@mui/material/TextField';
 import React from 'react';
+import TextField from '../../../../common/styles/TextField';
 
 const Email = ({ ...props }) => (
   <TextField
-    margin="normal"
+    margin="dense"
     required
     fullWidth
     id="email"
     label="Email Address"
     name="email"
     autoComplete="email"
-    inputProps={{
-      style: {
-        height: '3rem',
-      },
-    }}
+    inputProps={{ style: { height: '3rem', color: 'black' } }}
     {...props}
   />
 );

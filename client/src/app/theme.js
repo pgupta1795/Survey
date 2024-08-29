@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import X from '../assets/images/blue-x.png';
 import Colors from '../helper/Colors';
 
 const primary = {
@@ -11,7 +10,8 @@ const primary = {
 
 const typography = {
   fontFamily: [
-    '"Helvetica Neue"',
+    'Gotham',
+    'Helvetica Neue',
     '-apple-system',
     'BlinkMacSystemFont',
     '"Segoe UI"',
@@ -22,22 +22,19 @@ const typography = {
     '"Segoe UI Emoji"',
     '"Segoe UI Symbol"',
   ].join(','),
+  fontWeight: '300',
   question: {
     fontWeight: '500',
     fontSize: '1.1em',
   },
   answer: {
     fontWeight: '500',
-    color: Colors.GREY_TEXT,
   },
   italic: {
     fontWeight: 'italic',
   },
   small: {
     fontSize: '0.5em',
-  },
-  tableHeader: {
-    fontWeight: '900',
   },
   smallQuestion: {
     fontSize: '0.75em',
@@ -46,16 +43,6 @@ const typography = {
 };
 
 const getBackground = () => ({
-  MuiCssBaseline: {
-    styleOverrides: {
-      body: {
-        backgroundImage: `url(${X})`,
-        backgroundRepeat: 'repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      },
-    },
-  },
   MuiButtonBase: {
     defaultProps: {
       disableRipple: true,

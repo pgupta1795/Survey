@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const FormModel = require('../model/Form');
 const UserUtils = require('../../User/utils/UserUtils');
 const Constants = require('../../../helper/Constants');
@@ -14,11 +13,9 @@ const errorCallback = (err, docs) => {
 
 const getForms = async (req, res) => {
   try {
-    const formType = req.params.type;
-    const result = await FormModel.find({
-      type: formType,
-    }).lean();
-    res.send(result);
+    const { type } = req.query;
+    const result = await FormModel.find(type ? { type } : {}).lean();
+    res.status(200).send(result);
   } catch (e) {
     console.error(e);
     res.status(500).send(e);
@@ -33,7 +30,6 @@ const createForm = async (req, res) => {
   try {
     const userId = req.params.userId;
     const formData = req.body;
-    console.log('FormData : ', formData);
     const form = await new FormModel(formData).save();
     await UserUtils.addForm(userId, form._id);
     console.log(`Form id ${form._id} added to user ${userId}`);
@@ -50,7 +46,6 @@ const deleteForm = async (req, res) => {
     const form = await FormModel.findOne({
       _id: formId,
     }).populate('createdBy');
-
     const formUserId = form?.createdBy?._id?.toString();
 
     if (form == null)
@@ -60,7 +55,6 @@ const deleteForm = async (req, res) => {
 
     await form.remove();
     console.log(`Form deleted ${formId}`);
-
     const updatedUser = await User.updateOne(
       { createdForms: formId },
       { $pull: { createdForms: formId } }
@@ -81,8 +75,6 @@ const deleteForm = async (req, res) => {
 const editForm = async ({ body }, res) => {
   try {
     const { formId, ...data } = body;
-    console.log(`form ${formId} data is received`);
-
     const newFormData = await FormModel.findByIdAndUpdate(
       formId,
       { $set: data },
@@ -94,7 +86,6 @@ const editForm = async ({ body }, res) => {
     )
       .clone()
       .exec();
-    console.log(`Form ${formId} saved successfully`);
     res.status(200).json(newFormData);
   } catch (error) {
     console.error(error);
@@ -105,7 +96,6 @@ const editForm = async ({ body }, res) => {
 const getFormsByUser = async (req, res) => {
   try {
     const userId = req.params.userId;
-    console.log('User ', userId);
     const user = await UserUtils.findUserById(userId);
     if (user == null) return res.status(404).send(Constants.ERROR_NO_USER);
     FormModel.find()
@@ -135,6 +125,16 @@ const getFormById = async (req, res) => {
   }
 };
 
+const getTypes = async (req, res) => {
+  try {
+    const types = await FormModel.schema.path('type').enumValues;
+    res.status(200).json(types);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   createForm,
   editForm,
@@ -142,4 +142,5 @@ module.exports = {
   getForms,
   getFormsByUser,
   getFormById,
+  getTypes,
 };

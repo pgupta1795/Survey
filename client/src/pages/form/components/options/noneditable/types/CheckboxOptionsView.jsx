@@ -1,18 +1,26 @@
+import { FormControl, FormHelperText } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
-import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import OptionsImageView from '../../../questions/noneditable/OptionsImageView';
+import { Constants } from '../../../tab';
 
 const CheckboxOptionsView = ({ question, values, ...rest }) => (
-  <FormControl>
-    <FormGroup sx={{ pl: 1 }} aria-label="quiz" name="quiz">
+  <FormControl className="w-full" error={!values || values.length === 0}>
+    <FormGroup
+      sx={{ pl: 1, display: 'grid' }}
+      className="grid-flow-row sm:grid-cols-2 sm:justify-between sm:gap-x-6 sm:gap-y-2"
+    >
       {React.Children.toArray(
         question?.options?.map((op) => (
-          <div key={`${op?._id}id1-checkbox`}>
+          <div
+            key={`${op?._id}id1-checkbox`}
+            className={`my-1 px-2 border border-blue border-solid rounded-10xs min-h-[2.44rem] ${
+              values?.includes(op?.text) ? 'bg-aliceblue' : null
+            }`}
+          >
             <FormControlLabel
               control={
                 <Checkbox
@@ -21,7 +29,7 @@ const CheckboxOptionsView = ({ question, values, ...rest }) => (
                   {...rest}
                 />
               }
-              label={<Typography variant="answer">{op?.text}</Typography>}
+              label={<span className="text-xs">{op?.text}</span>}
               value={op?.text}
             />
             {question.open ? <OptionsImageView option={op} /> : null}
@@ -29,6 +37,9 @@ const CheckboxOptionsView = ({ question, values, ...rest }) => (
         ))
       )}
     </FormGroup>
+    <FormHelperText>
+      {!values || values.length === 0 ? Constants.FORM_FILL_CHECKBOX : null}
+    </FormHelperText>
   </FormControl>
 );
 

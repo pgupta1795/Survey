@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialStateValue = '';
+const initialState = { value: '' };
 
 export const themeSlice = createSlice({
   name: 'theme',
-  initialState: { value: initialStateValue },
+  initialState,
   reducers: {
     changeTheme: (state, action) => {
       state.value = action.payload;

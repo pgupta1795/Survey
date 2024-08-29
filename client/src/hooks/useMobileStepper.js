@@ -2,11 +2,10 @@ import MobileStepper from '@mui/material/MobileStepper';
 import React, { useEffect, useState } from 'react';
 import StepperButton from '../common/components/button/StepperButton';
 import { topScroll } from '../common/components/layout/ScrollToTop';
-import Colors from '../helper/Colors';
 
-const useMobileStepper = (dataArray, variant = 'progress') => {
+const useMobileStepper = (dataArray, variant = 'dots') => {
   const [maxSteps, setMaxSteps] = useState(0);
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const handleNext = () => {
     topScroll();
     setActiveStep((prev) => prev + 1);
@@ -23,9 +22,7 @@ const useMobileStepper = (dataArray, variant = 'progress') => {
 
   const BasicStepper = (
     <MobileStepper
-      sx={{
-        background: `${Colors.GRAPH_COLOR_2}`,
-      }}
+      className="px-3 w-[28.19rem] max-sm:w-3/5"
       variant={variant}
       steps={maxSteps}
       position="static"
@@ -42,6 +39,7 @@ const useMobileStepper = (dataArray, variant = 'progress') => {
           onClick={handleBack}
           disabled={activeStep === 0}
           label="Back"
+          id="back-btn"
         />
       }
     />

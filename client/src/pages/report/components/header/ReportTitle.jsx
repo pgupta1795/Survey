@@ -1,29 +1,23 @@
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import PropTypes from 'prop-types';
 import React from 'react';
-import Settings from '../../../../Settings.json';
+import { getOrganization } from '../../../../auth/services/AuthService';
+import Constants from '../../../../helper/Constants';
 import ReportLogo from './ReportLogo';
 
-const ReportTitle = ({ display, ...props }) => {
-  const size = display === 'none' ? 'h3' : 'h4';
-  return (
-    <Grid item xs={12} {...props}>
-      <Typography
-        sx={{
-          typography: { xs: `${size}`, sm: `${size}`, md: `${size}` },
-          color: 'white',
-          p: 1,
-        }}
-      >
-        <strong>{Settings.TITLE}</strong>
-      </Typography>
+const ReportTitle = () => (
+  <Grid item xs={12}>
+    <div className="flex justify-center items-center w-full px-4 mt-12 bg-white text-black">
       <ReportLogo />
-    </Grid>
-  );
-};
+      <div className="h-auto flex-auto" />
+      <div className="inline-block text-xl font-medium">
+        <div>{Constants.TITLE}</div>
+        <div className="text-blue font-extrabold mx-auto text-center">
+          {new URL(window.location.href).searchParams.get('organization') ||
+            getOrganization()}
+        </div>
+      </div>
+    </div>
+  </Grid>
+);
 
-ReportTitle.propTypes = {
-  display: PropTypes.string.isRequired,
-};
 export default ReportTitle;

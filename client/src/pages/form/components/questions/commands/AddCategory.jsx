@@ -1,16 +1,20 @@
 import { FormControl, MenuItem, Select } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
+import Constants from '../../../../../helper/Constants';
 import { QuestionsContext } from '../../../../../hooks/contexts';
-import Settings from '../../../../../Settings.json';
 
 const AddCategory = ({ questionIndex }) => {
   const { section, setSections } = useContext(QuestionsContext);
   const categories = {};
-  Settings.CATEGORY.forEach((category) => {
+  Constants.CATEGORY.forEach((category) => {
     categories[category] = category;
   });
-  const [value, setValue] = useState(section.questions[questionIndex].category);
+
+  const [value, setValue] = useState(
+    section.questions[questionIndex].category ||
+      Constants.CATEGORY[Math.floor(Constants.CATEGORY.length * Math.random())]
+  );
   const handleChange = (event) => setValue(event.target.value);
 
   useEffect(() => {

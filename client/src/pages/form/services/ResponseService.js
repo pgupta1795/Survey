@@ -8,7 +8,10 @@ import {
 const BASE_URL = '/api/response';
 
 export default {
-  getViewFormUrl: (id) => `/s/${id}`,
+  getViewFormUrl: (id, type, responseId) => {
+    if (responseId) return `/s/${type}/${id}?responseId=${responseId}`;
+    return `/s/${type}/${id}`;
+  },
 
   submitResponse: async (data) => {
     const response = await axios.post(
@@ -25,7 +28,7 @@ export default {
 
   getResponse: async (formId) => {
     const response = await axios.get(
-      `${BASE_URL}/getresponse/${formId}`,
+      `${BASE_URL}/response/${formId}`,
       getAuthHeader()
     );
     if (response.status !== 200) {
@@ -35,8 +38,12 @@ export default {
     return response.data;
   },
 
-  getAllResponses: async () => {
-    const response = await axios.get(`${BASE_URL}/responses`, getAuthHeader());
+  getResponsesByUser: async () => {
+    const userId = getCurrentUser()?.id;
+    const response = await axios.get(
+      `${BASE_URL}/responses/${userId}`,
+      getAuthHeader()
+    );
     if (response.status !== 200) {
       toast.error(response.data);
       return console.error(response.data);
@@ -47,7 +54,7 @@ export default {
   getPendingResponse: async () => {
     const userId = getCurrentUser()?.id;
     const response = await axios.get(
-      `${BASE_URL}/getPendingResponse/${userId}`,
+      `${BASE_URL}/pendingResponse/${userId}`,
       getAuthHeader()
     );
     if (response.status !== 200) {
@@ -57,10 +64,14 @@ export default {
     return response.data;
   },
 
-  getResponseByCompany: async (formId, id) => {
+  getResponseByCompany: async (formId, organization) => {
     try {
+      const url = new URL(window.location.href);
+      const paramOrganization = url.searchParams.get('organization');
       const response = await axios.get(
-        `${BASE_URL}/getResponseByCompany/${formId}/${id}`,
+        `${BASE_URL}/responseByCompany/${formId}?organization=${
+          paramOrganization || organization
+        }`,
         getAuthHeader()
       );
       if (response.status !== 200) {

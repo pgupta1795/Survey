@@ -7,10 +7,12 @@ const {
   deleteForm,
   editForm,
   getFormsByUser,
+  getTypes,
 } = require('../service/FormService');
 
+router.route('/types').get(authenticateToken, getTypes);
 router.route('/create/:userId').post(authenticateToken, createForm);
-router.route('/allforms/:type').get(authenticateToken, getForms);
+router.route('/allforms').get(authenticateToken, getForms);
 router.route('/:formId').get(authenticateToken, getFormById);
 router
   .route('/deleteform/:formId/:userId')

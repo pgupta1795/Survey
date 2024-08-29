@@ -1,47 +1,38 @@
-import Delete from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import Visibility from '@mui/icons-material/Visibility';
 import CardActions from '@mui/material/CardActions';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import toast from '../../../../../app/toast';
-import { refresh } from '../../../../../auth/services/AuthService';
 import TextButton from '../../../../../common/components/button/TextButton';
+import useFormById from '../../../../../hooks/useFormById';
 import FormService from '../../../../form/services/FormService';
 import ResponseService from '../../../../form/services/ResponseService';
+import DeleteForm from './DeleteForm';
 
 const FormsCardActions = ({ formId }) => {
   const navigate = useNavigate();
-
-  const deleteForm = async () => {
-    try {
-      await FormService.deleteForm(formId);
-      await refresh();
-      window.location.reload(true);
-    } catch (error) {
-      console.error(error);
-      toast.error(error);
-    }
-  };
+  const form = useFormById(formId);
 
   return (
     <CardActions className="card-action">
       <TextButton
         title="View Form"
-        onClick={() => navigate(ResponseService.getViewFormUrl(formId))}
+        onClick={() =>
+          navigate(ResponseService.getViewFormUrl(formId, form?.type))
+        }
       >
-        <Visibility />
+        <Visibility className="text-white" />
+        <div>View</div>
       </TextButton>
       <TextButton
         title="Edit Form"
         onClick={() => navigate(FormService.getFormUrl(formId))}
       >
-        <Edit />
+        <Edit className="text-white" />
+        <div>Edit</div>
       </TextButton>
-      <TextButton title="Delete Form" onClick={deleteForm}>
-        <Delete />
-      </TextButton>
+      <DeleteForm formId={formId} />
     </CardActions>
   );
 };

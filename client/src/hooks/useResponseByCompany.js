@@ -1,30 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import toast from '../app/toast';
-import ResponseService from '../pages/form/services/ResponseService';
+import { getOrganization } from '../auth/services/AuthService';
+import {
+  fetchResponseByFormAndUserId,
+  getResponseData,
+} from '../features/userResponse';
+import { getCurrentOrganization } from '../features/users';
 
-const useResponseByCompany = (formId, userId) => {
-  const [response, setResponse] = useState();
+const useResponseByCompany = (formId) => {
   const location = useLocation();
-
-  const fetch = async () => {
-    try {
-      const resData = await ResponseService.getResponseByCompany(
-        formId,
-        userId
-      );
-      setResponse(resData);
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+  const dispatch = useDispatch();
+  const response = useSelector(getResponseData);
+  const organization = useSelector(getCurrentOrganization);
 
   useEffect(() => {
-    fetch();
-    return () => {
-      setResponse();
-    };
-  }, [formId, location.pathname, userId]);
+    dispatch(
+      fetchResponseByFormAndUserId({
+        formId,
+        organization: organization
+          ? Object.keys(organization)[0]
+          : getOrganization(),
+      })
+    );
+  }, [formId, location.pathname, organization]);
 
   return response;
 };

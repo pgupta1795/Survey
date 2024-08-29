@@ -1,17 +1,17 @@
 ### GET ALL FORMS
-GET http://localhost:5000/form/forms
+GET http://localhost:5000/api/form/forms
 
 ### GET FORM BY USER
-GET http://localhost:5000/form/getuserforms/62c534a9310cc874bbbbc143
+GET http://localhost:5000/api/form/getuserforms/62c534a9310cc874bbbbc143
 
 ### GET FORM BY ID
-GET http://localhost:5000/form/62c54f17b6c9b0c2f9f14789
+GET http://localhost:5000/api/form/62c54f17b6c9b0c2f9f14789
 
 ### DELETE FORM USING FORMID AND USERID
-DELETE http://localhost:5000/form/deleteform/Pallav Gupta/62c534a9310cc874bbbbc143
+DELETE http://localhost:5000/api/form/deleteform/Pallav Gupta/62c534a9310cc874bbbbc143
 
 ### EDIT FORM (SEND QUESTIONS)
-PUT http://localhost:5000/form/editForm
+PUT http://localhost:5000/api/form/editForm
 Content-Type: application/json
 
 {
@@ -48,9 +48,13 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:5000/form/create
+POST http://localhost:5000/api/form/create
 Content-Type: application/json
 
 {
 	"name":"HEY","description":"HELLO","createdBy":"62c534a9310cc874bbbbc143"
 }
+
+###
+GET http://localhost:5000/api/form/types
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDJmYTkzM2E4MzY3MmQ5NDRiNDM3YSIsIm5hbWUiOiJQTE0tTVMgQWRtaW4iLCJlbWFpbCI6InBsbW1zQHRlY2huaWEuY29tIiwiYWRtaW4iOnRydWUsIm9yZ2FuaXphdGlvbiI6IlRFQ0hOSUEiLCJjcmVhdGVkRm9ybXMiOlsiOGI4NzRhZDItMDczYy00NzZkLTg5ZjYtZjE0Nzk5ZDEwNDc0IiwiMDc1NTA3ODctMzkwNi00OWMxLTk1Y2UtNTM5NGRmM2NhMmI2Il0sImlhdCI6MTY3OTkyOTUwNn0.mkBHNz74Mujb150dp5ttKB23o2zOPjjUpJENBeEKeEY

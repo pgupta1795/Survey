@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCurrentUser } from '../../../auth/services/AuthService';
 import RoutePaths from '../../../helper/RoutePaths';
 import UserService from '../../../pages/login/services/UserService';
+import { stringAvatar } from '../../utils/CommonUtils';
 
 const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
   const openAchor = Boolean(anchorEl);
@@ -53,12 +54,8 @@ const ProfileMenu = ({ anchorEl, setAnchorEl }) => {
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
-      <MenuItem
-        onClick={() => {
-          navigate(UserService.getUserUrl());
-        }}
-      >
-        <Avatar sx={{ bgcolor: 'primary.main', width: 16, height: 16 }} />
+      <MenuItem onClick={() => navigate(UserService.getUserUrl())}>
+        <Avatar {...stringAvatar(user?.name)} sx={{ width: 16, height: 16 }} />
         {user?.name}
       </MenuItem>
       {user?.admin ? <Divider /> : null}

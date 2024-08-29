@@ -1,9 +1,9 @@
-import * as React from 'react';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const MoreToolbar = ({ commands }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,10 +36,10 @@ const MoreToolbar = ({ commands }) => {
         open={open}
         onClose={handleClose}
       >
-        {commands.map((option) => (
+        {commands.map((option, i) => (
           <MenuItem
-            key={JSON.stringify(option)}
-            // onClick={handleClose}
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
           >
             {option}
           </MenuItem>

@@ -2,8 +2,6 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import toast from '../../app/toast';
 import Constants from '../../helper/Constants';
-import FormService from '../../pages/form/services/FormService';
-import ResponseService from '../../pages/form/services/ResponseService';
 import { RoutePaths } from '../../router';
 
 export const getAuthHeader = () => {
@@ -42,10 +40,7 @@ export const refresh = async () => {
       `/api/user/refresh/${userId}`,
       getAuthHeader()
     );
-    console.log(response.data);
-    if (!response.data || !response.data?.accessToken) {
-      return;
-    }
+    if (!response.data || !response.data?.accessToken) return;
     setUserTicket(response.data.accessToken);
   } catch (error) {
     console.error(error);
@@ -61,31 +56,17 @@ export const isAuthenticated = () => {
 export const isAdminUser = () => {
   const user = getCurrentUser();
   const isAdmin = user?.admin;
-  if (!isAdmin) {
-    console.error(Constants.WARNING_INCORRECT_URL);
-    toast.warning(Constants.WARNING_INCORRECT_URL);
-  }
+  if (!isAdmin) console.warn(Constants.WARNING_INCORRECT_URL);
   return isAdmin;
 };
 
-const getNormalUserPath = async () => {
-  let formId;
-  const pendingResponse = await ResponseService.getPendingResponse();
-  if (pendingResponse) {
-    formId = pendingResponse.formId;
-  } else {
-    const formToSubmit = await FormService.getForms(Constants.ANONYMOUS);
-    formId = formToSubmit[0]?._id;
-  }
-  return ResponseService.getViewFormUrl(formId || '');
+export const getOrganization = () => {
+  const user = getCurrentUser();
+  return user?.organization;
 };
 
-export const getReDirectPath = async () => {
-  const user = getCurrentUser();
-  const isAdmin = user?.admin;
-  if (isAdmin) {
-    return RoutePaths.DASHBAORD;
-  }
-  const normalUserPath = await getNormalUserPath();
-  return normalUserPath;
-};
+export const getReDirectPath = () => RoutePaths.DASHBAORD;
+
+export const getStoreTheme = () => localStorage.getItem('theme');
+
+export const setStoreTheme = (theme) => localStorage.setItem('theme', theme);

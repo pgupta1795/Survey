@@ -1,3 +1,4 @@
+import toast from '../../../app/toast';
 import { getCurrentUser } from '../../../auth/services/AuthService';
 import FieldTypes from '../../../helper/FieldTypes';
 import { Constants } from '../../signup';
@@ -80,20 +81,27 @@ export const getNewSectiondata = (sectionData, id, data, type, isChecked) => {
  * @param {sectionData} sectionData
  * @returns
  */
-export const saveResponse = async (formData, sectionData) => {
+export const saveResponse = async ({
+  formData,
+  newSectionData,
+  pendingRes,
+}) => {
   const user = getCurrentUser();
-  if (!user) return null;
-
+  if (!user) return;
   const userResponseData = {
     formId: formData._id,
     userId: user?.id,
     organization: user?.organization,
-    sections: sectionData,
+    sections: newSectionData,
     completed: false,
+    _id: pendingRes?._id || null,
   };
-  const data = await ResponseService.submitResponse(userResponseData);
-  if (!data) throw new Error(Constants.ERROR_SAVE_FORM);
-  return data;
+
+  await toast.promise(ResponseService.submitResponse(userResponseData), {
+    pending: Constants.SAVING,
+    success: Constants.SAVED,
+    error: `${Constants.ERROR_SAVE_FORM} 🤯`,
+  });
 };
 
 /**

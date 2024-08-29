@@ -1,7 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
+import React from 'react';
+import { scrollToNextField } from '../../../../../../common/utils/CommonUtils';
 import FieldTypes from '../../../../../../helper/FieldTypes';
+import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
+import Question from '../../../questions/noneditable/Question';
 import CheckboxOptionsView from '../../noneditable/types/CheckboxOptionsView';
 
 const CheckboxOptions = ({ question, questionIndex }) => {
@@ -11,13 +13,17 @@ const CheckboxOptions = ({ question, questionIndex }) => {
   );
 
   return (
-    <CheckboxOptionsView
-      question={question}
-      values={values}
-      onChange={(e) =>
-        handleChange(e.target.value, questionIndex, e.target.checked)
-      }
-    />
+    <>
+      <Question question={question} questionIndex={questionIndex} />
+      <CheckboxOptionsView
+        question={question}
+        values={values}
+        onChange={(e) => {
+          handleChange(e.target.value, questionIndex, e.target.checked);
+          scrollToNextField(e);
+        }}
+      />
+    </>
   );
 };
 

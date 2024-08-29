@@ -1,8 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import RadioOptionsView from '../../noneditable/types/RadioOptionsView';
-import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
+import React from 'react';
+import { scrollToNextField } from '../../../../../../common/utils/CommonUtils';
 import FieldTypes from '../../../../../../helper/FieldTypes';
+import useHandleResponseChange from '../../../../../../hooks/useHandleResponseChange';
+import Question from '../../../questions/noneditable/Question';
+import RadioOptionsView from '../../noneditable/types/RadioOptionsView';
 
 const RadioOptions = ({ question, questionIndex, ...rest }) => {
   const { values, handleChange } = useHandleResponseChange(
@@ -11,12 +13,18 @@ const RadioOptions = ({ question, questionIndex, ...rest }) => {
   );
 
   return (
-    <RadioOptionsView
-      question={question}
-      value={values && values.length > 0 ? values[0] : ''}
-      onChange={(e) => handleChange(e.target.value, questionIndex)}
-      {...rest}
-    />
+    <>
+      <Question question={question} questionIndex={questionIndex} />
+      <RadioOptionsView
+        question={question}
+        value={values && values.length > 0 ? values[0] : ''}
+        onChange={(e) => {
+          handleChange(e.target.value, questionIndex);
+          scrollToNextField(e);
+        }}
+        {...rest}
+      />
+    </>
   );
 };
 

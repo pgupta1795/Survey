@@ -41,6 +41,7 @@ const CreateQuestions = () => {
               <Accordion
                 onChange={() => handleExpand(i)}
                 expanded={section.questions[i].open}
+                className="relative"
               >
                 <AccordionSummary
                   aria-controls="panel1a-content"
@@ -49,10 +50,14 @@ const CreateQuestions = () => {
                   sx={{ width: '100%' }}
                 >
                   {!ques?.open ? (
-                    <CreateQuestionsView question={ques} questionIndex={i} />
+                    <>
+                      <div className="absolute top-[0rem] left-[0rem] rounded-t-10xs rounded-b-none bg-blue w-full h-[0.81rem]" />
+                      <CreateQuestionsView question={ques} questionIndex={i} />
+                    </>
                   ) : null}
                 </AccordionSummary>
                 <AccordionDetails className="edit-question-options-view">
+                  <div className="absolute top-[0rem] left-[0rem] rounded-t-10xs rounded-b-none bg-blue w-full h-[0.81rem]" />
                   <EditableQuestionsView question={ques} questionIndex={i} />
                 </AccordionDetails>
                 <Divider />

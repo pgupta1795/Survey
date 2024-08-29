@@ -1,10 +1,10 @@
-import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
 import React from 'react';
+import TextField from '../../../../common/styles/TextField';
 
-const Password = ({ label }) => (
+const Password = ({ label, ...props }) => (
   <TextField
-    margin="normal"
+    margin="dense"
     required
     fullWidth
     name="password"
@@ -12,11 +12,8 @@ const Password = ({ label }) => (
     type="password"
     id="password"
     autoComplete="current-password"
-    inputProps={{
-      style: {
-        height: '3rem',
-      },
-    }}
+    inputProps={{ style: { height: '3rem' } }}
+    {...props}
   />
 );
 

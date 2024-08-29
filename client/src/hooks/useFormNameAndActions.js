@@ -10,13 +10,9 @@ const useFormNameAndActions = () => {
   return [
     <FullTextField
       variant="standard"
-      sx={{
-        mb: 5,
-      }}
+      sx={{ mb: 5 }}
       value={formName}
-      onInput={(e) => {
-        setFormName(e.target.value);
-      }}
+      onInput={(e) => setFormName(e.target.value)}
     />,
     <div className="section-commands">
       <Save formName={formName} />

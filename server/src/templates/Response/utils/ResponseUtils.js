@@ -4,8 +4,8 @@ const getResponseByFormId = async (formId) => {
   return await ResponseModel.find({ formId });
 };
 
-const getIncompleteResponse = async (userId) => {
-  return await ResponseModel.findOne({ userId, completed: false });
+const getIncompleteResponse = async (query) => {
+  return await ResponseModel.find({ ...query, completed: false });
 };
 
 const updateIncompleteResponse = async (id, data) => {

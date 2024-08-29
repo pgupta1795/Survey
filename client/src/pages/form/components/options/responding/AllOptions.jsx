@@ -1,10 +1,10 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import RadioOptions from './types/RadioOptions';
+import React from 'react';
 import FieldTypes, { getKey } from '../../../../../helper/FieldTypes';
-import TexFieldOption from './types/TextFieldOption';
 import CheckboxOptions from './types/CheckboxOptions';
 import DropdownOptions from './types/DropdownOptions';
+import RadioOptions from './types/RadioOptions';
+import TexFieldOption from './types/TextFieldOption';
 
 const AllOptions = ({ question, questionIndex }) => {
   const qType = question?.type;
@@ -23,9 +23,7 @@ const AllOptions = ({ question, questionIndex }) => {
     );
 
   if (qType === getKey(FieldTypes, FieldTypes.LINEAR))
-    return (
-      <RadioOptions question={question} questionIndex={questionIndex} row />
-    );
+    return <RadioOptions question={question} questionIndex={questionIndex} />;
 
   return <RadioOptions question={question} questionIndex={questionIndex} />;
 };

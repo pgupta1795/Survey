@@ -5,6 +5,9 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from '../../../../app/toast';
 import { getReDirectPath } from '../../../../auth/services/AuthService';
+import { addBlueBG } from '../../../../common/utils/CommonUtils';
+import { isValidEmail } from '../../../../common/utils/lodashUtils';
+import useReCaptcha from '../../../../hooks/useReCaptcha';
 import {
   Constants,
   Email,
@@ -20,59 +23,77 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const form = useContext(FormContext);
+  const [errors, setErrors] = useState({});
+  const { token, render, reRef } = useReCaptcha();
 
-  const redirectTo = async (user) => {
-    if (!user) return;
-    console.log(user);
-    const redirectPath = await getReDirectPath();
-    if (redirectPath) {
-      console.log(Constants.LOGIN_OK);
-      navigate(redirectPath);
-      return;
+  const getValidationErrors = (data) => {
+    const validationErrors = {};
+    if (!data.password) {
+      validationErrors.password = 'Password is required';
     }
-    console.error(Constants.LOGIN_NOT_OK);
-    toast.error(Constants.LOGIN_NOT_OK);
+    if (!isValidEmail(data.email)) {
+      validationErrors.email = 'Invalid email address';
+    }
+    return validationErrors;
   };
 
-  const handleSubmit = async (event) => {
+  const redirectTo = () => {
+    const redirectPath = getReDirectPath();
+    toast.info(Constants.LOGIN_OK);
+    navigate(redirectPath);
+  };
+
+  const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      event.preventDefault();
-      let data = new FormData(event.target);
+      e.preventDefault();
+      reRef.current.reset();
+      let data = new FormData(e.target);
       if (!data) return;
       data = Object.fromEntries(data);
-      const response = await UserService.login(data);
-      if (response) redirectTo(response);
-      setLoading(false);
+      const newErrors = getValidationErrors(data);
+
+      if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors);
+      } else {
+        data = { ...data, token };
+        const response = await UserService.login(data);
+        if (response) redirectTo();
+        addBlueBG();
+      }
     } catch (error) {
       console.error(error);
-      toast.error(error);
+      toast.error(error.response?.data?.error || error.response?.data || error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Box
-      sx={{
-        my: 6,
-        mx: 7,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
+    <div className="w-full px-4">
       <LoginHeader />
       {loading ? (
-        <CircularProgress color="primary" sx={{ mt: 10 }} />
+        <div className="inline-flex flex-col gap-0 justify-center items-center w-full mt-3">
+          <CircularProgress color="primary" sx={{ mt: 10 }} />
+        </div>
       ) : (
         <Box
           component="form"
           noValidate
           onSubmit={handleSubmit}
-          sx={{ mt: 1, mb: 1 }}
+          className="inline-flex flex-col gap-0 gap-y-2 justify-center items-center w-full mt-3"
         >
-          <Email />
-          <Password />
-          <SubmitButton>
+          <Email
+            error={Boolean(errors.email)}
+            helperText={errors.email}
+            autoFocus
+          />
+          <Password
+            error={Boolean(errors.password)}
+            helperText={errors.password}
+          />
+          {render}
+          <SubmitButton sx={{ mt: 1, mb: 0, p: 1 }}>
             <Typography noWrap variant="button">
               {form.name}
             </Typography>
@@ -80,7 +101,7 @@ const LoginForm = () => {
           <LoginFooter />
         </Box>
       )}
-    </Box>
+    </div>
   );
 };
 

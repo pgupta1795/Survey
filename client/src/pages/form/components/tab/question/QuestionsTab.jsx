@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import React, { useState } from 'react';
 import useMobileStepper from '../../../../../hooks/useMobileStepper';
@@ -11,8 +12,11 @@ import {
   useFormNameAndActions,
   useFormSections,
 } from '../index';
+import FormTypes from './FormTypes';
 
 const QuestionsTab = () => {
+  const theme = useTheme();
+
   const [loading, setLoading] = useState(true);
   const [
     sections,
@@ -23,14 +27,11 @@ const QuestionsTab = () => {
     openUploadImagePop,
     setOpenUploadImagePop,
   ] = useFormSections(setLoading);
-
   const [formNameField, formActions] = useFormNameAndActions();
-
   const { activeStep, BasicStepper, handleBack } = useMobileStepper(
     sections,
     'text'
   );
-
   const updateImageLink = (link, context) => {
     link = link.replace('server', window.location.hostname);
     console.log(link);
@@ -56,8 +57,13 @@ const QuestionsTab = () => {
 
   if (loading) return <BasicFormSkeleton />;
   return (
-    <div>
+    <div
+      className={`${
+        theme.palette.mode === 'light' ? 'bg-white' : 'bg-darkslategray'
+      } p-8 shadow-2xl`}
+    >
       {formNameField}
+      <FormTypes />
       <QuestionsContext.Provider
         key={sections[activeStep]?._id}
         value={{
@@ -83,7 +89,9 @@ const QuestionsTab = () => {
           </Grid>
         </CenteredGridBox>
       </QuestionsContext.Provider>
-      {BasicStepper}
+      <div className="w-full mx-auto flex justify-center items-center">
+        {BasicStepper}
+      </div>
     </div>
   );
 };

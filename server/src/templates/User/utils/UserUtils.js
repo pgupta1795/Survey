@@ -43,7 +43,6 @@ const createUser = async (name, email, password, organization) => {
     organization,
     password: hash,
   }).save();
-  console.log('USER CREATED : ');
   console.log(user);
   return user;
 };
@@ -83,6 +82,18 @@ const getOrganization = async (userId) => {
     if (!user || user == null || !user?.organization)
       throw Constants.ERROR_NO_USER;
     return user.organization;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getNameAndOrganization = async (userId) => {
+  try {
+    const user = await findUserById(userId);
+    if (!user || user == null || !user?.organization)
+      throw Constants.ERROR_NO_USER;
+    const { organization, name } = user;
+    return { organization, name };
   } catch (error) {
     throw error;
   }
@@ -150,6 +161,19 @@ const findOrganizations = async () => {
   ]);
 };
 
+const validateHuman = async (token) => {
+  try {
+    const secret = process.env.RECAPTCHA_SECRET_KEY;
+    const url = `${Constants.GOOGLE_RECAPTCHA_URL}?secret=${secret}&response=${token}`;
+    const response = await fetch(url, { method: 'POST' });
+    const data = await response.json();
+    return data?.success;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 module.exports = {
   update,
   findOrganizations,
@@ -164,4 +188,6 @@ module.exports = {
   getEmail,
   addNewPassword,
   getOrganization,
+  getNameAndOrganization,
+  validateHuman,
 };

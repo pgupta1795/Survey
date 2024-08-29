@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const TextButton = ({ children, ...rest }) => (
-  <Button size="small" variant="text" color="inherit" {...rest}>
+  <Button
+    size="small"
+    variant="text"
+    color="inherit"
+    className="flex flex-col"
+    {...rest}
+  >
     {children}
   </Button>
 );

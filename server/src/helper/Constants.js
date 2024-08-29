@@ -3,6 +3,7 @@ const Constants = Object.freeze({
   ANONYMOUS: 'anonymous',
   RADIO: 'RADIO',
   ID: '_id',
+  GOOGLE_RECAPTCHA_URL: 'https://www.google.com/recaptcha/api/siteverify',
 
   //MESSAGES
   NODE_STARTED: `\u{1F525}\u{1F680} app listen on port ${process.env.PORT} \u{1F525}\u{1F680}`,

@@ -1,22 +1,21 @@
-import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from '../../../../app/toast';
-import { SubmitButton } from '../../../login/components/form';
 import ThanksService from '../../../thanks/services/ThanksService';
 import FormUtils from '../../utils/FormUtils';
 import { submitResponse } from '../../utils/ResponseUtils';
 import { Constants } from '../tab';
 
-const SubmitResponse = ({ formData, sectionData }) => {
-  const [disabled, setDisabled] = useState(true);
+const SubmitResponse = ({ formData, sectionData, activeStep, maxSteps }) => {
+  const [disabled, setDisabled] = useState(activeStep !== maxSteps - 1);
   const navigate = useNavigate();
   const { formId } = useParams();
 
   const submit = async () => {
     const data = await submitResponse(formData, sectionData);
-    const url = ThanksService.getUrl(formId);
+    const url = ThanksService.getUrl(formId, formData?.type);
     navigate(url);
     console.log(data);
     toast.info(Constants.RES_SUBMIT);
@@ -25,9 +24,6 @@ const SubmitResponse = ({ formData, sectionData }) => {
   useEffect(() => {
     const allQuestions = FormUtils.getAllQuestions(formData);
     const allResponses = FormUtils.getAllResponses(sectionData);
-    console.log({ allQuestions });
-    console.log({ allResponses });
-
     if (allQuestions?.length === allResponses?.length) {
       setDisabled(FormUtils.hasIncompleteQuestion(allQuestions, allResponses));
     }
@@ -38,9 +34,17 @@ const SubmitResponse = ({ formData, sectionData }) => {
   }, [formData, sectionData]);
 
   return (
-    <SubmitButton disabled={disabled} color="primary" onClick={submit}>
-      <Typography variant="button">Submit</Typography>
-    </SubmitButton>
+    <Button
+      type="submit"
+      variant="contained"
+      sx={{ p: 1, mt: 2 }}
+      disabled={disabled}
+      color="primary"
+      onClick={submit}
+      className="px-3 w-[28.19rem] max-sm:w-3/5"
+    >
+      Submit
+    </Button>
   );
 };
 
@@ -51,5 +55,7 @@ SubmitResponse.defaultProps = {
 SubmitResponse.propTypes = {
   formData: PropTypes.object,
   sectionData: PropTypes.array.isRequired,
+  activeStep: PropTypes.number.isRequired,
+  maxSteps: PropTypes.number.isRequired,
 };
 export default SubmitResponse;

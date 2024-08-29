@@ -6,7 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import toast from '../../../../app/toast';
 import { getReDirectPath } from '../../../../auth/services/AuthService';
 import SubmitButton from '../../../../common/components/button/SubmitButton';
+import { addBlueBG } from '../../../../common/utils/CommonUtils';
+import { isValidEmail } from '../../../../common/utils/lodashUtils';
 import { FormContext } from '../../../../hooks/contexts';
+import useReCaptcha from '../../../../hooks/useReCaptcha';
 import { Constants } from '../../../login';
 import Email from '../../../login/components/fields/Email';
 import Organization from '../../../login/components/fields/Organization';
@@ -18,64 +21,88 @@ import UserService from '../../../login/services/UserService';
 
 const SingupForm = () => {
   const [loading, setLoading] = useState(false);
+  const { token, render, reRef } = useReCaptcha();
   const navigate = useNavigate();
   const form = useContext(FormContext);
+  const [errors, setErrors] = useState({});
 
-  const redirectTo = async (user) => {
-    if (!user) return;
-    console.log(user);
-    const redirectPath = await getReDirectPath();
-    if (redirectPath) {
-      console.log(Constants.LOGIN_OK);
-      toast.info(Constants.LOGIN_OK);
-      navigate(redirectPath);
-      return;
+  const getValidationErrors = (data) => {
+    const validationErrors = {};
+    if (!data.organization) {
+      validationErrors.organization = 'Organization is required';
     }
-    console.error(Constants.LOGIN_NOT_OK);
-    toast.error(Constants.LOGIN_NOT_OK);
+    if (!data.name) {
+      validationErrors.name = 'Username is required';
+    }
+    if (!data.password) {
+      validationErrors.password = 'Password is required';
+    }
+    if (!isValidEmail(data.email)) {
+      validationErrors.email = 'Invalid email address';
+    }
+    return validationErrors;
   };
 
-  const handleSubmit = async (event) => {
+  const redirectTo = () => {
+    const redirectPath = getReDirectPath();
+    console.log(Constants.LOGIN_OK);
+    toast.info(Constants.LOGIN_OK);
+    navigate(redirectPath);
+  };
+
+  const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      event.preventDefault();
-      let data = new FormData(event.target);
+      e.preventDefault();
+      reRef.current.reset();
+      let data = new FormData(e.target);
       if (!data) return;
       data = Object.fromEntries(data);
-      const response = await UserService.signup(data);
-      if (response) redirectTo(response);
-      setLoading(false);
+      const newErrors = getValidationErrors(data);
+
+      if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors);
+      } else {
+        data = { ...data, token };
+        const response = await UserService.signup(data);
+        if (response) redirectTo(response);
+        addBlueBG();
+      }
     } catch (error) {
       console.error(error);
-      toast.error(error);
+      toast.error(error.response?.data?.error || error.response?.data || error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Box
-      sx={{
-        my: 6,
-        mx: 7,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
+    <div className="w-full px-4">
       <LoginHeader />
       {loading ? (
-        <CircularProgress color="primary" sx={{ mt: 10 }} />
+        <div className="inline-flex flex-col gap-0 justify-center items-center w-full mt-3">
+          <CircularProgress color="primary" sx={{ mt: 10 }} />
+        </div>
       ) : (
         <Box
           component="form"
           noValidate
           onSubmit={handleSubmit}
-          sx={{ mt: 1, mb: 1 }}
+          className="inline-flex flex-col gap-0 gap-y-0 justify-center items-center w-full"
         >
-          <Organization />
-          <Username />
-          <Email />
-          <Password />
-          <SubmitButton>
+          <Organization
+            error={Boolean(errors.organization)}
+            helperText={errors.organization}
+            autoFocus
+          />
+          <Username error={Boolean(errors.name)} helperText={errors.name} />
+          <Email error={Boolean(errors.email)} helperText={errors.email} />
+          <Password
+            error={Boolean(errors.password)}
+            helperText={errors.password}
+          />
+          {render}
+          <SubmitButton sx={{ mt: 1, mb: 0, p: 1 }}>
             <Typography noWrap variant="button">
               {form.name}
             </Typography>
@@ -83,7 +110,7 @@ const SingupForm = () => {
           <LoginFooter />
         </Box>
       )}
-    </Box>
+    </div>
   );
 };
 

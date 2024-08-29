@@ -1,15 +1,11 @@
-import ArrowRight from '@mui/icons-material/ArrowRight';
-import Avatar from '@mui/material/Avatar';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import React from 'react';
-import { getCurrentUser } from '../../../auth/services/AuthService';
-import { stringAvatar } from '../../utils/CommonUtils';
+import React, { useState } from 'react';
 import ProfileMenu from './ProfileMenu';
 
 const Profile = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const user = getCurrentUser();
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     if (
@@ -33,8 +29,7 @@ const Profile = () => {
           aria-haspopup="true"
           sx={{ pointerEvents: 'auto', cursor: 'not-allowed' }}
         >
-          <Avatar {...stringAvatar(user?.name)} />
-          <ArrowRight style={{ pointerEvents: 'auto' }} />
+          <AccountCircleIcon fontSize="large" />
         </Button>
       </Tooltip>
       <ProfileMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />

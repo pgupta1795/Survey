@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
+import formsReducer from '../features/forms';
 import themeReducer from '../features/theme';
-import responseReducer from '../features/response';
+import userResponseReducer from '../features/userResponse';
+import usersReducer from '../features/users';
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
-    response: responseReducer,
+    forms: formsReducer,
+    userResponse: userResponseReducer,
+    users: usersReducer,
   },
 });
 

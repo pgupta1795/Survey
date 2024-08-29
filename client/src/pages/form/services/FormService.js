@@ -10,7 +10,9 @@ import { Constants } from '../../login';
 const BASE_URL = '/api/form';
 
 export default {
-  getFormUrl: (id) => `/createform/${id}`,
+  getFormUrl: (id) => `/cform/create/${id}`,
+
+  getResponseUrl: (id) => `/cform/response/${id}`,
 
   getFormByUser: async (userId) => {
     const response = await axios.get(
@@ -70,6 +72,15 @@ export default {
     }
   },
 
+  getFormTypes: async () => {
+    const response = await axios.get(`${BASE_URL}/types`, getAuthHeader());
+    if (response?.status !== 200) {
+      toast.error(Constants.ERROR_GET_FORM);
+      return console.error(Constants.ERROR_GET_FORM);
+    }
+    return response?.data;
+  },
+
   getFormById: async (formId) => {
     const response = await axios.get(`${BASE_URL}/${formId}`, getAuthHeader());
     if (response?.status !== 200) {
@@ -123,11 +134,10 @@ export default {
   },
 
   getForms: async (formType) => {
-    const response = await axios.get(
-      `${BASE_URL}/allforms/${formType}`,
-      getAuthHeader()
-    );
-    console.log(response.data);
+    const url = formType
+      ? `${BASE_URL}/allforms?type=${formType}`
+      : `${BASE_URL}/allforms`;
+    const response = await axios.get(url, getAuthHeader());
     if (response.status !== 200) {
       toast.error(response.data);
       return console.error(response.data);

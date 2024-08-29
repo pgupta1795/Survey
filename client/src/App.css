@@ -1,13 +1,21 @@
 @import '~react-toastify/dist/ReactToastify.css';
 
 :root {
-  --height-toolbar: 64px;
-
+  --primary-color: #60afc5;
+  --primary-light-color: #eef6fe;
+  --height-header: 5.75rem;
+  --height-footer: 3.88rem;
   /* Toast colors */
   --toastify-color-success: #1da522;
-  --toastify-color-info: #3eb1c8;
+  --toastify-color-info: #60afc5;
   --toastify-color-warning: #f1c40f;
   --toastify-color-error: #9f2a1d;
+}
+
+*,
+::before,
+::after {
+  border-width: 0;
 }
 
 * {
@@ -16,9 +24,56 @@
   box-sizing: border-box !important;
 }
 
-.App {
-  /* margin-top: var(--height-toolbar); */
-  height: calc(100vh - var(--height-toolbar)) !important;
+/* font config */
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/public/fonts/Gotham Regular.otf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('/public/fonts/Gotham Medium Regular.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('/public/fonts/Gotham Bold.otf');
+  font-weight: 700;
+}
+
+/* Tailwind config */
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body {
+  @apply leading-[normal] m-0;
+}
+
+/* Global css customizations */
+
+.bg-normal-x {
+  background-image: url('assets/images/normal-x.png'),
+    url('assets/images/wavedpatternbackground-1@2x.png');
+  background-size: cover;
+  /* opacity: 0.75; */
+  background-repeat: no-repeat, no-repeat;
+  background-size: 57%, 100%;
+  background-position: bottom -110px right -25%, top 50% left;
+}
+
+.bg-blue-x {
+  background-image: url('assets/images/blue-x.png'),
+    url('assets/images/wavedpatternbackground-1@2x.png');
+  background-size: cover, cover;
+  /* opacity: 0.75; */
+  background-repeat: repeat-y, repeat-y;
+  background-size: 57%, 100%;
+  background-position: bottom -110px right -25%, center bottom;
 }
 
 .logo_brand {

@@ -1,21 +1,16 @@
-import TextField from '@mui/material/TextField';
 import React from 'react';
+import TextField from '../../../../common/styles/TextField';
 
 const Username = ({ ...props }) => (
   <TextField
-    margin="normal"
+    margin="dense"
     required
     fullWidth
     id="name"
     label="Username"
     name="name"
     autoComplete="username"
-    autoFocus
-    inputProps={{
-      style: {
-        height: '3rem',
-      },
-    }}
+    inputProps={{ style: { height: '3rem' } }}
     {...props}
   />
 );

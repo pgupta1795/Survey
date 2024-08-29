@@ -5,10 +5,10 @@ import { Constants } from '../../signup';
 
 const TokenService = {
   sendToken: async (formData) => {
-    const { email } = formData;
+    const { email, token } = formData;
     localStorage.setItem('email', email);
     const response = await axios.get(
-      `/api/email/sendResetToken/${email}`,
+      `/api/email/sendResetToken/${email}?token=${token}`,
       getAuthHeader()
     );
     console.log(response.data);

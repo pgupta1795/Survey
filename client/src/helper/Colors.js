@@ -1,9 +1,9 @@
 const Colors = Object.freeze({
-  THEME_LIGHT: '#73ddf6',
+  THEME_LIGHT: '#eef6fe',
 
-  THEME_MAIN: '#3EB1C8',
+  THEME_MAIN: '#60afc5',
 
-  THEME_DARK: '#005F83',
+  THEME_DARK: '#437a89',
 
   MIDNIGHT_DARK: '#232526',
 
@@ -11,7 +11,7 @@ const Colors = Object.freeze({
 
   GREY_TEXT: '#555555',
 
-  GRAPH_COLOR_1: '#3EB1C8',
+  GRAPH_COLOR_1: '#60afc5',
 
   GRAPH_COLOR_2: '#B2D8E4',
 

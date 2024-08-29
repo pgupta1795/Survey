@@ -1,24 +1,12 @@
-const formEmailView = (message, formUrl) => {
-  const view = `
-    <div style="margin:1em;padding:1em;background: #2e3335;font-weight: 600;">
-      <div
-        style="box-shadow:-10px 0px 13px -7px #005F83;background:linear-gradient(to top, #3EB1C8 0%, #005F83 100%);display:grid;grid-template-columns:auto;gap:3em;align-items:center;font-size:1.1em;justify-content: space-between;padding:1em;border-radius: 10px;">
-        <div style="font-size:1.5em;">
-          ${message}
-        </div>
-        <button
-          style="width:fit-content;font-weight: bold;box-shadow: 1px 1px 1px #73DDF6;padding: 10px 15px;border-radius: 10px;border: 1px solid #005F83;background: #3EB1C8;height: 4em;font-size: 1em;">
-          <a href=${formUrl} style="text-decoration: none;color: #2e3335;">
-            FILL OUT FORM
-          </a>
-        </button>
-      </div>
-      <div style="background:none;padding-top: 4em;">
-        <img src="https://www.technia.com/wp-content/themes/techniatheme/library/img/logo.svg" alt="TECHNIA" style="width: min(250px,90%);">
-      </div>
-    </div>
-  `;
-  return view;
-};
+const formEmailView = (user, message, formUrl) => `<p>Hello ${user.name},</p> \
+<p><span><strong style="color: #3EB1C8;font-size: 1em;">Assess Your PLM Discipline Maturity :</strong></span></p> \
+<p><span>The following assessment will reveal how mature your product life cycle management (PLM) process is, and how well your company is positioned to reap benefits similar to those realized by other PLM leaders. Your company's <strong style="color:c60000cc">(${user.organization})</strong> PLM maturity will be measured against PLM Five-Stage Model, across different dimensions: scope and focus, design and launch, life cycle value management, technology, and metrics. Upon completion of the assessment, either individually or as a team, your scores by dimension will be presented, together with recommendations on how to advance along your PLM maturity journey. </span></p>
+<span><strong style="text-decoration: underline;">${message}</strong></span> \
+<p><a href="${formUrl}"> \
+<span style="color: #3EB1C8;font-size: 2.5em;"><strong>PLM Maturity Survey</strong></span></p> \
+</a> \
+<p><span>It is recommended to have multiple stakeholders complete the assessment to get both cross-functional and multilevel perspectives on how your PLM processes work today. Use the combined results of these assessments to guide dialogue across your organization on the current state of maturity of your process and the vision. From this insight, build your roadmap to improved maturity that drives greater business value and improved business performance. </span></p>
+<pre><em><sub>Automated message from <span style="color: #3EB1C8;"><strong>TECHNIA</strong></span></sub></em></pre>
+`;
 
 module.exports = formEmailView;

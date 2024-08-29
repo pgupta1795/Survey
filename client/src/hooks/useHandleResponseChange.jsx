@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import toast from '../app/toast';
-import Constants from '../helper/Constants';
 import FieldTypes from '../helper/FieldTypes';
 import {
   getInitialData,
@@ -60,13 +59,11 @@ const useHandleResponseChange = (question, type) => {
       if (!optionId || optionId === '') return;
       setValues((prev) => {
         let newOptions = [optionText];
-        if (FieldTypes.CHECKBOX === type) {
-          if (!isChecked) {
-            newOptions = prev.filter((item) => item !== optionText);
-          } else {
-            newOptions = [...prev, optionText];
-          }
-        }
+        if (FieldTypes.CHECKBOX === type)
+          newOptions = isChecked
+            ? [...prev, optionText]
+            : prev.filter((item) => item !== optionText);
+
         return [...newOptions];
       });
       const data = {
@@ -81,11 +78,7 @@ const useHandleResponseChange = (question, type) => {
         isChecked
       );
       setSectionData(newSectionData);
-      saveResponse(formData, newSectionData);
-      console.info(Constants.SAVED);
-      toast.info(Constants.SAVED, {
-        autoClose: 1000,
-      });
+      saveResponse({ formData, newSectionData, pendingRes });
     } catch (error) {
       toast.error(error);
       console.error(error);

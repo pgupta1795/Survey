@@ -39,10 +39,11 @@ const Profile = () => {
       data = { ...Object.fromEntries(data), image: imageData };
       await UserService.updateDetails(data);
       toast.success(Constants.SAVED);
-      setLoading(false);
     } catch (error) {
       console.error(error);
       toast.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 

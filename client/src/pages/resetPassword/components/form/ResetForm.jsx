@@ -5,6 +5,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from '../../../../app/toast';
 import { getReDirectPath } from '../../../../auth/services/AuthService';
+import { addBlueBG } from '../../../../common/utils/CommonUtils';
 import ResetService from '../../services/ResetService';
 import {
   Constants,
@@ -21,18 +22,12 @@ const ResetForm = () => {
   const navigate = useNavigate();
   const form = useContext(FormContext);
 
-  const redirectTo = async (user) => {
+  const redirectTo = (user) => {
     if (!user) return;
-    console.log(user);
-    const redirectPath = await getReDirectPath();
-    if (redirectPath) {
-      console.log(Constants.RESETTED_PASSWORD);
-      toast.info(Constants.RESETTED_PASSWORD);
-      navigate(redirectPath);
-      return;
-    }
-    console.error(Constants.LOGIN_NOT_OK);
-    toast.error(Constants.LOGIN_NOT_OK);
+    const redirectPath = getReDirectPath();
+    console.log(Constants.RESETTED_PASSWORD);
+    toast.info(Constants.RESETTED_PASSWORD);
+    navigate(redirectPath);
   };
 
   const handleSubmit = async (event) => {
@@ -44,6 +39,7 @@ const ResetForm = () => {
       data = Object.fromEntries(data);
       const response = await ResetService.resetPassword(data);
       if (response) redirectTo(response);
+      addBlueBG();
       setLoading(false);
     } catch (error) {
       toast.error(error);
@@ -52,28 +48,22 @@ const ResetForm = () => {
   };
 
   return (
-    <Box
-      sx={{
-        my: 6,
-        mx: 7,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
+    <div className="w-full px-4">
       <LoginHeader />
       {loading ? (
-        <CircularProgress color="primary" sx={{ mt: 10 }} />
+        <div className="inline-flex flex-col gap-0 gap-y-2 justify-center items-center w-full mt-3">
+          <CircularProgress color="primary" sx={{ mt: 10 }} />
+        </div>
       ) : (
         <Box
           component="form"
           noValidate
           onSubmit={handleSubmit}
-          sx={{ mt: 1, mb: 1 }}
+          className="inline-flex flex-col gap-0 justify-center items-center w-full"
         >
-          <Token />
+          <Token autoFocus />
           <Password label="New Password" />
-          <SubmitButton>
+          <SubmitButton sx={{ mt: 1, mb: 0, p: 1 }}>
             <Typography noWrap variant="button">
               {form.name}
             </Typography>
@@ -81,7 +71,7 @@ const ResetForm = () => {
           <LoginFooter />
         </Box>
       )}
-    </Box>
+    </div>
   );
 };
 

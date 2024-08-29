@@ -1,13 +1,26 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getFormDataById } from '../features/forms';
+import { getResponseData, getYear } from '../features/userResponse';
 
-export default (data, options, fn, extraData, theme) => {
+export default (options, fn, extraData, theme) => {
+  const { formId } = useParams();
+  const formData = useSelector((state) => getFormDataById(state, formId));
+  const responseData = useSelector(getResponseData);
+  const year = useSelector(getYear);
   const [state, setState] = useState({
     ...options,
   });
   const executeFunction = fn.bind(this);
 
   useEffect(() => {
-    const { series, labels } = executeFunction({ ...data, ...extraData });
+    const { series, labels } = executeFunction({
+      formData,
+      responseData,
+      ...extraData,
+      year,
+    });
     setState({
       ...state,
       series,
@@ -26,13 +39,13 @@ export default (data, options, fn, extraData, theme) => {
           },
         },
         theme: {
-          mode: theme || 'light',
+          mode: theme ? theme.palette.mode : 'light',
           palette: 'palette7',
         },
         labels,
       },
     });
-  }, [data]);
+  }, [formData, responseData, year, theme]);
 
   return state;
 };

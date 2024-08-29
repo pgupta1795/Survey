@@ -1,8 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import EditableImageView from '../questions/editable/EditableImageView';
-import UploadImage from '../questions/commands/UploadImage';
+import React from 'react';
 import RemoveOption from '../questions/commands/RemoveOption';
+import UploadImage from '../questions/commands/UploadImage';
+import EditableImageView from '../questions/editable/EditableImageView';
 
 const BasicOption = ({ children, ...rest }) => {
   const { questionIndex, option, optionIndex, type } = rest;

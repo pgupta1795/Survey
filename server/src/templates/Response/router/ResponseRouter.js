@@ -1,19 +1,19 @@
 const router = require('express').Router();
 const { authenticateToken } = require('../../../config/middleware');
 const {
-  allResponses,
+  getResponsesByUser,
   submitResponse,
   getResponse,
   getPendingResponse,
   getResponseByCompany,
 } = require('../service/ResponseService');
 
-router.route('/getPendingResponse/:userId').get(getPendingResponse);
+router.route('/pendingResponse/:userId').get(getPendingResponse);
 router.route('/submitResponse').post(submitResponse);
-router.route('/responses').get(allResponses);
-router.route('/getresponse/:formId').get(getResponse);
+router.route('/responses/:userId').get(getResponsesByUser);
+router.route('/response/:formId').get(getResponse);
 router
-  .route('/getResponseByCompany/:formId/:userId')
+  .route('/responseByCompany/:formId')
   .get(authenticateToken, getResponseByCompany);
 
 module.exports = router;

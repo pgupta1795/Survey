@@ -1,24 +1,29 @@
-import Container from '@mui/material/Container';
 import React, { useEffect } from 'react';
-import useFormsByUser from '../../hooks/useFormsByUser';
-import { CardHeader } from './index';
-import { refresh } from '../../auth/services/AuthService';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { isAdminUser } from '../../auth/services/AuthService';
+import Footer from '../../common/components/header/Footer';
+import { fetchAllForms } from '../../features/forms';
+import CreatedSurveys from './components/container/CreatedSurveys';
+import MySurveys from './components/container/MySurveys';
 import './styles/Dashboard.css';
 
 const Dashboard = () => {
-  const userForms = useFormsByUser();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    refresh();
-  }, []);
+    dispatch(fetchAllForms());
+  }, [navigate]);
 
   return (
-    <main className="dashboard-root" key="dashboard-page">
-      <CardHeader />
-      <Container sx={{ py: 4 }} maxWidth="md" className="card-container">
-        {userForms}
-      </Container>
-    </main>
+    <>
+      <main className="h-full" key="dashboard-page">
+        {isAdminUser() ? <CreatedSurveys /> : null}
+        <MySurveys />
+      </main>
+      <Footer />
+    </>
   );
 };
 

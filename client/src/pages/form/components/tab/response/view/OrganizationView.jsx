@@ -5,41 +5,43 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { getYear } from '../../../../../../features/userResponse';
+import {
+  getCurrentOrganization,
+  getError,
+  getStatus,
+  getUserId,
+} from '../../../../../../features/users';
 import useCreatePDF from '../../../../../../hooks/useCreatePDF';
 import ReportService from '../../../../../report/services/ReportService';
 import DownloadReport from '../../../button/DownloadReport';
 import PreviewReport from '../../../button/PreviewReport';
 import SectionsResponses from './SectionsResponses';
+import YearFilter from './YearFilter';
 
-const OrganizationView = ({ organization }) => {
+const OrganizationView = () => {
   const { formId } = useParams();
-  const company = Object.keys(organization)[0];
-  const userId = Object.values(organization)[0][0]._id;
-  const url = ReportService.getUrlByUser(formId, userId);
+  const organization = useSelector(getCurrentOrganization);
+  const status = useSelector(getStatus);
+  const error = useSelector(getError);
+  const userId = useSelector(getUserId);
+  const year = useSelector(getYear);
   const { savePDF, Report } = useCreatePDF(false, userId);
-  const data = useSelector((state) => state?.response?.value);
+
+  if (status === 'loading') return <div>LOADING...</div>;
+
+  if (status === 'failed') return <div>{error}</div>;
 
   return (
-    <Grid
-      container
-      sx={{
-        mt: 2,
-        gap: 3,
-        width: 'min(100%, 85vw)',
-      }}
-    >
+    <Grid container sx={{ mt: 2, gap: 3, width: 'min(100%, 85vw)' }}>
+      <YearFilter />
       <Grid
         component={Paper}
         item
-        sx={{
-          width: '100%',
-          p: 1,
-          textAlign: 'center',
-        }}
+        sx={{ width: '100%', p: 1, textAlign: 'center' }}
       >
         <List sx={{ wordBreak: 'break-word' }}>
           <ListItem alignItems="flex-start">
@@ -60,29 +62,34 @@ const OrganizationView = ({ organization }) => {
               >
                 Who has Responded ?
               </Typography>
-              {Object.values(organization)[0].map(({ email }) => (
-                <Typography component="span" key={email} variant="body2">
-                  <strong>•</strong> {email}
-                </Typography>
-              ))}
+              {organization
+                ? Object.values(organization)[0].map(({ email }) => (
+                    <Typography component="span" key={email} variant="body2">
+                      <strong>•</strong> {email}
+                    </Typography>
+                  ))
+                : null}
             </Grid>
           </ListItem>
         </List>
       </Grid>
-      <SectionsResponses data={data} />
-      <Grid
-        item
-        sx={{
-          width: '100%',
-          p: 1,
-          textAlign: 'center',
-        }}
-      >
+      <SectionsResponses />
+      <Grid item sx={{ width: '100%', p: 1, textAlign: 'center' }}>
         <Grid container direction="column" spacing="5" justifyContent="center">
           <Typography variant="question">
-            <strong>{`PLM Maturity Report for ${company}`}</strong>
+            <strong>{`PLM Maturity Report for ${
+              organization ? Object.keys(organization)[0] : null
+            }`}</strong>
           </Typography>
-          <PreviewReport url={url} variant="text" />
+          <PreviewReport
+            url={`${ReportService.getUrlByUser(
+              formId,
+              userId
+            )}?year=${year}&organization=${
+              organization ? Object.keys(organization)[0] : null
+            }`}
+            variant="text"
+          />
           <DownloadReport savePDF={savePDF} variant="text" />
           {Report}
         </Grid>
@@ -91,7 +98,4 @@ const OrganizationView = ({ organization }) => {
   );
 };
 
-OrganizationView.propTypes = {
-  organization: PropTypes.object.isRequired,
-};
 export default OrganizationView;

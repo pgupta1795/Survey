@@ -4,6 +4,7 @@ export default {
   isNumberArray: (arr) => arr.every((element) => typeof +element === 'number'),
 
   getAverage: (arr) => {
+    if (!arr) return 0;
     const sum = arr.reduce((a, b) => +a + +b, 0);
     const avg = sum / arr.length || 0;
     return roundOff(avg);

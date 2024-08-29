@@ -61,8 +61,36 @@ export const stringAvatar = (name) => {
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${validName}`,
+      children: `${validName.toUpperCase()}`,
     };
   }
   return null;
+};
+
+export const formatDate = (date) => {
+  const d = date ? new Date(date) : new Date();
+  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+  const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  return `${da}.${mo}.${ye}`;
+};
+
+export const addBlueBG = () => {
+  const surveyApp = document.getElementById('survey-app');
+  if (!surveyApp?.classList.contains('bg-blue-x'))
+    surveyApp?.classList.add('bg-blue-x');
+  surveyApp?.classList.remove('bg-normal-x');
+};
+
+export const removeBlueBG = () => {
+  const surveyApp = document.getElementById('survey-app');
+  if (!surveyApp?.classList.contains('bg-normal-x'))
+    surveyApp?.classList.add('bg-normal-x');
+  surveyApp?.classList.remove('bg-blue-x');
+};
+
+export const scrollToNextField = (e) => {
+  const nextFieldRef = e?.target?.nextSibling;
+  nextFieldRef?.scrollIntoView({ behavior: 'smooth' });
+  nextFieldRef?.focus();
 };

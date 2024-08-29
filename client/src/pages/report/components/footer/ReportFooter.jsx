@@ -4,101 +4,118 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import ArrayUtils from '../../../../common/utils/ArrayUtils';
-import Colors from '../../../../helper/Colors';
-import Settings from '../../../../Settings.json';
+import {
+  getError,
+  getFormDataById,
+  getStatus,
+} from '../../../../features/forms';
+import {
+  getResponseData,
+  getError as getResponseError,
+  getStatus as getResponseStatus,
+} from '../../../../features/userResponse';
+import Constants from '../../../../helper/Constants';
 import { getRows } from '../../utils/ChartUtils';
+import ScoresCell from './ScoresCell';
 
 const getTableRows = (responseData, formData) => {
   const rows = getRows(responseData, formData);
   if (rows.length < 1) return rows;
   const allAverage = ArrayUtils.averageOfObjectArrays(rows);
   if (!allAverage || allAverage.length < 1) return rows;
-  allAverage.splice(0, 1, 'Average');
   rows.push(allAverage);
   return rows;
 };
 
 const ReportFooter = ({ ...props }) => {
-  const { responseData, formData } = useSelector(
-    (state) => state?.response?.value
-  );
-
   const [rows, setRows] = useState([]);
+  const status = useSelector(getStatus);
+  const error = useSelector(getError);
+  const responseStatus = useSelector(getResponseStatus);
+  const responseError = useSelector(getResponseError);
+  const { formId } = useParams();
+  const formData = useSelector((state) => getFormDataById(state, formId));
+  const responseData = useSelector(getResponseData);
 
   useEffect(() => {
     const fetchedRows = getTableRows(responseData, formData);
-    console.log(
-      '%c Rows for Response By  Questions Category ',
-      'background:red;color:black;font-size:20px'
-    );
-    console.table(fetchedRows);
     setRows(fetchedRows);
     return () => {
       setRows([]);
     };
   }, [responseData, formData]);
 
-  const colors = [
-    Colors.MATURITY_COLOR_1,
-    Colors.MATURITY_COLOR_2,
-    Colors.MATURITY_COLOR_3,
-  ];
+  if (status === 'loading' || responseStatus === 'loading')
+    return <div>LOADING...</div>;
+
+  if (status === 'failed') return <div>{error}</div>;
+
+  if (responseStatus === 'failed') return <div>{responseError}</div>;
 
   return responseData && formData ? (
     <TableContainer {...props}>
       <Table sx={{ minWidth: 650 }} size="small" padding="none">
         <TableHead>
-          <TableRow>
-            <TableCell
-              sx={{
-                backgroundColor: 'divider',
-              }}
-            >
-              <Typography variant="tableHeader">Dimension</Typography>
-            </TableCell>
-            {Settings.CATEGORY.map((category, index) => (
+          <TableRow sx={{ backgroundColor: 'primary.main', color: 'white' }}>
+            {Constants.CATEGORY.map((category) => (
               <TableCell
                 align="center"
                 key={category}
-                sx={{
-                  backgroundColor: `${colors[index]}`,
-                }}
+                sx={{ color: 'white', borderLeft: '2px solid white' }}
               >
-                <Typography variant="tableHeader">{category}</Typography>
+                <div className="text-[10px] p-1">{category}</div>
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows?.map((row, pIndex) => (
-            <TableRow
-              key={row[0]}
-              sx={{
-                '&:last-child td, &:last-child th': {
-                  borderTop: `2px solid ${Colors.THEME_MAIN}`,
-                  color: `${Colors.THEME_MAIN}`,
-                  fontWeight: '600',
-                },
-              }}
-            >
-              {Object.keys(row)?.map((key, index) => (
-                <TableCell
-                  align={index === 0 ? 'left' : 'center'}
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`${row[key]}${index}`}
-                  component="th"
-                >
-                  {index === 0 && pIndex < rows.length - 1
-                    ? `${pIndex + 1}. ${row[key]}`
-                    : row[key]}
-                </TableCell>
-              ))}
+          {rows?.length > 0 ? (
+            rows
+              ?.map((row) => (
+                <TableRow key={row[0]}>
+                  {Object.keys(row)?.map((key, index) => (
+                    <ScoresCell
+                      score={row[key]}
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={`${row[key]}${index}`}
+                    />
+                  ))}
+                </TableRow>
+              ))
+              .at(-1)
+          ) : (
+            <TableRow>
+              <ScoresCell score={0} />
+              <ScoresCell score={0} />
+              <ScoresCell score={0} />
             </TableRow>
-          ))}
+          )}
+          <TableRow>
+            {Constants.CATEGORY.map((category) => (
+              <TableCell
+                sx={{ borderBottomWidth: 0 }}
+                align="center"
+                key={category}
+              >
+                <div className="text-[10px] p-1 font-medium">
+                  Average score of{' '}
+                  <span className="text-blue font-extralight underline underline-offset-2">
+                    {category}
+                  </span>{' '}
+                  category in sections{' '}
+                  <span className="italic">
+                    {`"${Constants.SECTIONS.map(({ name }) => name).join(
+                      ', '
+                    )}"`}
+                  </span>
+                </div>
+              </TableCell>
+            ))}
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

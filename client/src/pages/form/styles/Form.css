@@ -16,16 +16,6 @@
   margin-top: 40vh;
 }
 
-.edit-form-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 15px;
-  margin-right: 15px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
 .edit-form-question {
   display: flex;
   width: 100%;
@@ -40,6 +30,7 @@
   justify-content: space-between;
   padding-top: 5px;
   padding-bottom: 5px;
+  align-items: center;
 }
 
 .section-commands {

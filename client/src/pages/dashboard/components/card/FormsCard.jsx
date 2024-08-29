@@ -13,20 +13,24 @@ import FormsCardActions from './actions/FormsCardActions';
 const FormsCard = ({ formId }) => {
   const form = formId ? useFormById(formId) : null;
   const theme = useTheme();
-  const gradientTheme = `linear-gradient(${theme.palette.primary.dark},${theme.palette.primary.main})`;
+  const gradientTheme = `linear-gradient(${theme.palette.primary.main}, ${theme.palette.primary.light})`;
   const gradientRandom = `linear-gradient(${stringToRandomColor()},${stringToRandomColor()})`;
 
   return (
     <Card
-      className="card"
-      sx={{
-        background: `${form ? gradientTheme : gradientRandom}`,
-      }}
+      className={form ? 'card border-2 border-white border-solid' : 'card'}
+      sx={{ background: `${form ? gradientTheme : gradientRandom}` }}
     >
       {form ? (
         <>
           <Grid className="card-head card-ellipse">
-            <Typography gutterBottom variant="h5" component="h2" color="black">
+            <Typography
+              gutterBottom
+              variant="body1"
+              component="h2"
+              sx={{ fontWeight: '500' }}
+              className="tracking-wide"
+            >
               {form?.name}
             </Typography>
           </Grid>
@@ -53,7 +57,7 @@ const FormsCard = ({ formId }) => {
 };
 
 FormsCard.defaultProps = {
-  formId: () => null,
+  formId: '',
 };
 
 FormsCard.propTypes = {

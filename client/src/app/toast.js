@@ -1,4 +1,4 @@
-import { toast as reactToast, Flip } from 'react-toastify';
+import { Flip, toast as reactToast } from 'react-toastify';
 
 const TOAST_DELAY = 6000;
 
@@ -26,14 +26,19 @@ const update = (toastId, message, options = {}) => {
   });
 };
 
+const promise = (callback, options = {}) => {
+  reactToast.promise(callback, options);
+};
+
 const toast = {
   default: (message, options) => execute(DEFAULT, message, options),
   success: (message, options) => execute(SUCCESS, message, options),
-  error: (message, options) => execute(ERROR, message, options),
+  error: (message, options) =>
+    execute(ERROR, message.message || message, options),
   warning: (message, options) => execute(WARNING, message, options),
   info: (message, options) => execute(INFO, message, options),
-
   update: (toastId, message, options) => update(toastId, message, options),
+  promise: (callback, options) => promise(callback, options),
 };
 
 export default toast;

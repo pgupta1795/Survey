@@ -16,35 +16,19 @@ export default {
   },
 
   async login(formData) {
-    try {
-      const response = await axios.post(`${BASE_URL}/login`, formData);
-      console.log(response.data);
-      if (!response.data || !response.data?.accessToken) {
-        throw new Error(Constants.ERROR_AUTH_USER);
-      }
-      setUserTicket(response.data.accessToken);
-      return getCurrentUser();
-    } catch (error) {
-      console.error(error);
-      toast.default(error);
-      return null;
-    }
+    const response = await axios.post(`${BASE_URL}/login`, formData);
+    if (response.data?.error) throw new Error(response.data?.error);
+    if (!response.data?.accessToken) throw new Error(Constants.ERROR_AUTH_USER);
+    setUserTicket(response.data.accessToken);
+    return getCurrentUser();
   },
 
   async signup(formData) {
-    try {
-      const response = await axios.post(`${BASE_URL}/signup`, formData);
-      console.log(response.data);
-      if (!response.data?.accessToken) {
-        throw new Error(Constants.ERROR_AUTH_USER);
-      }
-      setUserTicket(response.data.accessToken);
-      return getCurrentUser();
-    } catch (error) {
-      console.error(error);
-      toast.error(error);
-      return null;
-    }
+    const response = await axios.post(`${BASE_URL}/signup`, formData);
+    if (response.data?.error) throw new Error(response.data?.error);
+    if (!response.data?.accessToken) throw new Error(Constants.ERROR_AUTH_USER);
+    setUserTicket(response.data.accessToken);
+    return getCurrentUser();
   },
 
   logout() {
@@ -52,40 +36,29 @@ export default {
   },
 
   getOrganizations: async () => {
-    try {
-      const response = await axios.get(
-        `${BASE_URL}/organizations`,
-        getAuthHeader()
-      );
-      if (response.status !== 200) {
-        toast.error(response.data);
-        return console.error(response.data);
-      }
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
+    const response = await axios.get(
+      `${BASE_URL}/organizations`,
+      getAuthHeader()
+    );
+    if (response.status === 200) return response.data?.organizations;
+    toast.error(response.data);
+    console.error(response.data);
+    throw new Error('Unable to fetch organizations currently');
   },
 
   updateDetails: async (formData) => {
-    try {
-      const user = getCurrentUser();
-      const userId = user?.id;
-      const response = await axios.post(
-        `${BASE_URL}/updateDetails`,
-        { ...formData, userId },
-        getAuthHeader()
-      );
-      if (response.status !== 200) {
-        console.error(response.data);
-        throw response?.data;
-      }
-      setUserTicket(response.data?.accessToken);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw error;
+    const user = getCurrentUser();
+    const userId = user?.id;
+    const response = await axios.post(
+      `${BASE_URL}/updateDetails`,
+      { ...formData, userId },
+      getAuthHeader()
+    );
+    if (response.status !== 200) {
+      console.error(response.data);
+      throw response?.data;
     }
+    setUserTicket(response.data?.accessToken);
+    return response.data;
   },
 };

@@ -11,22 +11,24 @@ const LoginFooter = () => {
 
   return (
     <>
-      <Grid container>
+      <Grid container className="text-xs mt-2">
         <Grid item xs>
-          <Link href={RoutePaths.GENERATE_TOKEN} variant="body2">
+          <Link href={RoutePaths.GENERATE_TOKEN}>
             {Constants.FORGOT_PASSWORD}
           </Link>
         </Grid>
         <Grid item>
           {form?.alternateName ? (
-            <Link href={form?.alternateUrl} variant="body2">
-              {Constants.DONT_HAVE_ACCOUNT}
+            <Link href={form?.alternateUrl}>
+              {form?.alternateName === Constants.SIGN_IN
+                ? Constants.HAVE_ACCOUNT
+                : Constants.DONT_HAVE_ACCOUNT}
               {form?.alternateName}
             </Link>
           ) : null}
         </Grid>
       </Grid>
-      <Copyright sx={{ mt: 8 }} />
+      <Copyright />
     </>
   );
 };

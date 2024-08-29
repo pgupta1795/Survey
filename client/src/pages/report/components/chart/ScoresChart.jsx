@@ -1,10 +1,14 @@
-import { Typography } from '@mui/material';
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { useSelector } from 'react-redux';
+import { getError, getStatus } from '../../../../features/forms';
+import {
+  getStatus as getResponseError,
+  getError as getResponseStatus,
+} from '../../../../features/userResponse';
 import Colors from '../../../../helper/Colors';
+import Constants from '../../../../helper/Constants';
 import useChartSeries from '../../../../hooks/useChartSeries';
-import Settings from '../../../../Settings.json';
 import ChartUtils from '../../utils/ChartUtils';
 
 const ScoresChart = ({ ...props }) => {
@@ -42,9 +46,6 @@ const ScoresChart = ({ ...props }) => {
         Colors.GRAPH_COLOR_4,
         Colors.GRAPH_COLOR_5,
       ],
-      title: {
-        text: 'SCORES',
-      },
       tooltip: {
         enabled: true,
         fillSeriesColor: true,
@@ -55,11 +56,22 @@ const ScoresChart = ({ ...props }) => {
     },
   };
 
-  const data = useSelector((state) => state?.response?.value);
-  const state = useChartSeries(data, options, ChartUtils.getScoresSeries);
+  const status = useSelector(getStatus);
+  const error = useSelector(getError);
+  const responseStatus = useSelector(getResponseStatus);
+  const responseError = useSelector(getResponseError);
+
+  if (status === 'loading' || responseStatus === 'loading')
+    return <div>LOADING...</div>;
+
+  if (status === 'failed') return <div>{error}</div>;
+
+  if (responseStatus === 'failed') return <div>{responseError}</div>;
+
+  const state = useChartSeries(options, ChartUtils.getScoresSeries);
 
   return (
-    <div className="chart-with-subtitle">
+    <div className="inline-flex flex-col text-black">
       <div className="apex-chart" {...props}>
         <Chart
           options={state.options}
@@ -68,14 +80,10 @@ const ScoresChart = ({ ...props }) => {
           height="300"
         />
       </div>
-      <Typography
-        sx={{
-          typography: { xs: 'small', sm: 'caption', md: 'caption' },
-          px: 1,
-        }}
-      >
-        {Settings.SCORES_DESCRIPTION}
-      </Typography>
+      <div className="pb-1 mx-auto">SCORES</div>
+      <div className="text-[9px] px-1 font-medium">
+        {Constants.SCORES_DESCRIPTION}
+      </div>
     </div>
   );
 };

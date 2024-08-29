@@ -1,12 +1,10 @@
 import toast from '../../../app/toast';
 import ArrayUtils from '../../../common/utils/ArrayUtils';
+import Constants from '../../../helper/Constants';
 import FieldTypes, { getKey } from '../../../helper/FieldTypes';
-import Settings from '../../../Settings.json';
 import FormUtils from '../../form/utils/FormUtils';
 
-const VALID_YEAR = new Date().getFullYear();
-
-export const validChartNames = Settings.SECTIONS.map(({ name }) => name);
+export const validChartNames = Constants.SECTIONS.map(({ name }) => name);
 
 /**
  * return {
@@ -40,18 +38,21 @@ export const validChartNames = Settings.SECTIONS.map(({ name }) => name);
  * @param {formData} formData
  * @return
  */
-export const formatAnswersBySection = (responseData, formData) => {
+export const formatAnswersBySection = (responseData, formData, storedYear) => {
   const myRes = {};
+  const year =
+    new URL(window.location.href).searchParams.get('year') || storedYear;
+  const currentYear = year ? Number(year) : new Date().getFullYear();
   responseData
-    ?.filter((res) => new Date(res.updatedAt).getFullYear() === VALID_YEAR)
+    ?.filter((res) => new Date(res.updatedAt).getFullYear() === currentYear)
     ?.forEach(({ userId, sections }) => {
       sections?.forEach((section) => {
         const sectionName = formData?.sections?.find(
           (sec) => sec._id === section._id
         )?.name;
         const allAnswers = section?.response?.map((question) => ({
-          questionId: question.questionId,
-          optionText: question.options[0].optionText,
+          questionId: question?.questionId,
+          optionText: question?.options[0]?.optionText,
         }));
         const existingVal = myRes[sectionName];
         myRes[sectionName] = existingVal
@@ -88,21 +89,19 @@ export const getSectionAvgByCategory = (
   const userResponses = formattedResponse[sectionName];
   const categoriesAverageByUser = userResponses?.map((userResponse) => {
     const quesAnswers = userResponse[Object.keys(userResponse)[0]];
-    const arrForSectionByCategory = [sectionName];
-    Settings.CATEGORY.forEach((category) => {
+    const arrForSectionByCategory = [];
+    Constants.CATEGORY.forEach((category) => {
       const categoryAns = quesAnswers.map(({ questionId, optionText }) => {
         const question = FormUtils.findQuestionById(
           formData,
           questionId,
           sectionName
         );
-        if (question && question.category === category) {
-          return optionText;
-        }
+        if (question && question.category === category) return optionText;
         return null;
       });
       if (!ArrayUtils.isNumberArray(categoryAns)) return;
-      const avg = ArrayUtils.getAverage(categoryAns);
+      const avg = ArrayUtils.getAverage(categoryAns.filter((n) => n));
       arrForSectionByCategory.push(avg);
     });
     return arrForSectionByCategory;
@@ -169,7 +168,7 @@ export default {
       const { formData, responseData } = data;
       const rows = getRows(responseData, formData);
       if (rows.length < 1) return { series, labels };
-      const categories = Settings.CATEGORY;
+      const categories = Constants.CATEGORY;
 
       for (let i = 0; i < categories.length; i += 1) {
         const serie = {
@@ -198,36 +197,32 @@ export default {
   },
 
   getQuestionAnswerSeries: (data) => {
-    console.log({ data });
-    const series = [
-      {
-        name: 'Answers',
-        data: [],
-      },
-    ];
+    const series = [{ name: 'Answers', data: [] }];
     const labels = [];
-    if (!data || !data?.formData || !data?.responseData)
-      return { series, labels };
     const { formData, responseData, activeQuestion, activeSection } = data;
-    const formattedRes = formatAnswersBySection(responseData, formData);
+    const formattedRes = formatAnswersBySection(
+      responseData,
+      formData,
+      data.year
+    );
     const answers = formattedRes[activeSection?.name]?.map((userRes) => {
       const quesAnswers = userRes[Object.keys(userRes)[0]];
-      return quesAnswers.find(
-        (quesAns) => quesAns.questionId === activeQuestion._id
+      return quesAnswers?.find(
+        (quesAns) => quesAns?.questionId === activeQuestion?._id
       )?.optionText;
     });
 
     if (activeQuestion.type === getKey(FieldTypes, FieldTypes.TEXT_FIELD)) {
       answers?.forEach((ans) => {
-        const count = ArrayUtils.getElementCount(answers, ans);
+        const count = answers ? ArrayUtils.getElementCount(answers, ans) : 0;
         series[0].data.push(count);
-        labels.push(ans);
+        labels.push(ans || '');
       });
       return { series, labels };
     }
 
     activeQuestion.options.forEach(({ text }) => {
-      const count = ArrayUtils.getElementCount(answers, text);
+      const count = answers ? ArrayUtils.getElementCount(answers, text) : 0;
       series[0].data.push(count);
       labels.push(text);
     });

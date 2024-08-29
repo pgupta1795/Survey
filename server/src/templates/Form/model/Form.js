@@ -28,7 +28,11 @@ const FormSchema = new Schema(
       },
     ],
     stared: { type: Boolean, default: false },
-    type: { type: String, default: Constants.ANONYMOUS },
+    type: {
+      type: String,
+      default: Constants.ANONYMOUS,
+      enum: ['PLM', 'BVA', Constants.ANONYMOUS],
+    },
   },
   { timestamps: true }
 );
