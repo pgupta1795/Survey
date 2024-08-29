@@ -20,6 +20,8 @@
         "semi": true
       }
     ],
+    "react/destructuring-assignment": ["off"],
+    "prefer-destructuring": "off",
     "no-restricted-syntax": "off",
     "no-unused-vars": "warn",
     "no-bitwise": "off",
